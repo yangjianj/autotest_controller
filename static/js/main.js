@@ -1,0 +1,2 @@
+
+new Ctor().$mount('#app')

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+<title>element-ui</title>
+    <link rel="stylesheet" href="../static/node_modules/element-ui/lib/theme-chalk/index.css">
+    <script src="../static/js/vue.js"></script>
+       <script src="../static/node_modules/element-ui/lib/index.js"></script>
+       
+</head>
+<body>
+<div id="app">
+<el-tree
+  :data="data"
+  show-checkbox
+  default-expand-all
+  node-key="id"
+  ref="tree"
+  highlight-current
+  :props="defaultProps">
+</el-tree>
+
+<div class="buttons">
+  <el-button @click="getCheckedNodes">通过 node 获取</el-button>
+  <el-button @click="getCheckedKeys">通过 key 获取</el-button>
+  <el-button @click="setCheckedNodes">通过 node 设置</el-button>
+  <el-button @click="setCheckedKeys">通过 key 设置</el-button>
+  <el-button @click="resetChecked">清空</el-button>
+</div>
+</div>
+<script src="../static/main.js"></script>
+</body>
+</html>
+

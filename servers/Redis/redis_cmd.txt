@@ -1,0 +1,9 @@
+redis-server.exe  Redis.conf
+redis-cli -h host -p port -a password
+set
+get
+keys *
+
+#发布订阅模式（实时）
+PUBLISH channel2 "Redis is a great caching technique"
+SUBSCRIBE channel2
