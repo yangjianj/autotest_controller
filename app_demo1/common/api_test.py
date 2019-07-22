@@ -3,12 +3,18 @@ import time
 import threading
 from app_demo1.common.reques import Reques
 
+#接口类
 class Apiclient():
-	def __init__(self,url,method,params,headers):
+	def __init__(self,url,method,params,headers=None):
 		self.url=url
 		self.method=method
 		self.param=params
-		self.headers=headers
+		if headers==None:
+			headers = {}
+			headers['Content-Type'] = 'application/json; charset=UTF-8'
+			self.headers=headers
+		else:
+			self.headers=headers
 		self.requ=Reques()
 		self.response=[]
 
