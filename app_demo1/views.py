@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 import json,time
 from app_demo1.common.database_con import DataManager
+from app_demo1.common.api_test import Apiclient
 
 # Create your views here.
 
@@ -93,9 +94,14 @@ def get_reuqet_json(request):
 	result=allow_origin_response(result)
 	return result
 
+def test_api(request):
+	re_data = json.loads(request.body)
+	client=Apiclient(re_data['url'],re_data['method'],re_data['params'],re_data['headers'])
+	client.testapi_multi(100)
+	return True
+
 def vue_elem(request):
 	return render(request,"test_element.html")
-
 
 def allow_origin_response(re):    #允许跨域请求设置
 	re["Access-Control-Allow-Origin"] = "*"    

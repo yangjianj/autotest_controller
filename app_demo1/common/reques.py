@@ -1,9 +1,7 @@
 #-*- coding: utf-8 -*-
 import requests,json
 from requests import exceptions
-#import app_demo1.config as config
-import config
-
+import app_demo1.config as config
 class Reques():
     def get(self, url,headers,parms):#get消息
         try:

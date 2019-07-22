@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
 import threading
-from reques import Reques
+from app_demo1.common.reques import Reques
 
 class Apiclient():
 	def __init__(self,url,method,params,headers):
