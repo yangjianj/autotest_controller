@@ -67,7 +67,7 @@ def a(x=1):
 if __name__ == '__main__':
 	t_list=[]
 	t_re=[]
-	url="http://localhost:8090/get_all_user/"
+	url="http://localhost:8090/get_all_user/"  
 	url="http://localhost:8090/get_reuqet_json/"
 	method='post'
 	params={'username':'name','password':'pass'}
