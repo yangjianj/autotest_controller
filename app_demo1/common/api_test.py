@@ -18,7 +18,7 @@ class Apiclient():
 		self.requ=Reques()
 		self.response=[]
 
-	def testapi(self):
+	def test(self):
 		if self.method=='POST' or self.method=='post':
 			result=self.requ.post(url=self.url,params=self.param,headers=self.headers)
 		elif self.method=='GET' or self.method=='get':
@@ -29,7 +29,7 @@ class Apiclient():
 			result=self.requ.delfile(url=self.url,params=self.param,headers=self.headers)
 		return  result
 
-	def testapi_multi(self,thread_num):
+	def test_multi(self,thread_num):
 		t_list=[]
 		t_re=[]
 		time_start=time.time()
@@ -76,7 +76,8 @@ if __name__ == '__main__':
 	headers['Content-Type']='application/json; charset=UTF-8'
 	client1=Apiclient(url,method,params,headers)
 	#t_list.append(client1.testapi())
-	re=client1.testapi_multi(800)
+	re=client1.test()
+	#re=client1.test_multi(800)
 	print(re)
 
 
