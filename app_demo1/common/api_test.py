@@ -2,6 +2,7 @@
 import time
 import threading
 from app_demo1.common.reques import Reques
+import jsonschema
 
 #接口类
 class Apiclient():
@@ -13,8 +14,6 @@ class Apiclient():
 		self.headers=mrequest["headers"]
 		self.requ=Reques()
 		self.response=[]
-		print("in apiclient")
-		print(self.qstring)
 	def test(self):
 		start_time=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 		if self.method=='POST' or self.method=='post':
@@ -46,6 +45,9 @@ class Apiclient():
 		time_end=time.time()
 		result={"time":time_end-time_start,"data":t_re}
 		return result
+
+	def result_check(self):
+		pass
 
 class Multiclient(threading.Thread):
 	def __init__(self,func,args=()):

@@ -23,13 +23,10 @@ class Reques():
         except Exception as e:
             return {'get请求出错':"错误原因:%s"%e}
     def post(self, url, payload,qstring,headers):#post消息
-        payload = json.dumps(payload)
-        qstring = json.dumps(qstring)
+        #payload(string);qstring(dict)
         result={}
         try:
             self.r =requests.post(url,data=payload,params=qstring,headers=headers,timeout=config.Interface_Time_Out)
-            print(11111111111111111)
-            print(self.r.content)
             spend = self.r.elapsed.total_seconds()
             #json_response = json.loads(self.r.text)
             result["response"]=self.r.text

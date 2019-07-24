@@ -16,10 +16,10 @@ class ApiPerformer():
             result.append(client.test())
         print(result)
         self.save_result(result)
+        return result
 
     def save_result(self,result):
         db=DataManager()
-
         db.exec_by_sql()
 
 
@@ -28,4 +28,4 @@ class UiPerformer():
 
 if __name__=="__main__":
     cc=ApiPerformer("tmpfile//interface_wl.xlsx",'rr')
-    cc.run()
+    print(cc.run())

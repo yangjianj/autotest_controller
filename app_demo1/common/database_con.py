@@ -37,7 +37,6 @@ class DataManager():
             print(e)
             return False
 
-
     def add_user(self,name,workid,role,project,telephone):
         pass
 

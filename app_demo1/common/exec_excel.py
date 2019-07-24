@@ -35,18 +35,15 @@ def config_build(type,conf,dst="taobao"):
         result["url"] = conf[4]
         result["method"] = conf[7]
         result["qstring"] = template
-        result["payload"] = {}
+        result["payload"] = '{}'
         result["headers"] = config.headers
         print(result)
     if type =="wuliu":
-        #template = config.wl_querystring
-        print(conf[8])
         result["url"] = conf[4]
         result["method"] = conf[7]
         result["qstring"] = json.loads(conf[8])
-        result["payload"] = {}
+        result["payload"] = json.dumps('{"key":"val"}')
         result["headers"] = config.headers
-        print(result)
     return result
 
 if __name__=='__main__':
