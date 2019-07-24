@@ -11,6 +11,8 @@ Interface_Time_Out = 500
 tuling_apikey="81a0447221504656bff04b47d1a8c868"
 tuling_userid="363282"
 tuling_api="http://openapi.tuling123.com/openapi/api/v2"
+headers = {}
+headers['Content-Type'] = 'application/json; charset=UTF-8'
 tuling_request_data={
     "reqType":0,
     "perception": {

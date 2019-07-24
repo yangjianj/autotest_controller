@@ -4,12 +4,16 @@ from requests import exceptions
 import app_demo1.config as config
 class Reques():
     def get(self, url,headers,parms):#get消息
+        result={}
         try:
             self.r = requests.get(url, headers=headers,params=parms,timeout=config.Interface_Time_Out)
             self.r.encoding = 'UTF-8'
             spend=self.r.elapsed.total_seconds()
-            json_response = json.loads(self.r.text)
-            return (json_response,spend)      #返回相应与总时长（s）
+            #json_response = json.loads(self.r.text)
+            #return (json_response,spend)      #返回响应与总时长（s）
+            result["response"] = self.r.text
+            result["spend"] = spend
+            return (result)
         except exceptions.Timeout :
             return {'get请求出错': "请求超时" }
         except exceptions.InvalidURL:
@@ -20,12 +24,14 @@ class Reques():
             return {'get请求出错':"错误原因:%s"%e}
     def post(self, url, params,headers):#post消息
         param = json.dumps(params)
-        print(param)
+        result={}
         try:
             self.r =requests.post(url,data=param,headers=headers,timeout=config.Interface_Time_Out)
-            json_response = json.loads(self.r.text)
-            spend=self.r.elapsed.total_seconds()
-            return (json_response,spend)
+            spend = self.r.elapsed.total_seconds()
+            #json_response = json.loads(self.r.text)
+            result["response"]=self.r.text
+            result["spend"]=spend
+            return (result)
         except exceptions.Timeout :
             return {'post请求出错': "请求超时" }
         except exceptions.InvalidURL:

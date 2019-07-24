@@ -5,20 +5,16 @@ from app_demo1.common.reques import Reques
 
 #接口类
 class Apiclient():
-	def __init__(self,url,method,params,headers=None):
-		self.url=url
-		self.method=method
-		self.param=params
-		if headers==None:
-			headers = {}
-			headers['Content-Type'] = 'application/json; charset=UTF-8'
-			self.headers=headers
-		else:
-			self.headers=headers
+	def __init__(self,param):
+		self.url=param["url"]
+		self.method=param["method"]
+		self.param=param["data"]
+		self.headers=param["headers"]
 		self.requ=Reques()
 		self.response=[]
 
 	def test(self):
+		start_time=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 		if self.method=='POST' or self.method=='post':
 			result=self.requ.post(url=self.url,params=self.param,headers=self.headers)
 		elif self.method=='GET' or self.method=='get':
@@ -27,6 +23,9 @@ class Apiclient():
 			result=self.requ.putfile(url=self.url,params=self.param,headers=self.headers)
 		elif self.method=='DELETE' or self.method=='delete':
 			result=self.requ.delfile(url=self.url,params=self.param,headers=self.headers)
+		end_time=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
+		result["start_time"]=start_time
+		result["end_time"]=end_time
 		return  result
 
 	def test_multi(self,thread_num):
@@ -34,7 +33,7 @@ class Apiclient():
 		t_re=[]
 		time_start=time.time()
 		for i in range(thread_num):
-			t=Multiclient(self.testapi,())
+			t=Multiclient(self.test,())
 			t_list.append(t)
 			t.start()
 		for t in t_list:
@@ -67,15 +66,17 @@ def a(x=1):
 if __name__ == '__main__':
 	t_list=[]
 	t_re=[]
-	url="http://localhost:8090/get_all_user/"  
-	url="http://localhost:8090/get_reuqet_json/"
-	method='post'
-	params={'username':'name','password':'pass'}
+	jj={}
+	url="http://localhost:8090/get_all_user/"
+	jj["url"]="http://localhost:8090/get_reuqet_json/"
+	jj["method"]='post'
+	jj["data"]={'username':'name','password':'pass'}
 	headers={}
 	#headers['Content-Type']='application/x-www-form-urlencoded; charset=UTF-8'
 	headers['Content-Type']='application/json; charset=UTF-8'
-	client1=Apiclient(url,method,params,headers)
-	#t_list.append(client1.testapi())
+	jj["headers"]=headers
+	client1=Apiclient(jj)
+	#t_list.append(client1.test())
 	re=client1.test()
 	#re=client1.test_multi(800)
 	print(re)
