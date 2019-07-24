@@ -1,6 +1,8 @@
 # -*-coding:UTF-8 -*-
 import xlrd
 import xlwt
+import json
+from app_demo1 import config
 
 def import_api_cases(path):
     result=[]
@@ -18,6 +20,35 @@ def import_api_cases(path):
 def import_ui_cases(path):
     pass
 
+def config_build(type,conf,dst="taobao"):
+    result = {}
+    if type == "tuling":    #for class Apiclient
+        template=config.tuling_request_data
+        template["perception"]["inputText"]["text"]=conf[8]
+        result["url"]=conf[4]
+        result["method"]=conf[7]
+        result["data"]=template
+        result["headers"]=config.headers
+    if type =="taobao":
+        template = config.taobao_querystring
+        template["q"] = conf[8]
+        result["url"] = conf[4]
+        result["method"] = conf[7]
+        result["qstring"] = template
+        result["payload"] = {}
+        result["headers"] = config.headers
+        print(result)
+    if type =="wuliu":
+        #template = config.wl_querystring
+        print(conf[8])
+        result["url"] = conf[4]
+        result["method"] = conf[7]
+        result["qstring"] = json.loads(conf[8])
+        result["payload"] = {}
+        result["headers"] = config.headers
+        print(result)
+    return result
+
 if __name__=='__main__':
-    for i in import_api_cases('tmp_for_execrise\\interface.xlsx'):
+    for i in import_api_cases('tmp_for_execrise\\interface_tb.xlsx'):
         print(i)

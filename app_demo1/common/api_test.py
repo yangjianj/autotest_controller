@@ -5,24 +5,28 @@ from app_demo1.common.reques import Reques
 
 #接口类
 class Apiclient():
-	def __init__(self,param):
-		self.url=param["url"]
-		self.method=param["method"]
-		self.param=param["data"]
-		self.headers=param["headers"]
+	def __init__(self,mrequest):
+		self.url=mrequest["url"]
+		self.method=mrequest["method"]
+		self.qstring=mrequest["qstring"]
+		self.payload=mrequest["payload"]
+		self.headers=mrequest["headers"]
 		self.requ=Reques()
 		self.response=[]
-
+		print("in apiclient")
+		print(self.qstring)
 	def test(self):
 		start_time=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 		if self.method=='POST' or self.method=='post':
-			result=self.requ.post(url=self.url,params=self.param,headers=self.headers)
+			result=self.requ.post(url=self.url,payload=self.payload,qstring=self.qstring,headers=self.headers)
 		elif self.method=='GET' or self.method=='get':
 			result=self.requ.get(url=self.url,headers=self.headers,parms=self.param)
 		elif self.method=='PUT' or self.method=='put':
 			result=self.requ.putfile(url=self.url,params=self.param,headers=self.headers)
 		elif self.method=='DELETE' or self.method=='delete':
 			result=self.requ.delfile(url=self.url,params=self.param,headers=self.headers)
+		else:
+			raise Exception("Invalid method!",self.method)
 		end_time=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 		result["start_time"]=start_time
 		result["end_time"]=end_time
