@@ -1,9 +1,9 @@
 # -*-coding:UTF-8 -*-
-import xlrd
-import xlwt
-import json
+import xlrd,xlwt
+import json,time,datetime
 from app_demo1 import config
 
+#导入excel中接口测试用例
 def import_api_cases(path):
     result=[]
     workbook = xlrd.open_workbook(path)
@@ -17,6 +17,7 @@ def import_api_cases(path):
         result.append(tmp)
     return result
 
+#导入excel中ui测试用例
 def import_ui_cases(path):
     pass
 
@@ -41,10 +42,25 @@ def config_build(type,conf,dst="taobao"):
     if type =="wuliu":
         result["url"] = conf[4]
         result["method"] = conf[7]
-        result["qstring"] = json.loads(conf[8])
+        result["qstring"] = json.loads(conf[8].replace('\n', ''))
         result["payload"] = json.dumps('{"key":"val"}')
         result["headers"] = config.headers
+        result["expected"] = conf[9].replace('\n', '')
     return result
+
+def record_time(func):    #计时器
+    def inner(*args,**kargs):
+        result={}
+        start_time=datetime.datetime.now()
+        re=func(*args,**kargs)
+        end_time = datetime.datetime.now()
+        result["re"] = re
+        result["start-time"]=str(start_time)
+        result["end-time"] = str(end_time)
+        result["spend"]=str(end_time-start_time)
+        return result
+    return inner
+
 
 if __name__=='__main__':
     for i in import_api_cases('tmp_for_execrise\\interface_tb.xlsx'):

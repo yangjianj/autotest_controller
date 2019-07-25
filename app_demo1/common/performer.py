@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from app_demo1.common.api_test import Apiclient
-from app_demo1.common.exec_excel import *
+from app_demo1.common.tool_func import *
 from app_demo1 import config
 from app_demo1.common.database_con import  DataManager
 

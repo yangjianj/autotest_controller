@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-import time
+import time,json
 import threading
 from app_demo1.common.reques import Reques
-import jsonschema
+from app_demo1.common.tool_func import *
+from jsonschema import validate
 
 #接口类
 class Apiclient():
@@ -12,10 +13,12 @@ class Apiclient():
 		self.qstring=mrequest["qstring"]
 		self.payload=mrequest["payload"]
 		self.headers=mrequest["headers"]
+		self.expected=mrequest["expected"]
 		self.requ=Reques()
 		self.response=[]
+
+	@record_time
 	def test(self):
-		start_time=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 		if self.method=='POST' or self.method=='post':
 			result=self.requ.post(url=self.url,payload=self.payload,qstring=self.qstring,headers=self.headers)
 		elif self.method=='GET' or self.method=='get':
@@ -25,10 +28,9 @@ class Apiclient():
 		elif self.method=='DELETE' or self.method=='delete':
 			result=self.requ.delfile(url=self.url,params=self.param,headers=self.headers)
 		else:
-			raise Exception("Invalid method!",self.method)
-		end_time=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
-		result["start_time"]=start_time
-		result["end_time"]=end_time
+			result={"response":"method not in post,get,put,delete"}
+		test_result=self.response_check(result["response"],self.expected)
+		result["test_result"]=test_result
 		return  result
 
 	def test_multi(self,thread_num):
@@ -46,8 +48,14 @@ class Apiclient():
 		result={"time":time_end-time_start,"data":t_re}
 		return result
 
-	def result_check(self):
-		pass
+	def response_check(self,data,template):
+		try:
+			d=json.loads(data)
+			sc=json.loads(template)
+			validate(instance=d, schema=sc)    #return None
+			return 'passed'
+		except Exception as e:
+			return 'failed : '+str(e)
 
 class Multiclient(threading.Thread):
 	def __init__(self,func,args=()):
@@ -76,7 +84,9 @@ if __name__ == '__main__':
 	url="http://localhost:8090/get_all_user/"
 	jj["url"]="http://localhost:8090/get_reuqet_json/"
 	jj["method"]='post'
-	jj["data"]={'username':'name','password':'pass'}
+	jj["payload"]={'username':'name','password':'pass'}
+	jj["qstring"] = {'username': 'name', 'password': 'pass'}
+	jj["expected"]={"type":object}
 	headers={}
 	#headers['Content-Type']='application/x-www-form-urlencoded; charset=UTF-8'
 	headers['Content-Type']='application/json; charset=UTF-8'
