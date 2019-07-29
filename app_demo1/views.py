@@ -86,11 +86,12 @@ def update_user(request):
 
 @csrf_exempt
 def get_reuqet_json(request):
-	print(request.body)
+	print(11111111111111111)
+	print(request.body.decode())
 	re_data=json.loads(request.body)
 	print(re_data['username'])
 	result={'status':200,'re_data':'123456789'}
-	result=HttpResponse(json.dumps(str(result), ensure_ascii=False))
+	result=HttpResponse(json.dumps(result, ensure_ascii=False))
 	result=allow_origin_response(result)
 	return result
 

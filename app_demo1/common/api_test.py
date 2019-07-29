@@ -10,8 +10,8 @@ class Apiclient():
 	def __init__(self,mrequest):
 		self.url=mrequest["url"]
 		self.method=mrequest["method"]
-		self.qstring=mrequest["qstring"]
-		self.payload=mrequest["payload"]
+		self.reparam=mrequest["reparam"]
+		self.redata=mrequest["redata"]
 		self.headers=mrequest["headers"]
 		self.expected=mrequest["expected"]
 		self.requ=Reques()
@@ -20,16 +20,16 @@ class Apiclient():
 	@record_time
 	def test(self):
 		if self.method=='POST' or self.method=='post':
-			result=self.requ.post(url=self.url,payload=self.payload,qstring=self.qstring,headers=self.headers)
+			result=self.requ.post(url=self.url,redata=self.redata,reparam=self.reparam,headers=self.headers)
 		elif self.method=='GET' or self.method=='get':
-			result=self.requ.get(url=self.url,headers=self.headers,parms=self.param)
+			result=self.requ.get(url=self.url,headers=self.headers,parms=self.reparam)
 		elif self.method=='PUT' or self.method=='put':
-			result=self.requ.putfile(url=self.url,params=self.param,headers=self.headers)
+			result=self.requ.putfile(url=self.url,params=self.reparam,headers=self.headers)
 		elif self.method=='DELETE' or self.method=='delete':
-			result=self.requ.delfile(url=self.url,params=self.param,headers=self.headers)
+			result=self.requ.delfile(url=self.url,params=self.reparam,headers=self.headers)
 		else:
 			result={"response":"method not in post,get,put,delete"}
-		test_result=self.response_check(result["response"],self.expected)
+		test_result=self.response_check(json.loads(result["response"]),self.expected)
 		result["test_result"]=test_result
 		return  result
 
@@ -49,10 +49,9 @@ class Apiclient():
 		return result
 
 	def response_check(self,data,template):
+		#type(data)=dict ; typetemplate=dict
 		try:
-			d=json.loads(data)
-			sc=json.loads(template)
-			validate(instance=d, schema=sc)    #return None
+			validate(instance=data, schema=template)    #return None
 			return 'passed'
 		except Exception as e:
 			return 'failed : '+str(e)
@@ -84,9 +83,12 @@ if __name__ == '__main__':
 	url="http://localhost:8090/get_all_user/"
 	jj["url"]="http://localhost:8090/get_reuqet_json/"
 	jj["method"]='post'
-	jj["payload"]={'username':'name','password':'pass'}
-	jj["qstring"] = {'username': 'name', 'password': 'pass'}
-	jj["expected"]={"type":object}
+	jj["redata"]=json.dumps({'username':'name0','password':'pass'})
+	jj["reparam"] = {'username': 'name1', 'password': 'pass'}
+	jj["expected"]={"type":"object",
+	                "properties":{
+		                "re_data":{"type":"string"}
+	                }}
 	headers={}
 	#headers['Content-Type']='application/x-www-form-urlencoded; charset=UTF-8'
 	headers['Content-Type']='application/json; charset=UTF-8'

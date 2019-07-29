@@ -22,11 +22,11 @@ class Reques():
             return {'get请求出错': "http请求错误"}
         except Exception as e:
             return {'get请求出错':"错误原因:%s"%e}
-    def post(self, url, payload,qstring,headers):#post消息
-        #payload(string);qstring(dict)
+    def post(self, url, redata,reparam,headers):#post消息
+        #redata(string);reparam(dict)
         result={}
         try:
-            self.r =requests.post(url,data=payload,params=qstring,headers=headers,timeout=config.Interface_Time_Out)
+            self.r =requests.post(url,data=redata,params=reparam,headers=headers,timeout=config.Interface_Time_Out)
             spend = self.r.elapsed.total_seconds()
             #json_response = json.loads(self.r.text)
             result["response"]=self.r.text

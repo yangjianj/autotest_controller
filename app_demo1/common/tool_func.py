@@ -42,10 +42,10 @@ def config_build(type,conf,dst="taobao"):
     if type =="wuliu":
         result["url"] = conf[4]
         result["method"] = conf[7]
-        result["qstring"] = json.loads(conf[8].replace('\n', ''))
-        result["payload"] = json.dumps('{"key":"val"}')
+        result["reparam"] = json.loads(conf[8].replace('\n', ''))
+        result["redata"] = json.dumps('{"key":"val"}')
         result["headers"] = config.headers
-        result["expected"] = conf[9].replace('\n', '')
+        result["expected"] = json.loads(conf[9].replace('\n', ''))
     return result
 
 def record_time(func):    #计时器

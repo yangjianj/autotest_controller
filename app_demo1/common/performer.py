@@ -12,6 +12,7 @@ class ApiPerformer():
     def run(self):
         result=[]
         for case in self.all_cases:
+            print(case)
             client = Apiclient(config_build("wuliu",case))
             result.append(client.test())
         print(result)
@@ -27,5 +28,5 @@ class UiPerformer():
     pass
 
 if __name__=="__main__":
-    cc=ApiPerformer("tmpfile//interface_wl.xlsx",'rr')
+    cc=ApiPerformer("tmpfile//interface_wl1.xlsx",'rr')
     print(cc.run())
