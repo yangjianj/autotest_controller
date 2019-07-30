@@ -43,6 +43,14 @@ class DataManager():
     def delete_user(self,name):
         pass
 
+    def save_api_case(self):
+
+        print(11111)
+
+    def save_api_result(self):
+        pass
+
+
 
 if __name__ == '__main__':
     dd=DataManager()

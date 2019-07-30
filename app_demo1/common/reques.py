@@ -2,6 +2,8 @@
 import requests,json
 from requests import exceptions
 import app_demo1.config as config
+from app_demo1.common.tool_func import *
+
 class Reques():
     def get(self, url,headers,parms):#get消息
         result={}
@@ -22,6 +24,8 @@ class Reques():
             return {'get请求出错': "http请求错误"}
         except Exception as e:
             return {'get请求出错':"错误原因:%s"%e}
+
+    @record_time
     def post(self, url, redata,reparam,headers):#post消息
         #redata(string);reparam(dict)
         result={}
@@ -40,6 +44,7 @@ class Reques():
             return {'post请求出错': "http请求错误"}
         except Exception as e:
             return {'post请求出错': "错误原因:%s" % e}
+
     def delfile(self,url,params,headers):#删除的请求
         try:
             self.rdel_word=requests.delete(url,data=params,headers=headers,timeout=config.Interface_Time_Out)

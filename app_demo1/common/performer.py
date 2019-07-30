@@ -14,12 +14,13 @@ class ApiPerformer():
         for case in self.all_cases:
             print(case)
             client = Apiclient(config_build("wuliu",case))
-            result.append(client.test())
+            re=client.test()
+            self.save_result(re)  #每执行完一条case就存储到数据库
+            result.append(re)
         print(result)
-        self.save_result(result)
         return result
 
-    def save_result(self,result):
+    def save_result(self,apiresult):
         db=DataManager()
         db.exec_by_sql()
 
@@ -28,5 +29,5 @@ class UiPerformer():
     pass
 
 if __name__=="__main__":
-    cc=ApiPerformer("tmpfile//interface_wl1.xlsx",'rr')
+    cc=ApiPerformer("tmpfile//interface_wl.xlsx",'rr')
     print(cc.run())

@@ -17,7 +17,6 @@ class Apiclient():
 		self.requ=Reques()
 		self.response=[]
 
-	@record_time
 	def test(self):
 		if self.method=='POST' or self.method=='post':
 			result=self.requ.post(url=self.url,redata=self.redata,reparam=self.reparam,headers=self.headers)
@@ -29,8 +28,9 @@ class Apiclient():
 			result=self.requ.delfile(url=self.url,params=self.reparam,headers=self.headers)
 		else:
 			result={"response":"method not in post,get,put,delete"}
-		test_result=self.response_check(json.loads(result["response"]),self.expected)
-		result["test_result"]=test_result
+		print(result)
+		test_result=self.response_check(json.loads(result["re"]["response"]),self.expected)
+		result["re"]["test_result"]=test_result
 		return  result
 
 	def test_multi(self,thread_num):
