@@ -15,14 +15,15 @@ class ApiPerformer():
             print(case)
             client = Apiclient(config_build("wuliu",case))
             re=client.test()
-            self.save_result(re)  #每执行完一条case就存储到数据库
+            re["case"]=case
+            print(re)
+            self._save_result(re)  #每执行完一条case就存储到数据库
             result.append(re)
-        print(result)
         return result
 
-    def save_result(self,apiresult):
+    def _save_result(self,apiresult):
         db=DataManager()
-        db.exec_by_sql()
+        db.save_api_case(apiresult)
 
 
 class UiPerformer():

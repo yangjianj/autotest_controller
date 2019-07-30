@@ -37,13 +37,13 @@ class Reques():
             result["spend"]=spend
             return result
         except exceptions.Timeout :
-            return {'post请求出错': "请求超时" }
+            return {'error': "请求超时" }
         except exceptions.InvalidURL:
-            return {'post请求出错': "非法url"}
+            return {'error': "非法url"}
         except exceptions.HTTPError:
-            return {'post请求出错': "http请求错误"}
+            return {'error': "http请求错误"}
         except Exception as e:
-            return {'post请求出错': "错误原因:%s" % e}
+            return {'error': "错误原因:%s" % e}
 
     def delfile(self,url,params,headers):#删除的请求
         try:

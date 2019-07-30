@@ -40,12 +40,12 @@ def config_build(type,conf,dst="taobao"):
         result["headers"] = config.headers
         print(result)
     if type =="wuliu":
-        result["url"] = conf[4]
-        result["method"] = conf[7]
-        result["reparam"] = json.loads(conf[8].replace('\n', ''))
+        result["url"] = conf[6]
+        result["method"] = conf[9]
+        result["reparam"] = json.loads(conf[10].replace('\n', ''))
         result["redata"] = json.dumps('{"key":"val"}')
         result["headers"] = config.headers
-        result["expected"] = json.loads(conf[9].replace('\n', ''))
+        result["expected"] = json.loads(conf[11].replace('\n', ''))
     return result
 
 def record_time(func):    #计时器

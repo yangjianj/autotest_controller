@@ -27,10 +27,10 @@ class Apiclient():
 		elif self.method=='DELETE' or self.method=='delete':
 			result=self.requ.delfile(url=self.url,params=self.reparam,headers=self.headers)
 		else:
-			result={"response":"method not in post,get,put,delete"}
-		print(result)
-		test_result=self.response_check(json.loads(result["re"]["response"]),self.expected)
-		result["re"]["test_result"]=test_result
+			result={"error":"method not in post,get,put,delete"}
+		if ("re" in result) and ("response" in result["re"]):
+			test_result=self.response_check(json.loads(result["re"]["response"]),self.expected)
+			result["re"]["test_result"]=test_result
 		return  result
 
 	def test_multi(self,thread_num):

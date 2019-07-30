@@ -3,8 +3,8 @@ app_demo1 接口测试
 app_demo2 ui测试   
 
 功能：    
-1.用户管理：登录控制，增删改查，角色权限控制    (session cookie)    
-2.测试执行：接口功能测试，性能测试             (request，多线程)    
+1.用户管理：登录控制，增删改查，角色权限控制    (session cookie，装饰器)    
+2.测试执行：接口功能测试，性能测试，时间记录             (request，多线程，装饰器)    
 3.测试结果展现                               （echarts）    
 4.各版本测试数据统计，图标展示                 (mysql,sqlite3,echarts)         
 5.失败重试    
