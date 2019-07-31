@@ -6,20 +6,28 @@ class LogManager():
 	def __init__(self,name,logfile):
 		self.mylogger = logging.getLogger(name)  #logger 名默认为root
 		self.mylogger.setLevel(level=logging.INFO)  # 设置消息等级为INFO
-		handler = logging.FileHandler(config.LOGFILE)  # FileHandler:日志输出到文件
-		handler.setLevel(logging.INFO)  
+		self.handler = logging.FileHandler(logfile)  # FileHandler:日志输出到文件
+
 		formatter = logging.Formatter('%(asctime)s-%(name)s-%(levelname)s: %(message)s')
-		handler.setFormatter(formatter)  #设置消息格式
-		self.mylogger.addHandler(handler)  #添加处理器
+		self.handler.setFormatter(formatter)  #设置消息格式
+		self.mylogger.addHandler(self.handler)  #添加处理器
 
 		#logger.info("Start print log")
 		#logger.debug("Do something")
 		#logger.warning("Something maybe fail.")
 		#logger.info("Finish")
 
-	def write(self,info):
+	def info(self,info):
+		self.handler.setLevel(logging.INFO)
 		self.mylogger.info(info)
 
+	def error(self,error):
+		self.handler.setLevel(logging.ERROR)
+		self.mylogger.error(error)
+
+
+
 if __name__ == '__main__':
-	loger = LogManager('loger1','logger1.log')
-	loger.write('234567890-')
+	loger = LogManager('loger1',config.LOGFILE["api"])
+	loger.info('message 234567890-')
+	loger.error('message 234567890-')
