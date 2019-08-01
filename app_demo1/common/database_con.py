@@ -5,11 +5,10 @@ import app_demo1.config as config
 from app_demo1.common.log_manager import LogManager
 
 class DataManager():
-    def __init__(self,type):
+    def __init__(self):
         dbpath=config.DATABASE
         self._conn = sqlite3.connect(dbpath,check_same_thread=False)
         self._cc = self._conn.cursor()
-        self.logger = LogManager(type,config.LOGFILE[type])
 
     def __new__(cls,*args,**kwargs):
         if not hasattr(cls,"_instance"):
@@ -37,7 +36,7 @@ class DataManager():
             return True
         except Exception as e:
             print(e)
-            return False
+            return e
 
     def add_user(self,name,workid,role,project,telephone):
         pass
@@ -64,7 +63,7 @@ class DataManager():
             except Exception as e:
                 print("sql error----------------------")
                 print(e)
-                return False
+                return e
         elif  ("re" in apiresult) and ("error" in apiresult["re"]):
             _caseid = apiresult["case"][1]
             _version = apiresult["case"][2]
@@ -84,7 +83,7 @@ class DataManager():
             except Exception as e:
                 print("sql error----------------------")
                 print(e)
-                return False
+                return e
         elif  ("error" in apiresult):
             _caseid = apiresult["case"][1]
             _version = apiresult["case"][2]
@@ -100,7 +99,7 @@ class DataManager():
             except Exception as e:
                 print("sql error----------------------")
                 print(e)
-                return False
+                return e
 
 
     def save_api_result(self):

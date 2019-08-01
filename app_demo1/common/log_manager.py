@@ -3,10 +3,10 @@ import app_demo1.config as config
 
 class LogManager():
 	
-	def __init__(self,name,logfile):
+	def __init__(self,name):
 		self.mylogger = logging.getLogger(name)  #logger 名默认为root
 		self.mylogger.setLevel(level=logging.INFO)  # 设置消息等级为INFO
-		self.handler = logging.FileHandler(logfile)  # FileHandler:日志输出到文件
+		self.handler = logging.FileHandler(config.LOGFILE[name])  # FileHandler:日志输出到文件
 
 		formatter = logging.Formatter('%(asctime)s-%(name)s-%(levelname)s: %(message)s')
 		self.handler.setFormatter(formatter)  #设置消息格式
@@ -28,6 +28,6 @@ class LogManager():
 
 
 if __name__ == '__main__':
-	loger = LogManager('loger1',config.LOGFILE["api"])
+	loger = LogManager('api')
 	loger.info('message 234567890-')
 	loger.error('message 234567890-')

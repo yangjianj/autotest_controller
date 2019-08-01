@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from app_demo1.common.api_test import Apiclient
 from app_demo1.common.tool_func import *
-from app_demo1 import config
 from app_demo1.common.database_con import  DataManager
+from app_demo1.common.log_manager import LogManager
 
 class ApiPerformer():
     def __init__(self,file,dbtable):
         self.all_cases = import_api_cases(file)
         self.table=dbtable
+        self.logger=LogManager("api")
 
     def run(self):
         result=[]
@@ -23,7 +24,9 @@ class ApiPerformer():
 
     def _save_result(self,apiresult):
         db=DataManager()
-        db.save_api_case(apiresult)
+        message =db.save_api_case(apiresult)
+        if message != True:
+            self.logger.error(message)
 
 
 class UiPerformer():
