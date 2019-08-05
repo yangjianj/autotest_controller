@@ -14,10 +14,11 @@ login:     #page信息
     name:
     value:
     timeout: 3s
-live:
+search:
+  搜索框:
     type: id
-    name:
-    value:
+    name: 搜索框
+    value: kw
     timeout: 3s
 
 dashboard:
@@ -26,7 +27,7 @@ dashboard:
     value:
     timeout: 3s
 
-  user:
+user:
     type: css
     name:
     value:

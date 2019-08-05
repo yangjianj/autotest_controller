@@ -8,8 +8,8 @@ LOGFILE={"api": os.path.join(BASE_DIR,'app_demo1\\log\\api_test_log.log'),
 Interface_Time_Out = 500
 
 WEBSITE ={"baidu":"http://www.baidu.com","weibo":"https://www.weibo.com/login.php"}
-PAGEFILE={"baidu":os.path.join(BASE_DIR,'app_demo1\\common\\web_test.yaml'),
-"xinlang":os.path.join(BASE_DIR,'app_demo1\\common\\page.yaml'),
+PAGEFILE={"baidu":os.path.join(BASE_DIR,'app_demo2\\common\\web_test.yaml'),
+"xinlang":os.path.join(BASE_DIR,'app_demo2\\common\\page.yaml'),
 }
 
 
