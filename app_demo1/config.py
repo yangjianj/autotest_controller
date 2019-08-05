@@ -7,7 +7,12 @@ LOGFILE={"api": os.path.join(BASE_DIR,'app_demo1\\log\\api_test_log.log'),
          "ui": os.path.join(BASE_DIR,'app_demo1\\log\\ui_test_log.log')}
 Interface_Time_Out = 500
 
-PAGEFILE=os.path.join(BASE_DIR,'app_demo1\\common\\page.yaml')
+WEBSITE ={"baidu":"http://www.baidu.com","weibo":"https://www.weibo.com/login.php"}
+PAGEFILE={"baidu":os.path.join(BASE_DIR,'app_demo1\\common\\web_test.yaml'),
+"xinlang":os.path.join(BASE_DIR,'app_demo1\\common\\page.yaml'),
+}
+
+
 
 headers = {}
 headers['Content-Type'] = 'application/json; charset=UTF-8'

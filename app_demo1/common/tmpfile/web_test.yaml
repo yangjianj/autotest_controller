@@ -1,5 +1,5 @@
 login:     #page信息
-  账户:
+  账户:    #元素
     type: xpath
     name:
     value: //*[@id="loginForm"]/div[1]/div[1]/div[2]/input
@@ -15,19 +15,19 @@ login:     #page信息
     value:
     timeout: 3s
 live:
-  type: id
-  name:
-  value:
-  timeout: 3s
+    type: id
+    name:
+    value:
+    timeout: 3s
 
 dashboard:
-  type: name
-  name:
-  value:
-  timeout: 3s
+    type: name
+    name:
+    value:
+    timeout: 3s
 
 user:
-  type: css
-  name:
-  value:
-  timeout: 3s
+    type: css
+    name:
+    value:
+    timeout: 3s
