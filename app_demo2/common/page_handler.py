@@ -2,11 +2,13 @@
 import yaml
 from app_demo1 import config
 from selenium import webdriver
+from app_demo1.common.log_manager import LogManager
 #from Exception import Custom_exception
 
 class Pagehandle():
 
     def __init__(self,browser,web):
+        self.logger = LogManager("ui")
         if browser == "Firefox" or browser == "firefox":
             self.browser=webdriver.Firefox()
         else:
@@ -18,7 +20,7 @@ class Pagehandle():
             pagefile.close()
             self.pagedata=yaml.load(_page_message)
         except Exception as e:
-            print(e)
+            self.logger.error(e)
 
         self.curr_page=None
 
@@ -34,12 +36,13 @@ class Pagehandle():
             value = self.pagedata[page][element]["value"]
             return way, value
         except Exception as e:
-            print("error : can not find element in .yaml")
+            self.logger.error("can not find element in .yaml")
+            self.logger.error(e)
             return None
 
     def get_element(self,element,page=None):
         #way_list = ['xpath','id','name','classes_name','css']
-        location=self._locate_element(page,element)
+        location=self._locate_element(element,page)
         if location[0]== 'xpath':
             element = self.browser.find_element_by_xpath(location[1])
             return element
@@ -61,22 +64,22 @@ class Pagehandle():
     def click(self,element,page=None):
         if page == None:
             page=self.curr_page
-        self.get_element(page,element).click()
+        self.get_element(element,page).click()
 
     def clear(self,element,page=None):
         if page == None:
             page=self.curr_page
-        self.get_element(page,element).clear()
+        self.get_element(element,page).clear()
 
     def send_keys(self,element,keys,page=None):
         if page == None:
             page = self.curr_page
-        self.get_element(page, element).send_keys(keys)
+        self.get_element(element,page).send_keys(keys)
 
     def double_click(self,element,page=None):
         if page == None:
             page = self.curr_page
-        self.get_element(page, element).double_click()
+        self.get_element(element,page).double_click()
 
     def mouse(self):
         pass
@@ -95,6 +98,25 @@ class Pagehandle():
 
     def get_screenshot_as_file(self, filename):
         self.browser.get_screenshot_as_file(filename)
+
+    def get_text(self,element):
+        return self.get_element(element,self.curr_page).text
+
+    def page_should_contain_element(self,elemnt,type,timeout=5):
+        i =0
+        result = None
+        while i<timeout:
+            try:
+                if type == 'id':
+                    self.browser.find_element_by_id(elemnt)
+                elif type == 'xpath':
+                    self.browser.find_element_by_xpath(elemnt)
+                result = True
+                i = timeout
+            except Exception as e:
+                result = None
+                i = i+1
+        return result
 
 
 
