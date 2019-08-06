@@ -20,7 +20,11 @@ search:
     name: 搜索框
     value: kw
     timeout: 3s
-
+  搜索按钮:
+    type: id
+    name:
+    value: su
+    timeout: 3s
 dashboard:
     type: name
     name:
