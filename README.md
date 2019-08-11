@@ -17,3 +17,10 @@ django 命令：
 python manage.py runserver 0.0.0.0:8090
 python manage.py migrate
 
+ui自动化实现说明：   
+1.用例管理：execl写用例    
+2.yaml记录页面元素信息：页面>元素标志>元素属性（type,value,name,timeout）  
+
+api自动化实现说明：   
+1.用例管理：excel写用例    
+2.执行=》结果校验=》记录存储到数据库
