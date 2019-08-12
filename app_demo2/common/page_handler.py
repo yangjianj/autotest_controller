@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import yaml
+import yaml,time
 from app_demo1 import config
 from selenium import webdriver
 from app_demo1.common.log_manager import LogManager
@@ -7,15 +7,15 @@ from app_demo1.common.log_manager import LogManager
 
 class Pagehandle():
 
-    def __init__(self,browser,web):
+    def __init__(self,browser,website):
         self.logger = LogManager("ui")
         if browser == "Firefox" or browser == "firefox":
             self.browser=webdriver.Firefox()
         else:
             self.browser = webdriver.Chrome()
-        self.browser.get(config.WEBSITE[web])  #"http://www.baidu.com"
+        self.browser.get(config.WEBSITE[website])  #"http://www.baidu.com"
         try:
-            pagefile=open(config.PAGEFILE[web], 'r', encoding="utf-8")
+            pagefile=open(config.PAGEFILE[website], 'r', encoding="utf-8")
             _page_message = pagefile.read()
             pagefile.close()
             self.pagedata=yaml.load(_page_message)
@@ -124,3 +124,6 @@ if __name__=='__main__':
     web=Pagehandle("chrome","baidu")
     web.send_keys("搜索框","selenium","search")
     web.click("搜索按钮")
+    time.sleep(5)
+    web.close()
+    web.quit()

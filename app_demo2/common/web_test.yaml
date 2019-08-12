@@ -26,12 +26,13 @@ search:
     value: su
     timeout: 3s
 dashboard:
+  statistics:
     type: name
     name:
     value:
     timeout: 3s
-
 user:
+  table:
     type: css
     name:
     value:

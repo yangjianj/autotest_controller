@@ -2,8 +2,12 @@ import time
 from app_demo2.common.page_handler import Pagehandle
 
 class Operate():
-    def __init__(self):
-        pass
+    def __init__(self,website,browser="chrome"):
+        self.handler=Pagehandle(browser,website)
+
+    def method_convert(self,method):
+
+        return 'click'
 
     def login(self):
         pass

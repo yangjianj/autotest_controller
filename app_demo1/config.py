@@ -54,3 +54,6 @@ taobao_querystring = {"code":"utf-8","q":"%E9%9E%8B","callback":"cb"}
 #物流接口
 wl_url="http://www.kuaidi100.com/query"
 wl_querystring = {"type":"yunda","postid":"3835494398576"}
+
+method_mapping={'点击':'click',
+}
