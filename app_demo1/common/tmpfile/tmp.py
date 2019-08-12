@@ -1,12 +1,13 @@
-import os,datetime
-file_list = os.listdir("./")
+class a():
+	def __init__(self,name):
+		self.s=name
 
-tt = datetime.datetime.now()
-dd = str(tt).split(" ")
-print(dd[0])
+	def aaa(self,x):
+		print(x)
+		print(self.s)
 
-print(os.path.abspath('.'))
-os.chdir("../")
-print(os.path.abspath('.'))
-os.chdir("tmpfile")
-print(os.path.abspath('.'))
+
+if __name__ == '__main__':
+	m=a('yyy')
+	fun = getattr(m,'aaa')
+	fun(1)

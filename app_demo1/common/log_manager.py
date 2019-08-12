@@ -16,6 +16,8 @@ class LogManager():
 		#logger.debug("Do something")
 		#logger.warning("Something maybe fail.")
 		#logger.info("Finish")
+	def _setlevel(self,level):
+		pass
 
 	def info(self,info):
 		self.handler.setLevel(logging.INFO)

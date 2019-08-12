@@ -6,7 +6,7 @@ from app_demo1.common.log_manager import LogManager
 
 class ApiPerformer():
     def __init__(self,file,dbtable):
-        self.all_cases = import_api_cases(file)
+        self.all_cases = import_excel_data(file)
         self.table=dbtable
         self.logger=LogManager("api")
 

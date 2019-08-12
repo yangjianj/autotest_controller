@@ -4,22 +4,18 @@ import json,time,datetime
 from app_demo1 import config
 
 #导入excel中接口测试用例
-def import_api_cases(path):
+def import_excel_data(path):
     result=[]
     workbook = xlrd.open_workbook(path)
     sheet= workbook.sheet_by_index(0)    #默认取第一个sheet
     nrows=sheet.nrows
     ncols=sheet.ncols
-    for row in range(2,nrows):
+    for row in range(1,nrows):
         tmp=[]
         for col in range(0,ncols):
             tmp.append(sheet.cell(row,col).value)
         result.append(tmp)
     return result
-
-#导入excel中ui测试用例
-def import_ui_cases(path):
-    pass
 
 def config_build(type,conf,dst="taobao"):
     result = {}
