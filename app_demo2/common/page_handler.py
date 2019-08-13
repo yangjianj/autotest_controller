@@ -2,13 +2,21 @@
 import yaml,time
 from app_demo1 import config
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from app_demo1.common.log_manager import LogManager
 #from Exception import Custom_exception
 
+#API网站：https://selenium-python-zh.readthedocs.io/en/latest/index.html
 class Pagehandle():
 
-    def __init__(self,browser,website):
+    def __init__(self,browser,website,timeout=5):
         self.logger = LogManager("ui")
+        self.curr_page = None
+
         if browser == "Firefox" or browser == "firefox":
             self.browser=webdriver.Firefox()
         else:
@@ -22,7 +30,7 @@ class Pagehandle():
         except Exception as e:
             self.logger.error(e)
 
-        self.curr_page=None
+        self.browser.implicitly_wait(timeout)
 
     def _locate_element(self,element,page=None):
         if page == None:
@@ -32,9 +40,9 @@ class Pagehandle():
         try:
             if page == None:
                 raise Exception('page is None !')
-            way = self.pagedata[page][element]["type"]
+            type = self.pagedata[page][element]["type"]
             value = self.pagedata[page][element]["value"]
-            return way, value
+            return type, value
         except Exception as e:
             self.logger.error("can not find element in .yaml")
             self.logger.error(e)
@@ -61,6 +69,10 @@ class Pagehandle():
         else:
             raise Custom_exception.WrongLocation
 
+    def switch_page(self,page):
+        self.curr_page=page
+
+    #封装WebElement类方法
     def click(self,element,page=None):
         if page == None:
             page=self.curr_page
@@ -81,11 +93,86 @@ class Pagehandle():
             page = self.curr_page
         self.get_element(element,page).double_click()
 
-    def mouse(self):
-        pass
+    def text(self,element,page=None):
+        if page == None:
+            page = self.curr_page
+        return self.get_element(element,page).text
 
-    def switch_page(self,page):
-        self.curr_page=page
+    def get_attribute(self,element,attr,page=None):
+        return self.get_element(element,page).get_attribute(attr)
+
+    def is_selected(self,element,page=None):
+        return self.get_element(element,page).is_selected()
+
+    def rect(self,element,page=None):  #包含元素大小和位置的字典
+        return self.get_element(element,page).rect
+
+    #封装Select类方法
+    def select_by_index(self,element,index,page=None):
+        ele = self.get_element(element,page)
+        return Select(ele).select_by_index(index)
+
+    def select_by_value(self,element,value,page=None):
+        ele = self.get_element(element,page)
+        return Select(ele).select_by_value(value)
+
+    def deselect_all(self,element,page=None):
+        ele = self.get_element(element,page)
+        return Select(ele).deselect_all()
+
+    #封装ActionChains类方法
+    def drag_and_drop(self,source,target,page=None):
+        #source：鼠标按下的源元素；target：鼠标释放的目标元素
+        if page == None:
+            page = self.curr_page
+        src = self.get_element(source,page)
+        dst = self.get_element(target,page)
+        ActionChains(self.browser).drag_and_drop(src,dst).perform()
+
+    def move_to_element(self,element,page=None):
+        if page == None:
+            page = self.curr_page
+        ele = self.get_element(element,page)
+        ActionChains(self.browser).move_to_element(ele).perform()
+
+    # 封装WebDriver类方法
+    def implicitly_wait(self,timeout=5):
+        #全局等待元素加载时间，超过此时间还未找到元素则报错
+        self.browser.implicitly_wait(timeout)
+
+    def wait_until_page_contain_element(self,element,timeout,page=None):
+        locate = self._locate_element(element,page)
+        if locate[0] == 'id':
+            locator = (By.ID, locate[1])
+        elif locate[0] == 'xpath':
+            locator = (By.XPATH, locate[1])
+        try:
+            ele = WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located(locator),message='wait page contain element timeout')
+            return ele
+        except Exception as e:
+            print(e)
+            return False
+
+    def wait_until_page_not_contain_element(self,element,timeout,page=None):
+        locate = self._locate_element(element,page)
+        if locate[0] == 'id':
+            locator = (By.ID, locate[1])
+        elif locate[0] == 'xpath':
+            locator = (By.XPATH, locate[1])
+        try:
+            WebDriverWait(self.browser, timeout).until_not(EC.presence_of_element_located(locator),message='wait page not contain element timeout')
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def maximize_windows(self):
+        self.browser.maximize_window()
+
+
+
+    def back(self):
+        self.browser.back()
 
     def close(self):
         self.browser.close()
@@ -99,31 +186,28 @@ class Pagehandle():
     def get_screenshot_as_file(self, filename):
         self.browser.get_screenshot_as_file(filename)
 
-    def get_text(self,element):
-        return self.get_element(element,self.curr_page).text
+    def switch_to_alert(self):
+        return self.browser.switch_to_alert()
 
-    def page_should_contain_element(self,elemnt,type,timeout=5):
-        i =0
-        result = None
-        while i<timeout:
-            try:
-                if type == 'id':
-                    self.browser.find_element_by_id(elemnt)
-                elif type == 'xpath':
-                    self.browser.find_element_by_xpath(elemnt)
-                result = True
-                i = timeout
-            except Exception as e:
-                result = None
-                i = i+1
-        return result
+    def accept(self):
+        self.switch_to_alert().accept()
 
+    def dismiss(self):
+        self.switch_to_alert().dismiss()
+
+    def get_alert_text(self):
+        return self.switch_to_alert().text
+
+    def send_keys_to_alert(self,key):
+        self.switch_to_alert().send_keys(key)
 
 
 if __name__=='__main__':
     web=Pagehandle("chrome","baidu")
+    web.implicitly_wait(5)
     web.send_keys("搜索框","selenium","search")
     web.click("搜索按钮")
-    time.sleep(5)
+    web.wait_until_page_contain_element("测试",5)
+    #time.sleep(5)
     web.close()
     web.quit()

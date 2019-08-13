@@ -5,7 +5,7 @@ class LogManager():
 	
 	def __init__(self,name):
 		self.mylogger = logging.getLogger(name)  #logger 名默认为root
-		self.mylogger.setLevel(level=logging.INFO)  # 设置消息等级为INFO
+		#self.mylogger.setLevel(level=logging.INFO)  # 设置消息等级为INFO
 		self.handler = logging.FileHandler(config.LOGFILE[name])  # FileHandler:日志输出到文件
 
 		formatter = logging.Formatter('%(asctime)s-%(name)s-%(levelname)s: %(message)s')
