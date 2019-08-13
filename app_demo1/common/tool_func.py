@@ -1,7 +1,8 @@
 # -*-coding:UTF-8 -*-
-import xlrd,xlwt
-import json,time,datetime
-from app_demo1 import config
+import xlrd
+import json, datetime
+from app_demo1.config import config
+
 
 #导入excel中接口测试用例
 def import_excel_data(path):
@@ -20,12 +21,12 @@ def import_excel_data(path):
 def config_build(type,conf,dst="taobao"):
     result = {}
     if type == "tuling":    #for class Apiclient
-        template=config.tuling_request_data
+        template= config.tuling_request_data
         template["perception"]["inputText"]["text"]=conf[8]
         result["url"]=conf[4]
         result["method"]=conf[7]
         result["data"]=template
-        result["headers"]=config.headers
+        result["headers"]= config.headers
     if type =="taobao":
         template = config.taobao_querystring
         template["q"] = conf[8]

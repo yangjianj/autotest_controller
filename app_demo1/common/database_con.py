@@ -1,12 +1,11 @@
 # -*-coding:UTF-8 -*-
-import os
 import sqlite3
-import app_demo1.config as config
-from app_demo1.common.log_manager import LogManager
+import app_demo1.config.config as config
+
 
 class DataManager():
     def __init__(self):
-        dbpath=config.DATABASE
+        dbpath= config.DATABASE
         self._conn = sqlite3.connect(dbpath,check_same_thread=False)
         self._cc = self._conn.cursor()
 

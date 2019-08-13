@@ -1,5 +1,5 @@
-import logging,time
-import app_demo1.config as config
+import logging
+import app_demo1.config.config as config
 
 class LogManager():
 	

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import yaml,time
-from app_demo1 import config
+import yaml
+from app_demo1.config import config
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select

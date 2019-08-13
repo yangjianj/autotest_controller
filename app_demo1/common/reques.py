@@ -1,14 +1,13 @@
 #-*- coding: utf-8 -*-
-import requests,json
+import requests
 from requests import exceptions
-import app_demo1.config as config
 from app_demo1.common.tool_func import *
 
 class Reques():
     def get(self, url,headers,parms):#get消息
         result={}
         try:
-            self.r = requests.get(url, headers=headers,params=parms,timeout=config.Interface_Time_Out)
+            self.r = requests.get(url, headers=headers, params=parms, timeout=config.Interface_Time_Out)
             self.r.encoding = 'UTF-8'
             spend=self.r.elapsed.total_seconds()
             #json_response = json.loads(self.r.text)
@@ -30,7 +29,7 @@ class Reques():
         #redata(string);reparam(dict)
         result={}
         try:
-            self.r =requests.post(url,data=redata,params=reparam,headers=headers,timeout=config.Interface_Time_Out)
+            self.r =requests.post(url, data=redata, params=reparam, headers=headers, timeout=config.Interface_Time_Out)
             spend = self.r.elapsed.total_seconds()
             #json_response = json.loads(self.r.text)
             result["response"]=self.r.text
@@ -47,7 +46,7 @@ class Reques():
 
     def delfile(self,url,params,headers):#删除的请求
         try:
-            self.rdel_word=requests.delete(url,data=params,headers=headers,timeout=config.Interface_Time_Out)
+            self.rdel_word=requests.delete(url, data=params, headers=headers, timeout=config.Interface_Time_Out)
             json_response=json.loads(self.rdel_word.text)
             spend=self.rdel_word.elapsed.total_seconds()
             return (json_response,spend)
@@ -62,7 +61,7 @@ class Reques():
     def putfile(self,url,params,headers):#put请求
         try:
             self.rdata=json.dumps(params)
-            me=requests.put(url,self.rdata,headers=headers,timeout=config.Interface_Time_Out)
+            me=requests.put(url, self.rdata, headers=headers, timeout=config.Interface_Time_Out)
             json_response=json.loads(me.text)
             spend=me.elapsed.total_seconds()
             return (json_response,spend)
