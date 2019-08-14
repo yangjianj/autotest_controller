@@ -2,6 +2,7 @@
 from app_demo1.common.tool_func import *
 from app_demo1.common.log_manager import LogManager
 from app_demo2.common import page_operate
+import app_demo1.config as config
 
 class UiPerformer():
     def __init__(self, file, dbtable):
