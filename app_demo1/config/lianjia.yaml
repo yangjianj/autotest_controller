@@ -1,2 +1,30 @@
 board:
     城市:
+        type: xpath
+        name:
+        value: /html/body/div[1]/div/div[1]/span
+    搜索框:
+        type: id
+        name:
+        value: keyword-box
+    搜索按钮:
+        type: id
+        name:
+        value: findHouse
+    找二手房:
+        type: xpath
+        name:
+        value: /html/body/div[1]/div/div[5]/div[3]/div/div[1]/ul/li[1]/span
+    找新房:
+        type: xpath
+        name:
+        value: /html/body/div[1]/div/div[5]/div[3]/div/div[1]/ul/li[2]/span
+city:
+    搜索框:
+        type: xpath
+        name:
+        value: /html/body/div[1]/div/div[2]/input
+    搜索按钮:
+        type: xpath
+        name:
+        value: /html/body/div[1]/div/div[2]/a

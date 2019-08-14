@@ -1,10 +1,7 @@
-ID	步骤	验证
-template	动作|type@@element-location@@value	exist|type@@element-location@@value
-	"Chrome,前往|http://www.baidu.com,填写|id@@kw@@selenium,点击|id@@su,验证|Web Browser Automation,截图"	
-		
-	Chrome： 调用 Chrome driver 进行测试。	
-	前往|http://www.baidu.com ：  前往目标页。	
-	填写|id@@kw@@selenium ：  在 id 为 kw 的元素中输入 selenium。	
-	点击|id@@su ： 点击 id 为 su 的元素。	
-	验证|Web Browser Automation ：  验证页面中是否出现 ‘Web Browser Automation’ 的文字。	
-	截图： 对当前页面进行截图并保存。	
+用例	操作顺序	步骤说明	操作	PageName	元素名称	value
+	1		open_page		lianjia	
+	2		click	board	城市	
+	3		send_keys	city	搜索框	武汉
+	4		click		搜索按钮	
+	5		send_keys	board	搜索框	当代卡梅尔小镇
+	6		click		搜索按钮	
