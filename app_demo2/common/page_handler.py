@@ -13,7 +13,7 @@ from app_demo1.common.log_manager import LogManager
 #API网站：https://selenium-python-zh.readthedocs.io/en/latest/index.html
 class Pagehandle():
 
-    def __init__(self,browser,website,timeout=5):
+    def __init__(self,website,browser,timeout=5):
         self.logger = LogManager("ui")
         self.curr_page = None
 
@@ -33,9 +33,9 @@ class Pagehandle():
         self.browser.implicitly_wait(timeout)
 
     def _locate_element(self,element,page=None):
-        if page == None:
+        if page == '' or page == None:
             page = self.curr_page
-        else:
+        elif page != self.curr_page:
             self.curr_page = page
         try:
             if page == None:
@@ -44,13 +44,21 @@ class Pagehandle():
             value = self.pagedata[page][element]["value"]
             return type, value
         except Exception as e:
-            self.logger.error("can not find element in .yaml")
+            self.logger.error("can not find element: page:%s element:%s in .yaml"%(page,element))
             self.logger.error(e)
             return None
 
+    def _switch_page(self,page):
+        if page == '' or page == None:   #case中未填写page信息
+            pass
+        elif page != self.curr_page:
+            self.curr_page = page
+        return self.curr_page
+
     def get_element(self,element,page=None):
         #way_list = ['xpath','id','name','classes_name','css']
-        location=self._locate_element(element,page)
+        curr_page = self._switch_page(page)
+        location=self._locate_element(element,curr_page)
         if location[0]== 'xpath':
             element = self.browser.find_element_by_xpath(location[1])
             return element
@@ -69,33 +77,20 @@ class Pagehandle():
         else:
             raise Custom_exception.WrongLocation
 
-    def switch_page(self,page):
-        self.curr_page=page
-
     #封装WebElement类方法
     def click(self,element,page=None):
-        if page == None:
-            page=self.curr_page
         self.get_element(element,page).click()
 
     def clear(self,element,page=None):
-        if page == None:
-            page=self.curr_page
         self.get_element(element,page).clear()
 
     def send_keys(self,element,keys,page=None):
-        if page == None:
-            page = self.curr_page
         self.get_element(element,page).send_keys(keys)
 
     def double_click(self,element,page=None):
-        if page == None:
-            page = self.curr_page
         self.get_element(element,page).double_click()
 
     def text(self,element,page=None):
-        if page == None:
-            page = self.curr_page
         return self.get_element(element,page).text
 
     def get_attribute(self,element,attr,page=None):
@@ -113,25 +108,21 @@ class Pagehandle():
         return Select(ele).select_by_index(index)
 
     def select_by_value(self,element,value,page=None):
-        ele = self.get_element(element,page)
+        ele = self.get_element(element, page)
         return Select(ele).select_by_value(value)
 
     def deselect_all(self,element,page=None):
-        ele = self.get_element(element,page)
+        ele = self.get_element(element, page)
         return Select(ele).deselect_all()
 
     #封装ActionChains类方法
     def drag_and_drop(self,source,target,page=None):
         #source：鼠标按下的源元素；target：鼠标释放的目标元素
-        if page == None:
-            page = self.curr_page
         src = self.get_element(source,page)
         dst = self.get_element(target,page)
         ActionChains(self.browser).drag_and_drop(src,dst).perform()
 
     def move_to_element(self,element,page=None):
-        if page == None:
-            page = self.curr_page
         ele = self.get_element(element,page)
         ActionChains(self.browser).move_to_element(ele).perform()
 
@@ -169,8 +160,6 @@ class Pagehandle():
     def maximize_windows(self):
         self.browser.maximize_window()
 
-
-
     def back(self):
         self.browser.back()
 
@@ -201,13 +190,20 @@ class Pagehandle():
     def send_keys_to_alert(self,key):
         self.switch_to_alert().send_keys(key)
 
+    #############验证方法#############
+    def check(self,element,value,page):
+        pass
+
+
 
 if __name__=='__main__':
     web=Pagehandle("chrome","baidu")
     web.implicitly_wait(5)
     web.send_keys("搜索框","selenium","search")
     web.click("搜索按钮")
-    web.wait_until_page_contain_element("测试",5)
+    web.wait_until_page_contain_element("搜索按钮",5)
+    web.wait_until_page_contain_element("测试", 5)
+    web.wait_until_page_contain_element("不存在的按钮", 5)
     #time.sleep(5)
     web.close()
     web.quit()

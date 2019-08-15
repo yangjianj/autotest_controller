@@ -1,22 +1,3 @@
-2019-08-01 13:54:06,668-ui-INFO: message 234567890-
-2019-08-01 13:54:06,669-ui-ERROR: message 234567890-
-2019-08-13 11:49:21,248-ui-ERROR: while scanning a simple key
-  in "<unicode string>", line 28, column 3:
-      ²âÊÔ£º
-      ^
-could not find expected ':'
-  in "<unicode string>", line 29, column 9:
-        type: id
-            ^
-2019-08-13 11:49:21,274-ui-ERROR: can not find element in .yaml
-2019-08-13 11:49:21,275-ui-ERROR: 'Pagehandle' object has no attribute 'pagedata'
-2019-08-13 11:49:59,057-ui-ERROR: while scanning a simple key
-  in "<unicode string>", line 28, column 3:
-      ²âÊÔ£º
-      ^
-could not find expected ':'
-  in "<unicode string>", line 29, column 9:
-        type: id
-            ^
-2019-08-13 11:49:59,069-ui-ERROR: can not find element in .yaml
-2019-08-13 11:49:59,070-ui-ERROR: 'Pagehandle' object has no attribute 'pagedata'
+2019-08-15 16:01:49,781-ui-ERROR: execute failed in class Pagehandle:  action:click element:åŸŽå¸‚ value: page:board  
+2019-08-15 16:01:49,781-ui-ERROR: execute failed in class Pagehandle:  action:click element:åŸŽå¸‚ value: page:board  
+2019-08-15 16:01:49,781-ui-ERROR: execute failed in class Pagehandle:  action:click element:åŸŽå¸‚ value: page:board  

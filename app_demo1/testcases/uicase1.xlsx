@@ -1,7 +1,0 @@
-用例	操作顺序	步骤说明	操作	PageName	元素名称	value
-	1		open_page		lianjia	
-	2		click	board	城市	
-	3		send_keys	city	搜索框	武汉
-	4		click		搜索按钮	
-	5		send_keys	board	搜索框	当代卡梅尔小镇
-	6		click		搜索按钮	

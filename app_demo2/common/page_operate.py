@@ -4,7 +4,7 @@ from app_demo1.common.log_manager import LogManager
 
 class Operate():
     def __init__(self,website,browser="chrome"):
-        self.handler=Pagehandle(browser,website)
+        self.handler=Pagehandle(website,browser)
         self.logger = LogManager("ui")
 
     def execute(self,action,element,value=None,page=None):
@@ -12,14 +12,15 @@ class Operate():
             emeth = getattr(self.handler, action)
             re = emeth(element, value, page)
         except Exception as error:
-            self.logger.error('not find method in class Pagehandle continue search in WebElement ')
+            self.logger.error('execute failed in class Pagehandle:  action:%s element:%s value:%s page:%s  '%(action,element,value,page))
+            print('eeeeeeeeeeeeeeeeeeee')
             emeth = None
         if emeth == None:
             try:
                 emeth = getattr(self.handler.get_element(element,page),action)
                 re = emeth()
             except Exception as error:
-                self.logger.error('not find method in class WebElement raise error')
+                self.logger.error('execute failed in class webdriver:  action:%s element:%s value:%s page:%s  '%(action,element,value,page))
                 re=None
         return re
 
