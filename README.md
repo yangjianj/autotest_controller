@@ -20,6 +20,11 @@ python manage.py migrate
 ui自动化实现说明：   
 1.用例管理：execl写用例    
 2.yaml记录页面元素信息：页面>元素标志>元素属性（type,value,name,timeout）  
+3.testsuit>testcase>teststep = action element page value   
+4.关键字驱动：用例中包含不同的关键字，框架需根据关键字匹配对应的执行动作，特点：每个元素操作需要重新封装   
+取数据》划分不同case》case区块划分（前置，操作，验证，后置）》操作步骤匹配    
+5.数据驱动：一套固定动作（前置，操作，验证，后置）封装成一个unittest case,excel用例中包含每个步骤的数据与预期结果（例如登录框的不同数据验证）   
+
 
 api自动化实现说明：   
 1.用例管理：excel写用例    
