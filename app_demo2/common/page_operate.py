@@ -1,10 +1,10 @@
 import time
-from app_demo2.common.page_handler import Pagehandle
+from app_demo2.common.page_handler import Pagehandler
 from app_demo1.common.log_manager import LogManager
 
 class Operate():
     def __init__(self,website,browser="chrome"):
-        self.handler=Pagehandle(website,browser)
+        self.handler=Pagehandler(website,browser)
         self.logger = LogManager("ui")
 
     def execute(self,action,element,value=None,page=None):

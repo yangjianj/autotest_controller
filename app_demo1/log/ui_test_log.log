@@ -1,3 +1,5 @@
 2019-08-15 16:01:49,781-ui-ERROR: execute failed in class Pagehandle:  action:click element:城市 value: page:board  
 2019-08-15 16:01:49,781-ui-ERROR: execute failed in class Pagehandle:  action:click element:城市 value: page:board  
 2019-08-15 16:01:49,781-ui-ERROR: execute failed in class Pagehandle:  action:click element:城市 value: page:board  
+2019-08-16 16:11:20,275-ui-ERROR: can not find element: page:search element:搜素框 in .yaml
+2019-08-16 16:11:20,275-ui-ERROR: '搜素框'
