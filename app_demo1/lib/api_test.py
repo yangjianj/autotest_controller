@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import time,json
 import threading
-from app_demo1.common.reques import Reques
-from app_demo1.common.tool_func import *
+from app_demo1.lib.reques import Reques
+from app_demo1.lib.tool_func import *
 from jsonschema import validate
 
 #接口类

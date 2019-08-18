@@ -11,8 +11,8 @@ Interface_Time_Out = 500
 UI_CASE = {'test':os.path.join(BASE_DIR, 'app_demo1\\testcases\\uicase2.xlsx')}
 
 WEBSITE ={"baidu":"http://www.baidu.com","weibo":"https://www.weibo.com/login.php","lianjia":"http://www.lianjia.com"}
-PAGEFILE={"baidu":os.path.join(BASE_DIR, 'app_demo1\\config\\web_test.yaml'),
-"xinlang":os.path.join(BASE_DIR,'app_demo2\\common\\page.yaml'),
+PAGEFILE={"baidu":os.path.join(BASE_DIR, 'app_demo1\\config\\baidu.yaml'),
+"xinlang":os.path.join(BASE_DIR, 'app_demo2\\lib\\page.yaml'),
 "lianjia":os.path.join(BASE_DIR,'app_demo1\\config\\lianjia.yaml'),
 }
 

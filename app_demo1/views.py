@@ -2,8 +2,8 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 import json,time
-from app_demo1.common.database_con import DataManager
-from app_demo1.common.api_test import Apiclient
+from app_demo1.lib.database_con import DataManager
+from app_demo1.lib.api_test import Apiclient
 
 # Create your views here.
 

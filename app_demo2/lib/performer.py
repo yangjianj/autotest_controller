@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from app_demo1.common.tool_func import *
-from app_demo1.common.log_manager import LogManager
-from app_demo2.common.page_operate import Operate
+from app_demo1.lib.tool_func import *
+from app_demo1.lib.log_manager import LogManager
+from app_demo2.lib.page_operate import Operate
 import app_demo1.config.config as config
 
 class UiPerformer():

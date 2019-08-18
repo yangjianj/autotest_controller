@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from app_demo1.common.api_test import Apiclient
-from app_demo1.common.tool_func import *
-from app_demo1.common.database_con import  DataManager
-from app_demo1.common.log_manager import LogManager
+from app_demo1.lib.api_test import Apiclient
+from app_demo1.lib.tool_func import *
+from app_demo1.lib.database_con import  DataManager
+from app_demo1.lib.log_manager import LogManager
 
 class ApiPerformer():
     def __init__(self,file,dbtable):

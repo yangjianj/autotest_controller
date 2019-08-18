@@ -1291,7 +1291,7 @@ $.Painter = $.extend($.Element, {
 
         //touchstart
 		/**
-		 * register the common event
+		 * register the lib event
 		 */
 		this.registerEvent(
 		/**
@@ -2943,7 +2943,7 @@ $.Label = $.extend($.Component, {
 			});
 
 			/**
-			 * register the common event
+			 * register the lib event
 			 */
 			this.registerEvent(
 			/**

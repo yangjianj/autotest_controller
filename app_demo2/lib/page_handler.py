@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import yaml
+import yaml,time
 from app_demo1.config import config
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
@@ -7,15 +7,15 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from app_demo1.common.log_manager import LogManager
+from app_demo1.lib.log_manager import LogManager
 #from Exception import Custom_exception
 
 #API网站：https://selenium-python-zh.readthedocs.io/en/latest/index.html
 class Pagehandler():
 
-    def __init__(self,website,browser,timeout=5):
+    def __init__(self,website,browser='chrome',timeout=5):
         self.logger = LogManager("ui")
-        self.url = config.WEBSITE[website]
+        self.url = website
         self.curr_page = None
         self.curr_element = None
 
@@ -25,11 +25,12 @@ class Pagehandler():
             self.browser = webdriver.Chrome()
         #self.browser.get(config.WEBSITE[website])  #"http://www.baidu.com"
         try:
-            pagefile=open(config.PAGEFILE[website], 'r', encoding="utf-8")
+            pagefile=open(config.PAGEFILE['lianjia'], 'r', encoding="utf-8")
             _page_message = pagefile.read()
             pagefile.close()
             self.pagedata=yaml.load(_page_message)
         except Exception as e:
+            self.logger.error('load element yaml file failed')
             self.logger.error(e)
 
         self.browser.implicitly_wait(timeout)
@@ -46,8 +47,9 @@ class Pagehandler():
             value = self.pagedata[page][element]["value"]
             return type, value
         except Exception as e:
-            self.logger.error("can not find element: page:%s element:%s in .yaml"%(page,element))
+            self.logger.error("can not find element: page:%s element:%s in yaml"%(page,element))
             self.logger.error(e)
+            time.sleep(100000)
             return None
 
     def _update_msg(self,element,page):
@@ -97,7 +99,7 @@ class Pagehandler():
     def send_keys(self,msg):
         element = msg["element"]
         page = msg["page"]
-        keys = msg["keys"]
+        keys = msg["value"]
         self.get_element(element,page).send_keys(keys)
 
     def double_click(self,msg):
@@ -239,6 +241,21 @@ class Pagehandler():
         key = msg["key"]
         self.switch_to_alert().send_keys(key)
 
+    def switch_to_next_windows(self,msg):
+        handles = self.browser.window_handles
+        for i in range (len(handles)):
+            if handles[i] == self.browser.current_window_handle:
+                self.browser.switch_to.window(handles[i+1])
+
+    def switch_to_pre_windows(self,msg):
+        handles = self.browser.window_handles
+        for i in range(len(handles)):
+            if handles[i] == self.browser.current_window_handle:
+                self.browser.switch_to.window(handles[i - 1])
+
+    def sleep(self,msg):
+        time.sleep(msg['value'])
+
     #############验证方法#############
     def check(self,msg):
         element = msg["element"]
@@ -249,7 +266,7 @@ class Pagehandler():
 
 if __name__=='__main__':
     web=Pagehandler("baidu","chrome")
-    msg={"url":web.url,"element":"搜素框","page":"search","value":"wwwwww","timeout":5,"keys":"sousuo"}
+    msg={"url":web.url,"element":"搜索框","page":"search","value":"wwwwww","timeout":5,"keys":"sousuo"}
     web.get(msg)
     web.implicitly_wait(msg)
     web.send_keys(msg)

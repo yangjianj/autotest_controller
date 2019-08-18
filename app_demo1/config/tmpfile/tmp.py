@@ -1,3 +1,4 @@
+import json
 class a():
 	def __init__(self,name):
 		self.s=name
@@ -11,3 +12,6 @@ if __name__ == '__main__':
 	m=a('yyy')
 	fun = getattr(m,'aaa')
 	fun(1)
+
+
+json.loads('')
