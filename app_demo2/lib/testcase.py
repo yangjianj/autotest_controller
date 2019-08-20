@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from app_demo1.lib.tool_func import *
+from app_demo1.lib.tool import *
 from app_demo2.lib.page_handler import Pagehandler
 from app_demo2.lib.page_operate import Operate
 

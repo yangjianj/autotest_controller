@@ -1,5 +1,5 @@
 # -*-coding:UTF-8 -*-
-import xlrd,xlwt
+import os,xlrd,xlwt
 from xlutils.copy import copy
 import json, datetime
 from app_demo1.config import config
@@ -20,20 +20,26 @@ def import_excel_data(path):
     return result
 
 def export_data(data,sheet,path):
-    try:
+    if os.path.exists(path):
         oldbook = xlrd.open_workbook(path)
-    except Exception as error:
-        oldbook = xlwt.Workbook()
-        sheet = oldbook.add_sheet(sheet)
-        oldbook.save(path)
-        oldbook = xlrd.open_workbook(path)
-    newbook = copy(oldbook)
-    newsheet = newbook.get_sheet(sheet)
-    nrows = newsheet.nrows
-    for i in range (len(data)):
-        for j in range (len(data[i])):
-            newsheet.write(nrows+i,j,data[i][j])
-    newbook.save('test.xlsx')
+        allsheet = oldbook.sheet_names()
+        newbook = copy(oldbook)
+        if sheet not in allsheet:
+            newsheet=newbook.add_sheet(sheet)
+            used_nrows = 0
+        else:
+            newsheet = newbook.get_sheet(sheet)
+            used_nrows = newsheet.last_used_row+1
+        for i in range(len(data)):
+            for j in range(len(data[i])):
+                newsheet.write(used_nrows + i, j, data[i][j])
+    else:
+        newbook = xlwt.Workbook()
+        newsheet = newbook.add_sheet(sheet)
+        for i in range (len(data)):
+            for j in range (len(data[i])):
+                newsheet.write(i,j,data[i][j])
+    newbook.save(path)
 
 
 def config_build(type,conf,dst="taobao"):
@@ -79,4 +85,4 @@ def record_time(func):    #计时器
 
 if __name__=='__main__':
     data = [[123,222,333,22,55],['dgiwseh','uhsgfch','jhsih']]
-    export_data(data,'test1',"/log/sss.xlsx")
+    export_data(data,'test122',"..//log//sss.xlsx")
