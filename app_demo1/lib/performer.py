@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from app_demo1.lib.api_test import Apiclient
-from app_demo1.lib.tool_func import *
+from app_demo1.lib.tool import *
 from app_demo1.lib.database_con import  DataManager
 from app_demo1.lib.log_manager import LogManager
 
@@ -12,7 +12,7 @@ class ApiPerformer():
 
     def run(self):
         result=[]
-        for case in self.all_cases:
+        for case in self.all_cases[1:]:
             print(case)
             client = Apiclient(config_build("wuliu",case))
             re=client.test()

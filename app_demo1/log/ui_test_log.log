@@ -1,6 +1,2 @@
-2019-08-18 22:40:33,027-ui-ERROR: execute failed in class Pagehandle:  {"action": "switch_to_next_windows", "page": "", "element": ""}
-2019-08-18 22:40:33,027-ui-ERROR: execute failed in class Pagehandle:  {"action": "switch_to_next_windows", "page": "", "element": ""}
-2019-08-18 22:40:38,087-ui-ERROR: execute failed in class webdriver:  {"action": "switch_to_next_windows", "page": "", "element": ""} 
-2019-08-18 22:40:38,087-ui-ERROR: execute failed in class webdriver:  {"action": "switch_to_next_windows", "page": "", "element": ""} 
-2019-08-18 23:47:16,766-ui-ERROR: execute failed in class Pagehandle:  {"action": "switch_to_next_windows", "page": "", "element": ""}
-2019-08-18 23:47:16,766-ui-ERROR: execute failed in class Pagehandle:  {"action": "switch_to_next_windows", "page": "", "element": ""}
+2019-08-19 16:00:02,643-ui-ERROR: execute failed in class Pagehandle:  {"action": "switch_to_next_windows", "page": "", "element": ""}
+2019-08-19 16:00:02,643-ui-ERROR: execute failed in class Pagehandle:  {"action": "switch_to_next_windows", "page": "", "element": ""}

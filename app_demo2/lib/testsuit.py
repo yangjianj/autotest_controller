@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from app_demo2.lib.testcase import Testcase
-from app_demo1.lib.tool_func import *
+from app_demo1.lib.tool import *
 import app_demo1.config.config
 
 class Testsuit():
@@ -16,7 +16,7 @@ class Testsuit():
 	def loadcases(self,excel):
 		self.casedata = import_excel_data(excel)
 		_curr_case = []
-		for step in self.casedata:
+		for step in self.casedata[1:]:
 			if _curr_case == []:
 				_curr_case.append(step)
 			elif step[0] == '' or  step[0] ==  _curr_case[-1][0]:

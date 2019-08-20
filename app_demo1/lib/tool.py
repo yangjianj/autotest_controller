@@ -1,5 +1,6 @@
 # -*-coding:UTF-8 -*-
-import xlrd
+import xlrd,xlwt
+from xlutils.copy import copy
 import json, datetime
 from app_demo1.config import config
 
@@ -11,12 +12,29 @@ def import_excel_data(path):
     sheet= workbook.sheet_by_index(0)    #默认取第一个sheet
     nrows=sheet.nrows
     ncols=sheet.ncols
-    for row in range(1,nrows):
+    for row in range(0,nrows):
         tmp=[]
         for col in range(0,ncols):
             tmp.append(sheet.cell(row,col).value)
         result.append(tmp)
     return result
+
+def export_data(data,sheet,path):
+    try:
+        oldbook = xlrd.open_workbook(path)
+    except Exception as error:
+        oldbook = xlwt.Workbook()
+        sheet = oldbook.add_sheet(sheet)
+        oldbook.save(path)
+        oldbook = xlrd.open_workbook(path)
+    newbook = copy(oldbook)
+    newsheet = newbook.get_sheet(sheet)
+    nrows = newsheet.nrows
+    for i in range (len(data)):
+        for j in range (len(data[i])):
+            newsheet.write(nrows+i,j,data[i][j])
+    newbook.save('test.xlsx')
+
 
 def config_build(type,conf,dst="taobao"):
     result = {}
@@ -60,5 +78,5 @@ def record_time(func):    #计时器
 
 
 if __name__=='__main__':
-    for i in import_api_cases('tmp_for_execrise\\interface_tb.xlsx'):
-        print(i)
+    data = [[123,222,333,22,55],['dgiwseh','uhsgfch','jhsih']]
+    export_data(data,'test1',"/log/sss.xlsx")
