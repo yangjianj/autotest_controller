@@ -4,6 +4,7 @@ from app_demo1.lib.tool import *
 import app_demo1.config.config
 
 class Testsuit():
+	#一个testsuit对应一个excel的sheet
 	def __init__(self):
 		self.casedata = None
 		self.testcases = []
@@ -30,8 +31,12 @@ class Testsuit():
 
 
 	def run(self):
+		self.setup()
 		for case in self.testcases:
-			self.result.append(case.run())
+			result=case.run()
+			self.result.append(result)
+			self._write_result(result)
+		self.teardown()
 
 	def setup(self):
 		pass
@@ -41,6 +46,7 @@ class Testsuit():
 
 	def _write_result(self):
 		pass
+
 
 if __name__ == '__main__':
 	te = Testsuit()

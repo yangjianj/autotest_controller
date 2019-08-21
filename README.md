@@ -18,7 +18,7 @@ python manage.py runserver 0.0.0.0:8090
 python manage.py migrate
 
 ui自动化实现说明：   
-1.用例管理：execl写用例    
+1.用例管理：execl写用例 : 一个testsuit对象对应excel表格的一个sheet   
 2.yaml记录页面元素信息：页面>元素标志>元素属性（type,value,name,timeout）  
 3.testsuit>testcase>teststep = action element page value   
 4.关键字驱动：用例中包含不同的关键字，框架需根据关键字匹配对应的执行动作，特点：每个元素操作需要重新封装   
@@ -29,3 +29,6 @@ ui自动化实现说明：
 api自动化实现说明：   
 1.用例管理：excel写用例    
 2.执行=》结果校验=》记录存储到数据库
+
+编码原则：  
+1.异常处理在函数内部处理，不在多个函数组合时使用   
