@@ -13,9 +13,9 @@ from app_demo1.lib.log_manager import LogManager
 #API网站：https://selenium-python-zh.readthedocs.io/en/latest/index.html
 class Pagehandler():
 
-    def __init__(self,browser='chrome',timeout=5):
+    def __init__(self,website,browser='chrome',timeout=5):
         self.logger = LogManager("ui")
-        self.website = None
+        self.website = website
         self.url = None
         self.curr_page = None
         self.curr_element = None
@@ -25,18 +25,18 @@ class Pagehandler():
         else:
             self.browser = webdriver.Chrome()
         #self.browser.get(config.WEBSITE[website])  #"http://www.baidu.com"
+        self.browser.implicitly_wait(timeout)
+        self._load_element_location_file(website)
+
+    def _load_element_location_file(self,website): #website网站名
         try:
-            pagefile=open(config.PAGEFILE['lianjia'], 'r', encoding="utf-8")
+            pagefile=open(config.PAGEFILE[website], 'r', encoding="utf-8")
             _page_message = pagefile.read()
             pagefile.close()
             self.pagedata=yaml.load(_page_message)
         except Exception as e:
             self.logger.error('load element yaml file failed')
             self.logger.error(e)
-
-        self.browser.implicitly_wait(timeout)
-
-    def _load_element_location_file(self,):
 
     def _locate_element(self,element,page=None):
         if page == '' or page == None:
@@ -87,6 +87,16 @@ class Pagehandler():
             return elements
         else:
             raise Custom_exception.WrongLocation
+
+    def switch_website(self, msg):#切换网站需加载不同的元素信息文件
+        website = msg["website"]
+        self._load_element_location_file(website)
+
+    def open_newpage(self,msg):
+        url=msg["url"]
+        js = 'window.open(%s);'%(url)
+        self.browser.execute_script(js)
+        self.switch_to_next_windows(msg)
 
     #封装WebElement类方法
     def click(self,msg):
@@ -207,7 +217,9 @@ class Pagehandler():
 
     def get(self,msg):
         url = msg["url"]
+        self._load_element_location_file(url)
         self.browser.get(url)
+        self.maximize_windows(msg)
 
     def maximize_windows(self,msg):
         self.browser.maximize_window()

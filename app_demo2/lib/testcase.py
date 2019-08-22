@@ -17,19 +17,10 @@ class Testcase():
 
 	def runstep(self):
 		for step in self.steps:
-			if step[3] == "get":
-				msg = {"action": step[3], "page": step[4], "element": step[5]}
-				if step[6] != '':
-					msg.update(json.loads(step[6]))
-				#self.operate = Operate(json.loads(step[6])['url'],browser='chrome')
-				self.operate.execute(msg)
-				self.operate.handler.maximize_windows(1)
-			else:
-				msg={"action":step[3],"page":step[4],"element":step[5]}
-				if step[6] != '':
-					msg.update(json.loads(step[6]))
-				print(msg)
-				result = self.operate.execute(msg)
+			msg={"action":step[3],"page":step[4],"element":step[5]}
+			if step[6] != '':
+				msg.update(json.loads(step[6]))
+			result = self.operate.execute(msg)
 
 	def setup(self):
 		pass
