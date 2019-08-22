@@ -4,10 +4,10 @@ from app_demo2.lib.page_handler import Pagehandler
 from app_demo2.lib.page_operate import Operate
 
 class Testcase():
-	def __init__(self,steps):
+	def __init__(self,steps,operate):
 		self.steps = steps
 		self.result = None
-		self.operate = None
+		self.operate = operate
 		self.time=0
 
 	def run(self):
@@ -21,7 +21,7 @@ class Testcase():
 				msg = {"action": step[3], "page": step[4], "element": step[5]}
 				if step[6] != '':
 					msg.update(json.loads(step[6]))
-				self.operate = Operate(json.loads(step[6])['url'],browser='chrome')
+				#self.operate = Operate(json.loads(step[6])['url'],browser='chrome')
 				self.operate.execute(msg)
 				self.operate.handler.maximize_windows(1)
 			else:

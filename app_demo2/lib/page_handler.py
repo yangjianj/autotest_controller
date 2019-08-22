@@ -13,9 +13,10 @@ from app_demo1.lib.log_manager import LogManager
 #API网站：https://selenium-python-zh.readthedocs.io/en/latest/index.html
 class Pagehandler():
 
-    def __init__(self,website,browser='chrome',timeout=5):
+    def __init__(self,browser='chrome',timeout=5):
         self.logger = LogManager("ui")
-        self.url = website
+        self.website = None
+        self.url = None
         self.curr_page = None
         self.curr_element = None
 
@@ -34,6 +35,8 @@ class Pagehandler():
             self.logger.error(e)
 
         self.browser.implicitly_wait(timeout)
+
+    def _load_element_location_file(self,):
 
     def _locate_element(self,element,page=None):
         if page == '' or page == None:

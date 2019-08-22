@@ -2,12 +2,14 @@
 from app_demo2.lib.testcase import Testcase
 from app_demo1.lib.tool import *
 import app_demo1.config.config
+from app_demo2.lib.page_operate import Operate
 
 class Testsuit():
 	#一个testsuit对应一个excel的sheet
 	def __init__(self):
 		self.casedata = None
-		self.testcases = []
+        self.operate = Operate(json.loads(step[6])['url'],browser='chrome')
+        self.testcases = []
 		self.name = None
 		self.result=[]
 		self.passed=0
@@ -28,6 +30,9 @@ class Testsuit():
 				_curr_case.append(step)
 			if step == self.casedata[-1]:
 				self.testcases.append(Testcase(_curr_case))
+
+	def _data_split_for_suit(self):
+		_setup_rows=1
 
 
 	def run(self):

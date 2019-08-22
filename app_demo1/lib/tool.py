@@ -4,7 +4,6 @@ from xlutils.copy import copy
 import json, datetime
 from app_demo1.config import config
 
-
 #导入excel中接口测试用例
 def import_excel_data(path):
     result=[]
