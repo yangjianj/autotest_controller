@@ -6,9 +6,11 @@ browser.implicitly_wait(5)  #等待元素超时时间
 #browser.set_page_load_timeout(5)  #页面加载超时时间
 print(time.time())
 browser.get("http://www.lianjia.com")
+browser.get("http://www.baidu.com")
 js='window.open("https://www.sogou.com");'
 browser.execute_script(js)
 browser.get("http://www.baidu.com") #不会新开页面 会在改变当前handle
+print(111111111111111111111)
 time.sleep(10)
 browser.close()
 time.sleep(10)
