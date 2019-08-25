@@ -8,12 +8,14 @@ class Operate():
         self.logger = LogManager("ui")
 
     def execute(self,msg):
+        #return False or other
         try:
             emeth = getattr(self.handler, msg['action'])
-            re = emeth(msg)
+            message = emeth(msg)
+            re = {"passed":message}
         except Exception as error:
             self.logger.error('execute failed in class Pagehandle:  %s'%(json.dumps(msg,ensure_ascii=False)))
-            re = False
+            re = {"failed":error}
         return re
 
 #常用固定操作

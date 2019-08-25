@@ -1,14 +1,16 @@
 # -*-coding:UTF-8 -*-
 import os,xlrd,xlwt
 from xlutils.copy import copy
-import json, datetime
+import time,datetime
+import json
 from app_demo1.config import config
 
 #导入excel中接口测试用例
-def import_excel_data(path):
+def import_excel_data(path,sheetname):
     result=[]
     workbook = xlrd.open_workbook(path)
-    sheet= workbook.sheet_by_index(0)    #默认取第一个sheet
+    #sheet= workbook.sheet_by_index(0)    #默认取第一个sheet
+    sheet = workbook.sheet_by_name(sheetname)
     nrows=sheet.nrows
     ncols=sheet.ncols
     for row in range(0,nrows):
@@ -80,6 +82,13 @@ def record_time(func):    #计时器
         result["spend"]=str(end_time-start_time)
         return result
     return inner
+
+
+def create_report_dir(type):
+    str = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime(time.time()))
+    str = type + str
+    os.makedirs(os.path.join(config.UI_RESULT_DIR, str))
+    return os.path.join(config.UI_RESULT_DIR, str)
 
 
 if __name__=='__main__':

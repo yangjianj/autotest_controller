@@ -1,17 +1,13 @@
-import json
-class a():
-	def __init__(self,name):
-		self.s=name
+a =[[1,2,3,4,5,6,7],[1,2,333]]
+for i in range(len(a)):
+	print(a[i])
 
-	def aaa(self,x):
-		print(x)
-		print(self.s)
+b=a[0]
+print(b)
+a.clear()
+print(a)
+print(b)
 
-
-if __name__ == '__main__':
-	m=a('yyy')
-	fun = getattr(m,'aaa')
-	fun(1)
-
-
-json.loads('')
+x=1
+x += 1
+print(x)

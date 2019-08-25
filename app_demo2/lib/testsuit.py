@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os,sys
+import time
 from app_demo2.lib.testcase import Testcase
 from app_demo1.lib.tool import *
 import app_demo1.config.config
@@ -15,70 +17,110 @@ class Testsuit():
 		self.passed=0
 		self.failed=0
 		self.time=0
-		self._setup_rows = []
-		self._teardown_rows = []
+		self.setup_rows = []
+		self.teardown_rows = []
+		self.report_dir=''
 
-	def loadcases(self,excel):
-		self.casedata = import_excel_data(excel)
+	def loadcases(self,excel,suitename):
+		self.name = suitename
+		self.casedata = import_excel_data(excel,suitename)
+		self._data_split_for_suite()
 
 	def _data_split_for_suite(self):
-		index = 0
+		_index = 0
+		_case_start_row=[]
+		_case_end_row=[]
 		for row in self.casedata:
 			if row[1] == "SUITE_SETUP":
-				self._setup_rows.append(index)
+				self.setup_rows.append(row)
+				_case_start_row.append(_index)
 			elif row[1] == "SUITE_TEARDOWN":
-				self._teardown_rows.append(index)
-			index = index+1
+				self.teardown_rows.append(row)
+				_case_end_row.append(_index)
+			_index = _index+1
 		_curr_case = []
-		_case_setup=self._setup_rows[-1]+1
-		_case_teardown=self._teardown_rows[0]-1
-
 		#页面case部分步骤
-		for step in self.casedata[_case_setup:_case_teardown]:
+		for step in self.casedata[_case_start_row[-1]+1:_case_end_row[0]]:
+			print(step)
 			if _curr_case == []:
 				_curr_case.append(step)
 			elif step[0] == '' or step[0] == _curr_case[-1][0]:
 				_curr_case.append(step)
 			else:
-				self.testcases.append(Testcase(_curr_case,self.operate))
+				self.testcases.append(Testcase(_curr_case[0:],self.operate))
 				_curr_case.clear()
 				_curr_case.append(step)
-			if step == self.casedata[_case_teardown]:
-				self.testcases.append(Testcase(_curr_case,self.operate))
+			if step is self.casedata[_case_end_row[0]-1]:
+				self.testcases.append(Testcase(_curr_case[0:],self.operate))
 
 	def run(self):
-		self._data_split_for_suite()
+		self.report_dir=create_report_dir("uitest")
 		self.setup()
 		for case in self.testcases:
+			self._update_case(case)
 			result=case.run()
+			if result["re"]["result"] == "passed":
+				self.passed += 1
+			else:
+				self.failed += 1
 			self.result.append(result)
-			self._write_result(result)
+			result["re"]["steps"][0][10]=result["spend"]
+			self._write_result(result["re"]["steps"])
 		self.teardown()
 
+	def _update_case(self,case):
+		case.operate = self.operate
+		case.report_dir = self.report_dir
+
 	def setup(self):
-		for index in self._setup_rows:
-			if self.casedata[index][3] == "open_browser":
-				params=json.loads(self.casedata[index][6])
+		_setup_result = []
+		for row in self.setup_rows:
+			if row[3] == "open_browser":
+				params=json.loads(row[6])
 				self.operate = Operate(params["website"],browser=params["browser"])
+				_setup_result.append(self.casedata[0])
+				_setup_result.append(row)
 			else:
-				msg = {"action": self.casedata[index][3], "page": self.casedata[index][4], "element": self.casedata[index][5]}
-				if self.casedata[index][6] != '':
-					msg.update(json.loads(self.casedata[index][6]))
-				self.operate.execute(msg)
+				msg = {"action": row[3], "page": row[4], "element": row[5]}
+				if row[6] != '':
+					msg.update(json.loads(row[6]))
+				result =self.operate.execute(msg)
+				_setup_result.append(self._record_result(row,result))
+		self._write_result(_setup_result)
 
 	def teardown(self):
-		for index in self._setup_rows:
-			msg = {"action": self.casedata[index][3], "page": self.casedata[index][4],
-			       "element": self.casedata[index][5]}
-			if self.casedata[index][6] != '':
-				msg.update(json.loads(self.casedata[index][6]))
-			self.operate.execute(msg)
+		_teardown_result=[]
+		for row in self.teardown_rows:
+			msg = {"action": row[3], "page": row[4],
+			       "element": row[5]}
+			if row[6] != '':
+				msg.update(json.loads(row[6]))
+			result=self.operate.execute(msg)
+			_teardown_result.append(self._record_result(row, result))
+		self._write_result(_teardown_result)
 
 	def _write_result(self,caseresult):
-		pass
+		export_data(caseresult,self.name,os.path.join(self.report_dir,'test.xlsx'))
+
+	def _record_result(self,step,result):
+		if "passed" in result:
+			step[-2]="passed"
+			step[-1]=str(result["passed"])
+		else:
+			step[-2]="failed"
+			step[-1]=str(result["failed"])
+		return step
+
+
 
 
 if __name__ == '__main__':
 	te = Testsuit()
-	te.loadcases(config.UI_CASE['test'])
+	te.loadcases(config.UI_CASE['test'],"lianjia1")
+	print(te.testcases)
+	print("1111111111111111111111111111")
+	for i in te.testcases:
+		print(i.steps)
+	print(te.setup_rows)
+	print(te.teardown_rows)
 	te.run()

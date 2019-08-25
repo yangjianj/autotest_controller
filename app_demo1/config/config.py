@@ -15,7 +15,8 @@ PAGEFILE={"baidu":os.path.join(BASE_DIR, 'app_demo1\\config\\baidu.yaml'),
 "xinlang":os.path.join(BASE_DIR, 'app_demo2\\lib\\page.yaml'),
 "lianjia":os.path.join(BASE_DIR,'app_demo1\\config\\lianjia.yaml'),
 }
-
+UI_RESULT_DIR = os.path.join(BASE_DIR, 'app_demo1\\log\\')
+API_RESULT_DIR = os.path.join(BASE_DIR, 'app_demo1\\log\\')
 
 
 headers = {}
