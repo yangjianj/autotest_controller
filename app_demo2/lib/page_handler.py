@@ -187,6 +187,7 @@ class Pagehandler():
     def wait_until_page_contain_element(self,msg):
         element = msg["element"]
         page = msg["page"]
+        timeout = msg["timeout"]
         locate = self._locate_element(element,page)
         if locate[0] == 'id':
             locator = (By.ID, locate[1])
@@ -261,12 +262,14 @@ class Pagehandler():
         for i in range (len(handles)):
             if handles[i] == self.browser.current_window_handle:
                 self.browser.switch_to.window(handles[i+1])
+                break
 
     def switch_to_pre_windows(self,msg):
         handles = self.browser.window_handles
         for i in range(len(handles)):
             if handles[i] == self.browser.current_window_handle:
                 self.browser.switch_to.window(handles[i - 1])
+                break
 
     def sleep(self,msg):
         time.sleep(msg['value'])

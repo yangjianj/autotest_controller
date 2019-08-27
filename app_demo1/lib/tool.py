@@ -77,18 +77,21 @@ def record_time(func):    #计时器
         re=func(*args,**kargs)
         end_time = datetime.datetime.now()
         result["re"] = re
-        result["start-time"]=str(start_time)
-        result["end-time"] = str(end_time)
-        result["spend"]=str(end_time-start_time)
+        result["start-time"]=start_time
+        result["end-time"] = end_time
+        result["spend"]=end_time-start_time
         return result
     return inner
 
-
-def create_report_dir(type):
-    str = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime(time.time()))
-    str = type + str
+def create_suite_dir(type,suitename):
+    timestr = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime(time.time()))
+    str = type+suitename+timestr
     os.makedirs(os.path.join(config.UI_RESULT_DIR, str))
     return os.path.join(config.UI_RESULT_DIR, str)
+
+def create_case_dir(suitedir,caseid):
+    os.makedirs(os.path.join(suitedir,caseid))
+    return os.path.join(suitedir,caseid)
 
 
 if __name__=='__main__':

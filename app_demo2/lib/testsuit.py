@@ -16,10 +16,10 @@ class Testsuit():
 		self.result=[]
 		self.passed=0
 		self.failed=0
-		self.time=0
+		self.spendtime=0
 		self.setup_rows = []
 		self.teardown_rows = []
-		self.report_dir=''
+		self.suite_dir=''
 
 	def loadcases(self,excel,suitename):
 		self.name = suitename
@@ -54,7 +54,7 @@ class Testsuit():
 				self.testcases.append(Testcase(_curr_case[0:],self.operate))
 
 	def run(self):
-		self.report_dir=create_report_dir("uitest")
+		self.suite_dir=create_suite_dir("uitest",self.name)
 		self.setup()
 		for case in self.testcases:
 			self._update_case(case)
@@ -65,12 +65,13 @@ class Testsuit():
 				self.failed += 1
 			self.result.append(result)
 			result["re"]["steps"][0][10]=result["spend"]
+			self.spendtime = self.spendtime+result["spend"]
 			self._write_result(result["re"]["steps"])
 		self.teardown()
 
 	def _update_case(self,case):
 		case.operate = self.operate
-		case.report_dir = self.report_dir
+		case.suite_dir = self.suite_dir
 
 	def setup(self):
 		_setup_result = []
@@ -100,15 +101,11 @@ class Testsuit():
 		self._write_result(_teardown_result)
 
 	def _write_result(self,caseresult):
-		export_data(caseresult,self.name,os.path.join(self.report_dir,'test.xlsx'))
+		export_data(caseresult,self.name,os.path.join(self.suite_dir,'test.xlsx'))
 
 	def _record_result(self,step,result):
-		if "passed" in result:
-			step[-2]="passed"
-			step[-1]=str(result["passed"])
-		else:
-			step[-2]="failed"
-			step[-1]=str(result["failed"])
+		step[8] = result["result"]
+		step[9] = str(result["message"])
 		return step
 
 
@@ -117,10 +114,4 @@ class Testsuit():
 if __name__ == '__main__':
 	te = Testsuit()
 	te.loadcases(config.UI_CASE['test'],"lianjia1")
-	print(te.testcases)
-	print("1111111111111111111111111111")
-	for i in te.testcases:
-		print(i.steps)
-	print(te.setup_rows)
-	print(te.teardown_rows)
 	te.run()

@@ -12,10 +12,10 @@ class Operate():
         try:
             emeth = getattr(self.handler, msg['action'])
             message = emeth(msg)
-            re = {"passed":message}
+            re = {"result":"passed","message":message}
         except Exception as error:
             self.logger.error('execute failed in class Pagehandle:  %s'%(json.dumps(msg,ensure_ascii=False)))
-            re = {"failed":error}
+            re = {"result":"failed","message":error}
         return re
 
 #常用固定操作

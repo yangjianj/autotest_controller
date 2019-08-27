@@ -4,8 +4,9 @@ from selenium import webdriver
 browser=webdriver.Chrome()
 browser.implicitly_wait(5)  #等待元素超时时间
 #browser.set_page_load_timeout(5)  #页面加载超时时间
-print(time.time())
+
 browser.get("http://www.lianjia.com")
+'''
 browser.get("http://www.baidu.com")
 js='window.open("https://www.sogou.com");'
 browser.execute_script(js)
@@ -15,6 +16,7 @@ time.sleep(10)
 browser.close()
 time.sleep(10)
 browser.quit()
+'''
 #########百度输入框的定位方式##########
 #通过id方式定位
 browser.find_element_by_xpath("/html/body/div[1]/div/div[1]/span").click()
@@ -26,10 +28,12 @@ try:
 except Exception as e:
 	print(11111111)
 print(time.time())
+print(browser.current_window_handle)
 handles = browser.window_handles
 print(len(handles))
 for i in handles:
 	print(i)
 	browser.switch_to.window(i)
+print(browser.current_window_handle)
 #browser.close()  #close当前page
 #browser.quit()   #关闭browser

@@ -1,13 +1,11 @@
-a =[[1,2,3,4,5,6,7],[1,2,333]]
-for i in range(len(a)):
-	print(a[i])
+import datetime,time
+start_time=datetime.datetime.now()
+time.sleep(5)
+end_time = datetime.datetime.now()
 
-b=a[0]
-print(b)
-a.clear()
-print(a)
-print(b)
 
-x=1
-x += 1
-print(x)
+print(start_time)
+print(end_time)
+print(type(start_time))
+print(end_time-start_time)
+print((end_time-start_time)+(end_time-start_time))
