@@ -28,3 +28,7 @@ city:
         type: xpath
         name:
         value: /html/body/div[1]/div/div[2]/a
+    搜索提示框:
+        type: xpath
+        name:
+        value: //*[@id='city_sug']/ul/li/a

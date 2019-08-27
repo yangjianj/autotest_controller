@@ -24,9 +24,9 @@ class Testcase():
 				block_result = {"result":"block","message":None}
 				self._record_step_result(step,block_result)
 				continue
-			msg={"action":step[3],"page":step[4],"element":step[5]}
-			if step[6] != '':
-				msg.update(json.loads(step[6]))
+			msg={"action":step[4],"page":step[5],"element":step[6]}
+			if step[7] != '':
+				msg.update(json.loads(step[7]))
 			result = self.operate.execute(msg)
 			self._record_step_result(step,result)
 
@@ -45,7 +45,7 @@ class Testcase():
 		step[8] = result["result"]
 		step[9] = str(result["message"])
 		if result["result"] == "failed":
-			self._error_handler(step[3])
+			self._error_handler(step[5])
 			self.result["result"] = "failed"
 		self.result["steps"].append(step)
 

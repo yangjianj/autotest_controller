@@ -76,15 +76,15 @@ class Testsuit():
 	def setup(self):
 		_setup_result = []
 		for row in self.setup_rows:
-			if row[3] == "open_browser":
-				params=json.loads(row[6])
+			if row[4] == "open_browser":
+				params=json.loads(row[7])
 				self.operate = Operate(params["website"],browser=params["browser"])
 				_setup_result.append(self.casedata[0])
 				_setup_result.append(row)
 			else:
-				msg = {"action": row[3], "page": row[4], "element": row[5]}
-				if row[6] != '':
-					msg.update(json.loads(row[6]))
+				msg = {"action": row[4], "page": row[5], "element": row[6]}
+				if row[7] != '':
+					msg.update(json.loads(row[7]))
 				result =self.operate.execute(msg)
 				_setup_result.append(self._record_result(row,result))
 		self._write_result(_setup_result)
@@ -92,10 +92,10 @@ class Testsuit():
 	def teardown(self):
 		_teardown_result=[]
 		for row in self.teardown_rows:
-			msg = {"action": row[3], "page": row[4],
-			       "element": row[5]}
-			if row[6] != '':
-				msg.update(json.loads(row[6]))
+			msg = {"action": row[4], "page": row[5],
+			       "element": row[6]}
+			if row[7] != '':
+				msg.update(json.loads(row[7]))
 			result=self.operate.execute(msg)
 			_teardown_result.append(self._record_result(row, result))
 		self._write_result(_teardown_result)
@@ -107,8 +107,6 @@ class Testsuit():
 		step[8] = result["result"]
 		step[9] = str(result["message"])
 		return step
-
-
 
 
 if __name__ == '__main__':

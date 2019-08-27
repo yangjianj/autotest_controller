@@ -184,6 +184,10 @@ class Pagehandler():
         timeout = msg["timeout"]
         self.browser.implicitly_wait(timeout)
 
+    def set_page_load_timeout(self,msg):
+        timeout = msg["timeout"]
+        self.browser.set_page_load_timeout(timeout)
+
     def wait_until_page_contain_element(self,msg):
         element = msg["element"]
         page = msg["page"]
