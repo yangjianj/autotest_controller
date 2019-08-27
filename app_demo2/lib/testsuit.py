@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os,sys
-import time
+import time,datetime
 from app_demo2.lib.testcase import Testcase
 from app_demo1.lib.tool import *
 import app_demo1.config.config
@@ -16,7 +16,7 @@ class Testsuit():
 		self.result=[]
 		self.passed=0
 		self.failed=0
-		self.spendtime=0
+		self.spendtime=datetime.datetime.now()-datetime.datetime.now()
 		self.setup_rows = []
 		self.teardown_rows = []
 		self.suite_dir=''
@@ -64,7 +64,7 @@ class Testsuit():
 			else:
 				self.failed += 1
 			self.result.append(result)
-			result["re"]["steps"][0][10]=result["spend"]
+			result["re"]["steps"][0][10]=str(result["spend"])
 			self.spendtime = self.spendtime+result["spend"]
 			self._write_result(result["re"]["steps"])
 		self.teardown()
