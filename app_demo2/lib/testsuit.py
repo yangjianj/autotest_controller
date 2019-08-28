@@ -66,21 +66,27 @@ class Testsuit():
 	def _update_case(self,case):
 		case.operate = self.operate
 		case.suite_dir = self.suite_dir
+		case.suite_variable = self.variable
+
+	def execute(self,msg):
+		try:
+			emeth = getattr(self, msg['action'])
+			message = emeth(msg)
+			re = {"result": "passed", "message": message}
+		except Exception as error:
+			message=self.operate.execute(msg)
+			re = {"result": "passed", "message": message}
+		return re
 
 	def setup(self):
 		_setup_result = []
 		for row in self.setup_rows:
-			if row[config.EXCELMAPPING["操作"]] == "open_browser":
-				params=json.loads(row[config.EXCELMAPPING["value"]])
-				self.operate = Operate(params["website"],browser=params["browser"])
-				_setup_result.append(self.casedata[0])
-				_setup_result.append(row)
-			else:
-				msg = {"action": row[config.EXCELMAPPING["操作"]], "page": row[config.EXCELMAPPING["PageName"]], "element": row[config.EXCELMAPPING["元素名称"]]}
-				if row[config.EXCELMAPPING["value"]] != '':
-					msg.update(json.loads(row[config.EXCELMAPPING["value"]]))
-				result =self.operate.execute(msg)
-				_setup_result.append(self._record_result(row,result))
+			msg = {"action": row[config.EXCELMAPPING["操作"]], "page": row[config.EXCELMAPPING["PageName"]],
+			       "element": row[config.EXCELMAPPING["元素名称"]]}
+			if row[config.EXCELMAPPING["value"]] != '':
+				msg.update(json.loads(row[config.EXCELMAPPING["value"]]))
+			result=self.execute(msg)
+			_setup_result.append(self._record_result(row, result))
 		self._write_result(_setup_result)
 
 	def teardown(self):
@@ -90,9 +96,19 @@ class Testsuit():
 			       "element": row[config.EXCELMAPPING["元素名称"]]}
 			if row[config.EXCELMAPPING["value"]] != '':
 				msg.update(json.loads(row[config.EXCELMAPPING["value"]]))
-			result=self.operate.execute(msg)
+			result=self.execute(msg)
 			_teardown_result.append(self._record_result(row, result))
 		self._write_result(_teardown_result)
+
+	def set_variable(self,msg):
+		del msg["action"]
+		del msg["page"]
+		del msg["element"]
+		self.variable.update(msg)
+
+	def open_browser(self,msg):
+		self.operate = Operate(msg["website"], browser=msg["browser"])
+		return self.operate
 
 	def _write_result(self,caseresult):
 		export_data(caseresult,self.name,os.path.join(self.suite_dir,'test.xlsx'))

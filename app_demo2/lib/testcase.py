@@ -10,7 +10,8 @@ class Testcase():
 		self.operate = operate
 		self.suite_dir = ''
 		self.case_dir = ''
-		self.variable={}   #case变量存放
+		self.variable={}   #case变量存放，优先级大于suite变量
+		self.suite_variable={} #suite变量存放地
 
 	@record_time
 	def run(self):
@@ -29,8 +30,19 @@ class Testcase():
 			msg={"action":step[config.EXCELMAPPING["操作"]],"page":step[config.EXCELMAPPING["PageName"]],"element":step[config.EXCELMAPPING["元素名称"]]}
 			if step[config.EXCELMAPPING["value"]] != '':
 				msg.update(json.loads(step[config.EXCELMAPPING["value"]]))
-			result = self.operate.execute(msg)
+			result = self.execute(msg)
 			self._record_step_result(step,result)
+
+	def execute(self,msg):
+		#执行方法在不属于case实例方法则使用operate执行
+		try:
+			emeth = getattr(self, msg['action'])
+			message = emeth(msg)
+			re = {"result": "passed", "message": message}
+		except Exception as error:
+			message=self.operate.execute(msg)
+			re = {"result": "passed", "message": message}
+		return re
 
 	def setup(self):
 		pass
