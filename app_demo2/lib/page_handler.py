@@ -123,6 +123,9 @@ class Pagehandler():
     def text(self,msg):
         element = msg["element"]
         page = msg["page"]
+        print(1111111111111)
+        print(self.get_element(element,page).text)
+        print(22222222222222222)
         return self.get_element(element,page).text
 
     def get_attribute(self,msg):
@@ -280,11 +283,15 @@ class Pagehandler():
 
     #############验证方法#############
     def check(self,msg):
+        check_result = False
         element = msg["element"]
         page = msg["page"]
-        pass
-
-
+        attr = msg["attr"]
+        value = msg["value"]
+        if attr == "type":
+            if self.text(msg) == value:
+                check_result = True
+        return check_result
 
 if __name__=='__main__':
     web=Pagehandler("baidu","chrome")

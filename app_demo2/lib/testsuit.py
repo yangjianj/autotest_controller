@@ -20,6 +20,7 @@ class Testsuit():
 		self.setup_rows = []
 		self.teardown_rows = []
 		self.suite_dir=''
+		self.variable={}
 
 	def loadcases(self,excel,suitename):
 		self.name = suitename
@@ -27,31 +28,24 @@ class Testsuit():
 		self._data_split_for_suite()
 
 	def _data_split_for_suite(self):
-		_index = 0
-		_case_start_row=[]
-		_case_end_row=[]
-		for row in self.casedata:
+		_curr_case = []
+		for row in self.casedata[config.EXCELMAPPING["suitebegine"]:]:
 			if row[1] == "SUITE_SETUP":
 				self.setup_rows.append(row)
-				_case_start_row.append(_index)
 			elif row[1] == "SUITE_TEARDOWN":
 				self.teardown_rows.append(row)
-				_case_end_row.append(_index)
-			_index = _index+1
-		_curr_case = []
-		#页面case部分步骤
-		for step in self.casedata[_case_start_row[-1]+1:_case_end_row[0]]:
-			print(step)
-			if _curr_case == []:
-				_curr_case.append(step)
-			elif step[0] == '' or step[0] == _curr_case[-1][0]:
-				_curr_case.append(step)
 			else:
-				self.testcases.append(Testcase(_curr_case[0:],self.operate))
-				_curr_case.clear()
-				_curr_case.append(step)
-			if step is self.casedata[_case_end_row[0]-1]:
-				self.testcases.append(Testcase(_curr_case[0:],self.operate))
+				if _curr_case == []:
+					_curr_case.append(row)
+				elif row[config.EXCELMAPPING["用例编号"]] == '' or row[config.EXCELMAPPING["用例编号"]] == _curr_case[-1][
+					config.EXCELMAPPING["用例编号"]]:
+					_curr_case.append(row)
+				else:
+					self.testcases.append(Testcase(_curr_case[0:], self.operate))
+					_curr_case.clear()
+					_curr_case.append(row)
+			if row is self.casedata[-1]:
+				self.testcases.append(Testcase(_curr_case[0:], self.operate))
 
 	def run(self):
 		self.suite_dir=create_suite_dir("uitest",self.name)
@@ -64,7 +58,7 @@ class Testsuit():
 			else:
 				self.failed += 1
 			self.result.append(result)
-			result["re"]["steps"][0][10]=str(result["spend"])
+			result["re"]["steps"][0][config.EXCELMAPPING["执行时间"]]=str(result["spend"])
 			self.spendtime = self.spendtime+result["spend"]
 			self._write_result(result["re"]["steps"])
 		self.teardown()
@@ -76,15 +70,15 @@ class Testsuit():
 	def setup(self):
 		_setup_result = []
 		for row in self.setup_rows:
-			if row[4] == "open_browser":
-				params=json.loads(row[7])
+			if row[config.EXCELMAPPING["操作"]] == "open_browser":
+				params=json.loads(row[config.EXCELMAPPING["value"]])
 				self.operate = Operate(params["website"],browser=params["browser"])
 				_setup_result.append(self.casedata[0])
 				_setup_result.append(row)
 			else:
-				msg = {"action": row[4], "page": row[5], "element": row[6]}
-				if row[7] != '':
-					msg.update(json.loads(row[7]))
+				msg = {"action": row[config.EXCELMAPPING["操作"]], "page": row[config.EXCELMAPPING["PageName"]], "element": row[config.EXCELMAPPING["元素名称"]]}
+				if row[config.EXCELMAPPING["value"]] != '':
+					msg.update(json.loads(row[config.EXCELMAPPING["value"]]))
 				result =self.operate.execute(msg)
 				_setup_result.append(self._record_result(row,result))
 		self._write_result(_setup_result)
@@ -92,10 +86,10 @@ class Testsuit():
 	def teardown(self):
 		_teardown_result=[]
 		for row in self.teardown_rows:
-			msg = {"action": row[4], "page": row[5],
-			       "element": row[6]}
-			if row[7] != '':
-				msg.update(json.loads(row[7]))
+			msg = {"action": row[config.EXCELMAPPING["操作"]], "page": row[config.EXCELMAPPING["PageName"]],
+			       "element": row[config.EXCELMAPPING["元素名称"]]}
+			if row[config.EXCELMAPPING["value"]] != '':
+				msg.update(json.loads(row[config.EXCELMAPPING["value"]]))
 			result=self.operate.execute(msg)
 			_teardown_result.append(self._record_result(row, result))
 		self._write_result(_teardown_result)
@@ -104,12 +98,15 @@ class Testsuit():
 		export_data(caseresult,self.name,os.path.join(self.suite_dir,'test.xlsx'))
 
 	def _record_result(self,step,result):
-		step[8] = result["result"]
-		step[9] = str(result["message"])
+		step[config.EXCELMAPPING["执行结果"]] = result["result"]
+		step[config.EXCELMAPPING["执行信息"]] = str(result["message"])
 		return step
 
 
 if __name__ == '__main__':
 	te = Testsuit()
 	te.loadcases(config.UI_CASE['test'],"lianjia1")
+	print(te.testcases)
+	for i in te.testcases:
+		print(i.steps)
 	te.run()

@@ -21,6 +21,10 @@ browser.quit()
 #通过id方式定位
 browser.find_element_by_xpath("/html/body/div[1]/div/div[1]/span").click()
 browser.find_element_by_xpath("/html/body/div[1]/div/div[2]/input").send_keys("武汉")
+ss = browser.find_element_by_xpath("/html/body/div[1]/div/div[2]/input").text
+time.sleep(5)
+print(ss)
+
 print(time.time())
 try:
 	time.sleep(5)

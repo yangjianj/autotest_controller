@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 from app_demo1.lib.tool import *
+import app_demo1.config.config
 
 class Testcase():
 	def __init__(self,steps,operate):
 		self.steps = steps
-		self.id = steps[0][0]
+		self.id = steps[0][config.EXCELMAPPING["用例编号"]]
 		self.result = {"result":"passed","steps":[]}
 		self.operate = operate
 		self.suite_dir = ''
 		self.case_dir = ''
+		self.variable={}   #case变量存放
 
 	@record_time
 	def run(self):
@@ -24,9 +26,9 @@ class Testcase():
 				block_result = {"result":"block","message":None}
 				self._record_step_result(step,block_result)
 				continue
-			msg={"action":step[4],"page":step[5],"element":step[6]}
-			if step[7] != '':
-				msg.update(json.loads(step[7]))
+			msg={"action":step[config.EXCELMAPPING["操作"]],"page":step[config.EXCELMAPPING["PageName"]],"element":step[config.EXCELMAPPING["元素名称"]]}
+			if step[config.EXCELMAPPING["value"]] != '':
+				msg.update(json.loads(step[config.EXCELMAPPING["value"]]))
 			result = self.operate.execute(msg)
 			self._record_step_result(step,result)
 
@@ -42,10 +44,10 @@ class Testcase():
 		pass
 
 	def _record_step_result(self,step,result):
-		step[8] = result["result"]
-		step[9] = str(result["message"])
+		step[config.EXCELMAPPING["执行结果"]] = result["result"]
+		step[config.EXCELMAPPING["执行信息"]] = str(result["message"])
 		if result["result"] == "failed":
-			self._error_handler(step[5])
+			self._error_handler(step[config.EXCELMAPPING["PageName"]])
 			self.result["result"] = "failed"
 		self.result["steps"].append(step)
 
