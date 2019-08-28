@@ -4,9 +4,9 @@ from app_demo1.lib.log_manager import LogManager
 
 class Operate():
     def __init__(self,website,browser="chrome"):
-        self.handler=Pagehandler(website,browser)
-        self.sqler = 1
-        self.httper =1
+        self.handler=Pagehandler(website,browser)  #页面操作对象
+        self.sqler = 1                             #数据库操作对象
+        self.httper =1                             #http请求对象
         self.logger = LogManager("ui")
 
     def execute(self,msg):

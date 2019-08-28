@@ -75,11 +75,13 @@ class Testsuit():
 			re = {"result": "passed", "message": message}
 		except Exception as error:
 			message=self.operate.execute(msg)
-			re = {"result": "passed", "message": message}
+			re = message
 		return re
 
 	def setup(self):
 		_setup_result = []
+		for i in self.casedata[0:config.EXCELMAPPING["suitebegine"]]:
+			_setup_result.append(i)
 		for row in self.setup_rows:
 			msg = {"action": row[config.EXCELMAPPING["操作"]], "page": row[config.EXCELMAPPING["PageName"]],
 			       "element": row[config.EXCELMAPPING["元素名称"]]}

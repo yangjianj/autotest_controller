@@ -52,7 +52,6 @@ class Pagehandler():
         except Exception as e:
             self.logger.error("can not find element: page:%s element:%s in yaml"%(page,element))
             self.logger.error(e)
-            time.sleep(100000)
             return None
 
     def _update_msg(self,element,page):

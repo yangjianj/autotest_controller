@@ -32,3 +32,18 @@ city:
         type: xpath
         name:
         value: //*[@id='city_sug']/ul/li/a
+二手房在售:
+    经纪人:
+        type: xpath
+        name:
+        value: /html/body/div[1]/div/ul/li[8]/a
+经纪人:
+    搜索框:
+        type: id
+        name:
+        value: keyword-box
+    搜索按钮:
+        type: xpath
+        name:
+        value: //*[@id="searchForm"]/button
+

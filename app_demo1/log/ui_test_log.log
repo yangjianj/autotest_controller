@@ -710,3 +710,173 @@
 2019-08-29 00:01:19,207-ui-ERROR: load element yaml file failed
 2019-08-29 00:01:19,207-ui-ERROR: 'http://www.lianjia.com'
 2019-08-29 00:01:19,207-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:35:35,840-ui-ERROR: load element yaml file failed
+2019-08-29 00:35:35,840-ui-ERROR: load element yaml file failed
+2019-08-29 00:35:35,857-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:35:35,857-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:35:50,863-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:35:50,863-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:36:59,719-ui-ERROR: load element yaml file failed
+2019-08-29 00:36:59,719-ui-ERROR: load element yaml file failed
+2019-08-29 00:36:59,719-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:36:59,719-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:37:14,726-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:37:14,726-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:43:55,720-ui-ERROR: load element yaml file failed
+2019-08-29 00:43:55,720-ui-ERROR: load element yaml file failed
+2019-08-29 00:43:55,720-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:43:55,720-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:44:10,725-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:44:10,725-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:44:44,182-ui-ERROR: load element yaml file failed
+2019-08-29 00:44:44,182-ui-ERROR: load element yaml file failed
+2019-08-29 00:44:44,183-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:44:44,183-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:45:04,603-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-29 00:45:04,603-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-29 00:45:07,177-ui-ERROR: load element yaml file failed
+2019-08-29 00:45:07,177-ui-ERROR: load element yaml file failed
+2019-08-29 00:45:07,177-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:45:07,177-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:50:21,800-ui-ERROR: load element yaml file failed
+2019-08-29 00:50:21,800-ui-ERROR: load element yaml file failed
+2019-08-29 00:50:21,801-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:50:21,801-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:50:44,495-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-29 00:50:44,495-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-29 00:50:47,638-ui-ERROR: load element yaml file failed
+2019-08-29 00:50:47,638-ui-ERROR: load element yaml file failed
+2019-08-29 00:50:47,638-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:50:47,638-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:52:59,254-ui-ERROR: load element yaml file failed
+2019-08-29 00:52:59,254-ui-ERROR: load element yaml file failed
+2019-08-29 00:52:59,254-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:52:59,254-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:53:14,334-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:53:14,334-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:53:42,094-ui-ERROR: load element yaml file failed
+2019-08-29 00:53:42,094-ui-ERROR: load element yaml file failed
+2019-08-29 00:53:42,095-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:53:42,095-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:54:04,171-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:54:04,171-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:55:38,410-ui-ERROR: load element yaml file failed
+2019-08-29 00:55:38,410-ui-ERROR: load element yaml file failed
+2019-08-29 00:55:38,411-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:55:38,411-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:55:53,421-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:55:53,421-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 00:56:31,299-ui-ERROR: load element yaml file failed
+2019-08-29 00:56:31,299-ui-ERROR: load element yaml file failed
+2019-08-29 00:56:31,300-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:56:31,300-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:56:52,553-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-29 00:56:52,553-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-29 00:56:53,558-ui-ERROR: load element yaml file failed
+2019-08-29 00:56:53,558-ui-ERROR: load element yaml file failed
+2019-08-29 00:56:53,558-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:56:53,558-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:59:13,604-ui-ERROR: load element yaml file failed
+2019-08-29 00:59:13,604-ui-ERROR: load element yaml file failed
+2019-08-29 00:59:13,605-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:59:13,605-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:59:37,781-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-29 00:59:37,781-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-29 00:59:38,732-ui-ERROR: load element yaml file failed
+2019-08-29 00:59:38,732-ui-ERROR: load element yaml file failed
+2019-08-29 00:59:38,732-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 00:59:38,732-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:12:00,522-ui-ERROR: load element yaml file failed
+2019-08-29 01:12:00,522-ui-ERROR: load element yaml file failed
+2019-08-29 01:12:00,523-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:12:00,523-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:12:29,667-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:12:29,667-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:12:29,668-ui-ERROR: '搜素框'
+2019-08-29 01:12:29,668-ui-ERROR: '搜素框'
+2019-08-29 01:16:21,497-ui-ERROR: load element yaml file failed
+2019-08-29 01:16:21,497-ui-ERROR: load element yaml file failed
+2019-08-29 01:16:21,498-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:16:21,498-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:16:49,137-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:16:49,137-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:16:49,137-ui-ERROR: '搜素框'
+2019-08-29 01:16:49,137-ui-ERROR: '搜素框'
+2019-08-29 01:19:15,172-ui-ERROR: load element yaml file failed
+2019-08-29 01:19:15,172-ui-ERROR: load element yaml file failed
+2019-08-29 01:19:15,173-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:19:15,173-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:19:30,304-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 01:19:30,304-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 01:20:33,561-ui-ERROR: load element yaml file failed
+2019-08-29 01:20:33,561-ui-ERROR: load element yaml file failed
+2019-08-29 01:20:33,562-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:20:33,562-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:20:48,573-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 01:20:48,573-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 01:21:07,040-ui-ERROR: load element yaml file failed
+2019-08-29 01:21:07,040-ui-ERROR: load element yaml file failed
+2019-08-29 01:21:07,041-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:21:07,041-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:23:28,875-ui-ERROR: load element yaml file failed
+2019-08-29 01:23:28,875-ui-ERROR: load element yaml file failed
+2019-08-29 01:23:28,875-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:23:28,875-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:23:43,883-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 01:23:43,883-ui-ERROR: execute failed in class Pagehandle:  {"action": "get", "page": "", "element": "", "url": "http://www.lianjia.com"}
+2019-08-29 01:24:30,054-ui-ERROR: load element yaml file failed
+2019-08-29 01:24:30,054-ui-ERROR: load element yaml file failed
+2019-08-29 01:24:30,055-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:24:30,055-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:24:57,892-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:24:57,892-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:24:57,892-ui-ERROR: '搜素框'
+2019-08-29 01:24:57,892-ui-ERROR: '搜素框'
+2019-08-29 01:27:29,175-ui-ERROR: load element yaml file failed
+2019-08-29 01:27:29,175-ui-ERROR: load element yaml file failed
+2019-08-29 01:27:29,175-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:27:29,175-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:28:02,069-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:28:02,069-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:28:02,070-ui-ERROR: '搜素框'
+2019-08-29 01:28:02,070-ui-ERROR: '搜素框'
+2019-08-29 01:30:08,429-ui-ERROR: load element yaml file failed
+2019-08-29 01:30:08,429-ui-ERROR: load element yaml file failed
+2019-08-29 01:30:08,429-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:30:08,429-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:30:37,119-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:30:37,119-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:30:37,120-ui-ERROR: '搜素框'
+2019-08-29 01:30:37,120-ui-ERROR: '搜素框'
+2019-08-29 01:35:19,387-ui-ERROR: load element yaml file failed
+2019-08-29 01:35:19,387-ui-ERROR: load element yaml file failed
+2019-08-29 01:35:19,387-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:35:19,387-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:35:44,364-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-29 01:35:44,364-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-29 01:35:46,323-ui-ERROR: load element yaml file failed
+2019-08-29 01:35:46,323-ui-ERROR: load element yaml file failed
+2019-08-29 01:35:46,323-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:35:46,323-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:36:43,885-ui-ERROR: load element yaml file failed
+2019-08-29 01:36:43,885-ui-ERROR: load element yaml file failed
+2019-08-29 01:36:43,886-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:36:43,886-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:37:22,472-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:37:22,472-ui-ERROR: can not find element: page:经纪人 element:搜素框 in yaml
+2019-08-29 01:37:22,472-ui-ERROR: '搜素框'
+2019-08-29 01:37:22,472-ui-ERROR: '搜素框'
+2019-08-29 01:40:51,735-ui-ERROR: load element yaml file failed
+2019-08-29 01:40:51,735-ui-ERROR: load element yaml file failed
+2019-08-29 01:40:51,736-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:40:51,736-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:44:53,505-ui-ERROR: load element yaml file failed
+2019-08-29 01:44:53,505-ui-ERROR: load element yaml file failed
+2019-08-29 01:44:53,505-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:44:53,505-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:45:25,808-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-29 01:45:25,808-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-29 01:45:26,719-ui-ERROR: load element yaml file failed
+2019-08-29 01:45:26,719-ui-ERROR: load element yaml file failed
+2019-08-29 01:45:26,719-ui-ERROR: 'http://www.lianjia.com'
+2019-08-29 01:45:26,719-ui-ERROR: 'http://www.lianjia.com'

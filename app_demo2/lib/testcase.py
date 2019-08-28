@@ -35,13 +35,14 @@ class Testcase():
 
 	def execute(self,msg):
 		#执行方法在不属于case实例方法则使用operate执行
+		print(msg)
 		try:
 			emeth = getattr(self, msg['action'])
 			message = emeth(msg)
 			re = {"result": "passed", "message": message}
 		except Exception as error:
 			message=self.operate.execute(msg)
-			re = {"result": "passed", "message": message}
+			re = message
 		return re
 
 	def setup(self):
