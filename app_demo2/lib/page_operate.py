@@ -20,6 +20,17 @@ class Operate():
             re = {"result":"failed","message":error}
         return re
 
+    def check(self,msg):
+        '''
+        开头字符	匹配说明	示例	示例说明
+        *	包含	*test	包含test
+        ^	开头	^hello	以hello开头
+        $	结尾	$world	以world结尾
+        \	特殊符号转义	\*	匹配*
+        #	不等于	#test	不为test
+        '''
+        pass
+
 #常用固定操作
     def login(self):
         pass

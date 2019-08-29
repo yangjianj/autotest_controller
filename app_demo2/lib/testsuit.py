@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os,sys
 import time,datetime
+import re
 from app_demo2.lib.testcase import Testcase
 from app_demo1.lib.tool import *
 import app_demo1.config.config
@@ -111,6 +112,13 @@ class Testsuit():
 	def open_browser(self,msg):
 		self.operate = Operate(msg["website"], browser=msg["browser"])
 		return self.operate
+
+	def _data_identify(self,data):
+		# type(data) = dict识别输入数据中引用的变量，变量格式<val>
+		for item in data:
+			if '<' in data[item] and '>' in data[item]:
+				data[item] =1
+		return data
 
 	def _write_result(self,caseresult):
 		export_data(caseresult,self.name,os.path.join(self.suite_dir,'test.xlsx'))
