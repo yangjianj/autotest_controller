@@ -6,6 +6,7 @@ from app_demo2.lib.testcase import Testcase
 from app_demo1.lib.tool import *
 import app_demo1.config.config
 from app_demo2.lib.page_operate import Operate
+from app_demo1.lib.log_manager import LogManager
 
 class Testsuit():
 	#一个testsuit对应一个excel的sheet
@@ -22,6 +23,7 @@ class Testsuit():
 		self.teardown_rows = []
 		self.suite_dir=''
 		self.variable={}
+		self.logger = LogManager("ui")
 
 	def loadcases(self,excel,suitename):
 		self.name = suitename
@@ -70,6 +72,7 @@ class Testsuit():
 		case.suite_variable = self.variable
 
 	def execute(self,msg):
+		msg = self._data_identify(msg)
 		try:
 			emeth = getattr(self, msg['action'])
 			message = emeth(msg)
@@ -113,11 +116,25 @@ class Testsuit():
 		self.operate = Operate(msg["website"], browser=msg["browser"])
 		return self.operate
 
+	def get_variable(self,msg):
+		if 'value' in msg:
+			key = msg['value']
+			try:
+				return self.variable[key]
+			except Exception as error:
+				return ''
+		else:
+			return self.variable
+
 	def _data_identify(self,data):
 		# type(data) = dict识别输入数据中引用的变量，变量格式<val>
 		for item in data:
-			if '<' in data[item] and '>' in data[item]:
-				data[item] =1
+			if '<' in str(data[item]):  #此行可去除，为减小运算度而保留
+				try:
+					yy = re.match("^<(\S*)>$", data[item]).group(1)
+					data[item] = self.variable[yy]
+				except Exception as error:
+					pass
 		return data
 
 	def _write_result(self,caseresult):

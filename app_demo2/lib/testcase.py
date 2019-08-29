@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 from app_demo1.lib.tool import *
 import app_demo1.config.config
 
@@ -35,7 +36,7 @@ class Testcase():
 
 	def execute(self,msg):
 		#执行方法在不属于case实例方法则使用operate执行
-		print(msg)
+		msg = self._data_identify(msg)
 		try:
 			emeth = getattr(self, msg['action'])
 			message = emeth(msg)
@@ -55,6 +56,32 @@ class Testcase():
 
 	def log(self):
 		pass
+
+	def get_variable(self,msg):
+		var = ''
+		if 'value' in msg:
+			key = msg['value']
+			if key in self.variable:
+				var = self.variable[key]
+			elif key in self.suite_variable:
+				var = self.suite_variable[key]
+		else:
+			var = {"variable":self.variable,"suite_variable":self.suite_variable}
+		return var
+
+	def _data_identify(self,data):
+		# type(data) = dict识别输入数据中引用的变量，变量格式<val>
+		for item in data:
+			if '<' in str(data[item]):  #此行可去除，为减小运算度而保留
+				try:
+					yy = re.match("^<(\S*)>$", data[item]).group(1)
+					if yy in self.variable:
+						data[item] = self.variable[yy]
+					elif yy in self.suite_variable:
+						data[item] = self.suite_variable[yy]
+				except Exception as error:
+					pass
+		return data
 
 	def _record_step_result(self,step,result):
 		step[config.EXCELMAPPING["执行结果"]] = result["result"]

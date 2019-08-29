@@ -119,12 +119,9 @@ class Pagehandler():
         page = msg["page"]
         self.get_element(element,page).double_click()
 
-    def text(self,msg):
+    def get_text(self,msg):
         element = msg["element"]
         page = msg["page"]
-        print(1111111111111)
-        print(self.get_element(element,page).text)
-        print(22222222222222222)
         return self.get_element(element,page).text
 
     def get_attribute(self,msg):
