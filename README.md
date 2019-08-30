@@ -27,7 +27,7 @@ ui自动化实现说明：
 6.测试用例结构：（setup(开浏览器)-content（测试流程）--teardown（截图，关浏览器））    
 7.结果输出：输出测试结果到excel（步骤执行结果，步骤执行信息，case执行时间，suite执行时间）   
 
-8.疑点：步骤取值供下一个步骤使用+suite/case级变量，for循环，if-then-else,外部数据引用    
+8.疑点：步骤取值供下一个步骤使用+suite/case级变量，for循环，if-then-else,外部数据引用，字符类型支持    
 
 
 使用说明：    

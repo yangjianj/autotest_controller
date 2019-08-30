@@ -9,19 +9,6 @@ zz = re.match("^(<na).*>$",str2)
 print(yy)
 print(zz)
 
-
-def _data_identify(data):
-	# type(data) = dict识别输入数据中引用的变量，变量格式<val>
-	for item in data:
-		try:
-			yy = re.match("^<(\S*)>$", data[item]).group(1)
-			data[item] = 11
-		except Exception as error:
-			pass
-	return data
-
-ddct = {'name':"<yang>"}
-ddct=_data_identify(ddct)
-print(ddct)
-
-print(ddct['dd'])
+m ="3"
+print(eval("3+2"))
+print(eval(m))

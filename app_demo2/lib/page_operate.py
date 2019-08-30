@@ -22,13 +22,18 @@ class Operate():
 
     def check(self,msg):
         '''
+        1.检查某个元素的某个属性的值
+        2.检查某个元素是否存在/不存在：使用wait_until_page_contain*方法
         开头字符	匹配说明	示例	示例说明
         *	包含	*test	包含test
         ^	开头	^hello	以hello开头
         $	结尾	$world	以world结尾
         \	特殊符号转义	\*	匹配*
         #	不等于	#test	不为test
+        type in (=,!=,>,<,match)
         '''
+
+        type = msg["type"]
         pass
 
 #常用固定操作

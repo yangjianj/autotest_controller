@@ -949,3 +949,108 @@
 2019-08-30 00:09:46,511-ui-ERROR: 'http://www.lianjia.com'
 2019-08-30 00:09:46,511-ui-ERROR: 'http://www.lianjia.com'
 2019-08-30 00:09:46,511-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 12:54:31,671-ui-ERROR: load element yaml file failed
+2019-08-30 12:54:31,671-ui-ERROR: load element yaml file failed
+2019-08-30 12:54:31,671-ui-ERROR: load element yaml file failed
+2019-08-30 12:54:31,728-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 12:54:31,728-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 12:54:31,728-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 12:55:01,706-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-30 12:55:01,706-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-30 12:55:01,706-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-30 12:55:04,039-ui-ERROR: load element yaml file failed
+2019-08-30 12:55:04,039-ui-ERROR: load element yaml file failed
+2019-08-30 12:55:04,039-ui-ERROR: load element yaml file failed
+2019-08-30 12:55:04,039-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 12:55:04,039-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 12:55:04,039-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:06:03,479-ui-ERROR: load element yaml file failed
+2019-08-30 15:06:03,479-ui-ERROR: load element yaml file failed
+2019-08-30 15:06:03,479-ui-ERROR: load element yaml file failed
+2019-08-30 15:06:03,660-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:06:03,660-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:06:03,660-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:06:33,204-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:06:33,204-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:06:33,204-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:06:36,427-ui-ERROR: load element yaml file failed
+2019-08-30 15:06:36,427-ui-ERROR: load element yaml file failed
+2019-08-30 15:06:36,427-ui-ERROR: load element yaml file failed
+2019-08-30 15:06:36,428-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:06:36,428-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:06:36,428-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:09:44,907-ui-ERROR: load element yaml file failed
+2019-08-30 15:09:44,907-ui-ERROR: load element yaml file failed
+2019-08-30 15:09:44,907-ui-ERROR: load element yaml file failed
+2019-08-30 15:09:44,935-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:09:44,935-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:09:44,935-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:10:08,721-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:10:08,721-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:10:08,721-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:10:11,408-ui-ERROR: load element yaml file failed
+2019-08-30 15:10:11,408-ui-ERROR: load element yaml file failed
+2019-08-30 15:10:11,408-ui-ERROR: load element yaml file failed
+2019-08-30 15:10:11,409-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:10:11,409-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:10:11,409-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:34:35,796-ui-ERROR: load element yaml file failed
+2019-08-30 15:34:35,796-ui-ERROR: load element yaml file failed
+2019-08-30 15:34:35,796-ui-ERROR: load element yaml file failed
+2019-08-30 15:34:35,902-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:34:35,902-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:34:35,902-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:35:07,578-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:35:07,578-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:35:07,578-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:35:10,840-ui-ERROR: load element yaml file failed
+2019-08-30 15:35:10,840-ui-ERROR: load element yaml file failed
+2019-08-30 15:35:10,840-ui-ERROR: load element yaml file failed
+2019-08-30 15:35:10,840-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:35:10,840-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:35:10,840-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:52:09,773-ui-ERROR: load element yaml file failed
+2019-08-30 15:52:09,773-ui-ERROR: load element yaml file failed
+2019-08-30 15:52:09,773-ui-ERROR: load element yaml file failed
+2019-08-30 15:52:09,774-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:52:09,774-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:52:09,774-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:52:50,736-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:52:50,736-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:52:50,736-ui-ERROR: execute failed in class Pagehandle:  {"action": "click", "page": "二手房在售", "element": "经纪人"}
+2019-08-30 15:52:53,603-ui-ERROR: load element yaml file failed
+2019-08-30 15:52:53,603-ui-ERROR: load element yaml file failed
+2019-08-30 15:52:53,603-ui-ERROR: load element yaml file failed
+2019-08-30 15:52:53,604-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:52:53,604-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 15:52:53,604-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 16:05:54,861-ui-ERROR: load element yaml file failed
+2019-08-30 16:05:54,861-ui-ERROR: load element yaml file failed
+2019-08-30 16:05:54,861-ui-ERROR: load element yaml file failed
+2019-08-30 16:05:54,861-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 16:05:54,861-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 16:05:54,861-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 16:06:26,802-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-30 16:06:26,802-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-30 16:06:26,802-ui-ERROR: execute failed in class Pagehandle:  {"action": "", "page": "", "element": ""}
+2019-08-30 16:06:28,320-ui-ERROR: load element yaml file failed
+2019-08-30 16:06:28,320-ui-ERROR: load element yaml file failed
+2019-08-30 16:06:28,320-ui-ERROR: load element yaml file failed
+2019-08-30 16:06:28,322-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 16:06:28,322-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 16:06:28,322-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 17:08:40,851-ui-ERROR: load element yaml file failed
+2019-08-30 17:08:40,851-ui-ERROR: load element yaml file failed
+2019-08-30 17:08:40,851-ui-ERROR: load element yaml file failed
+2019-08-30 17:08:40,852-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 17:08:40,852-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 17:08:40,852-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 17:08:49,573-ui-ERROR: execute failed in class Pagehandle:  {"action": "check", "page": "", "element": "", "src": "深圳", "dst": ""}
+2019-08-30 17:08:49,573-ui-ERROR: execute failed in class Pagehandle:  {"action": "check", "page": "", "element": "", "src": "深圳", "dst": ""}
+2019-08-30 17:08:49,573-ui-ERROR: execute failed in class Pagehandle:  {"action": "check", "page": "", "element": "", "src": "深圳", "dst": ""}
+2019-08-30 17:08:52,013-ui-ERROR: load element yaml file failed
+2019-08-30 17:08:52,013-ui-ERROR: load element yaml file failed
+2019-08-30 17:08:52,013-ui-ERROR: load element yaml file failed
+2019-08-30 17:08:52,013-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 17:08:52,013-ui-ERROR: 'http://www.lianjia.com'
+2019-08-30 17:08:52,013-ui-ERROR: 'http://www.lianjia.com'

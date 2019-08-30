@@ -196,12 +196,7 @@ class Pagehandler():
             locator = (By.ID, locate[1])
         elif locate[0] == 'xpath':
             locator = (By.XPATH, locate[1])
-        try:
-            ele = WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located(locator),message='wait page contain element timeout')
-            return ele
-        except Exception as e:
-            print(e)
-            return False
+        WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located(locator),message='wait page contain element timeout')
 
     def wait_until_page_not_contain_element(self,msg):
         element = msg["element"]
@@ -212,12 +207,7 @@ class Pagehandler():
             locator = (By.ID, locate[1])
         elif locate[0] == 'xpath':
             locator = (By.XPATH, locate[1])
-        try:
-            WebDriverWait(self.browser, timeout).until_not(EC.presence_of_element_located(locator),message='wait page not contain element timeout')
-            return True
-        except Exception as e:
-            print(e)
-            return False
+        WebDriverWait(self.browser, timeout).until_not(EC.presence_of_element_located(locator),message='wait page not contain element timeout')
 
     def get(self,msg):
         url = msg["url"]
@@ -244,6 +234,7 @@ class Pagehandler():
         fielpath = msg["filepath"]
         self.browser.get_screenshot_as_file(fielpath)
 
+    #alert相关方法
     def switch_to_alert(self,msg):
         return self.browser.switch_to_alert()
 
@@ -259,6 +250,24 @@ class Pagehandler():
     def send_keys_to_alert(self,msg):
         key = msg["key"]
         self.switch_to_alert().send_keys(key)
+
+    #frame相关方法
+    def switch_to(self,msg):
+        type = msg["type"]
+        if type == 'frame':
+            val = msg["value"]
+            self.browser.switch_to.frame(val)
+        elif type == 'parent_frame':
+            self.browser.switch_to.parent_frame()
+        elif type == 'default_content':
+            self.browser.switch_to.default_content()
+        elif type == 'active_element':
+            self.browser.switch_to.active_element()
+        elif type == 'alert':
+            self.browser.switch_to.alert()
+        else:
+            raise TypeError
+
 
     def switch_to_next_windows(self,msg):
         handles = self.browser.window_handles
@@ -279,6 +288,8 @@ class Pagehandler():
 
     #############验证方法#############
     def check(self,msg):
+        #1.检查某个元素的某个属性的值
+        #2.检查某个元素是否存在/不存在：使用wait_until_page_contain*方法
         check_result = False
         element = msg["element"]
         page = msg["page"]
