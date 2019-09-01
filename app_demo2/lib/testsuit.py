@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os,sys
 import time,datetime
-import re
+import re,random
 from app_demo2.lib.testcase import Testcase
 from app_demo1.lib.tool import *
 import app_demo1.config.config
@@ -72,7 +72,7 @@ class Testsuit():
         case.suite_variable = self.variable
 
     def execute(self,msg):
-        msg = self._data_identify(msg)
+        msg["value"] = self._data_identify(msg["value"])
         try:
             emeth = getattr(self, msg['action'])
             message = emeth(msg)
@@ -86,39 +86,43 @@ class Testsuit():
         _setup_result = []
         for i in self.casedata[0:config.EXCELMAPPING["suitebegine"]]:
             _setup_result.append(i)
-        for row in self.setup_rows:
-            msg = {"action": row[config.EXCELMAPPING["操作"]], "page": row[config.EXCELMAPPING["PageName"]],
-                   "element": row[config.EXCELMAPPING["元素名称"]]}
-            if row[config.EXCELMAPPING["value"]] != '':
-                msg.update(json.loads(row[config.EXCELMAPPING["value"]]))
+        for step in self.setup_rows:
+            msg = {"action": step[config.EXCELMAPPING["操作"]], "page": step[config.EXCELMAPPING["PageName"]],
+                   "element": step[config.EXCELMAPPING["元素名称"]]}
+            try:
+                msg["value"] = json.loads(step[config.EXCELMAPPING["value"]])
+            except Exception as  error:
+                msg["value"] = step[config.EXCELMAPPING["value"]]
             result=self.execute(msg)
-            _setup_result.append(self._record_result(row, result))
+            _setup_result.append(self._record_result(step, result))
         self._write_result(_setup_result)
 
     def teardown(self):
         _teardown_result=[]
-        for row in self.teardown_rows:
-            msg = {"action": row[config.EXCELMAPPING["操作"]], "page": row[config.EXCELMAPPING["PageName"]],
-                   "element": row[config.EXCELMAPPING["元素名称"]]}
-            if row[config.EXCELMAPPING["value"]] != '':
-                msg.update(json.loads(row[config.EXCELMAPPING["value"]]))
+        for step in self.teardown_rows:
+            msg = {"action": step[config.EXCELMAPPING["操作"]], "page": step[config.EXCELMAPPING["PageName"]],
+                   "element": step[config.EXCELMAPPING["元素名称"]]}
+            try:
+                msg["value"] = json.loads(step[config.EXCELMAPPING["value"]])
+            except Exception as  error:
+                msg["value"] = step[config.EXCELMAPPING["value"]]
             result=self.execute(msg)
-            _teardown_result.append(self._record_result(row, result))
+            _teardown_result.append(self._record_result(step, result))
         self._write_result(_teardown_result)
 
     def set_variable(self,msg):
         del msg["action"]
         del msg["page"]
         del msg["element"]
-        self.variable.update(msg)
+        self.variable.update(msg["value"])
 
     def open_browser(self,msg):
-        self.operate = Operate(msg["website"], browser=msg["browser"])
+        self.operate = Operate(msg["value"]["website"], browser=msg["value"]["browser"])
         return self.operate
 
     def get_variable(self,msg):
         if 'value' in msg:
-            key = msg['value']
+            key = msg["value"]['value']
             try:
                 return self.variable[key]
             except Exception as error:
@@ -131,8 +135,12 @@ class Testsuit():
         for item in data:
             if '<' in str(data[item]):  #此行可去除，为减小运算度而保留
                 try:
-                    yy = re.match("^<(\S*)>$", data[item]).group(1)
-                    data[item] = self.variable[yy]
+                    val = re.match("^<(\S*)>$", data[item]).group(1)
+                    if val in self.variable:
+                        data[item] = self.variable[val]
+                    else:
+                        data[item] = eval(val)
+
                 except Exception as error:
                     pass
         return data

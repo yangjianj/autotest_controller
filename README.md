@@ -27,11 +27,13 @@ ui自动化实现说明：
 6.测试用例结构：（setup(开浏览器)-content（测试流程）--teardown（截图，关浏览器））    
 7.结果输出：输出测试结果到excel（步骤执行结果，步骤执行信息，case执行时间，suite执行时间）   
 
-8.疑点：步骤取值供下一个步骤使用+suite/case级变量，for循环，if-then-else,外部数据引用，字符类型支持    
+8.疑点：步骤取值供下一个步骤使用+suite/case级变量，变量多样引用，for循环，if-then-else,外部数据引用，字符类型支持    
 
 
 使用说明：    
 1.变量赋值与引用（赋值:输出框：name=text；引用:value框：<name>）  
+2.支持变量的多样引用<random.randint(1,10)> ,type(<val1>),<val1>[1],<val1>+"name1"   
+3.    
 
 优点：   
 1.页面元素信息由yml管理，方便维护    
@@ -46,3 +48,7 @@ api自动化实现说明：
 1.异常处理在函数内部处理，不在多个函数组合时使用   
 2.python导入excel的字符类型种类： 0 --empty,1 --string, 2 --number(都是浮点), 3 --date, 4 --boolean, 5 --error   
 
+用例：   
+1.输入值为现有变量+上一个随机数   
+2.如果元素A text等于值y则点击元素C,不等于值x则点击元素B    
+3.

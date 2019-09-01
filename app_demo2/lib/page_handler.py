@@ -88,11 +88,11 @@ class Pagehandler():
             raise Custom_exception.WrongLocation
 
     def switch_website(self, msg):#切换网站需加载不同的元素信息文件
-        website = msg["website"]
+        website = msg["value"]["website"]
         self._load_element_location_file(website)
 
     def open_newpage(self,msg):
-        url=msg["url"]
+        url=msg["value"]["url"]
         js = 'window.open(%s);'%(url)
         self.browser.execute_script(js)
         self.switch_to_next_windows(msg)
@@ -111,7 +111,7 @@ class Pagehandler():
     def send_keys(self,msg):
         element = msg["element"]
         page = msg["page"]
-        keys = msg["value"]
+        keys = msg["value"]["value"]
         self.get_element(element,page).send_keys(keys)
 
     def double_click(self,msg):
@@ -127,7 +127,7 @@ class Pagehandler():
     def get_attribute(self,msg):
         element = msg["element"]
         page = msg["page"]
-        attr = msg["attr"]
+        attr = msg["value"]["attr"]
         return self.get_element(element,page).get_attribute(attr)
 
     def is_selected(self,msg):
@@ -144,14 +144,14 @@ class Pagehandler():
     def select_by_index(self,msg):
         element = msg["element"]
         page = msg["page"]
-        index = msg["index"]
+        index = msg["value"]["index"]
         ele = self.get_element(element,page)
         return Select(ele).select_by_index(index)
 
     def select_by_value(self,msg):
         element = msg["element"]
         page = msg["page"]
-        value = msg["value"]
+        value = msg["value"]["value"]
         ele = self.get_element(element, page)
         return Select(ele).select_by_value(value)
 
@@ -163,8 +163,8 @@ class Pagehandler():
 
     #封装ActionChains类方法
     def drag_and_drop(self,msg):
-        source = msg["source"]
-        target = msg["target"]
+        source = msg["value"]["source"]
+        target = msg["value"]["target"]
         page = msg["page"]
         #source：鼠标按下的源元素；target：鼠标释放的目标元素
         src = self.get_element(source,page)
@@ -180,17 +180,17 @@ class Pagehandler():
     # 封装WebDriver类方法
     def implicitly_wait(self,msg):
         #全局等待元素加载时间，超过此时间还未找到元素则报错
-        timeout = msg["timeout"]
+        timeout = msg["value"]["timeout"]
         self.browser.implicitly_wait(timeout)
 
     def set_page_load_timeout(self,msg):
-        timeout = msg["timeout"]
+        timeout = msg["value"]["timeout"]
         self.browser.set_page_load_timeout(timeout)
 
     def wait_until_page_contain_element(self,msg):
         element = msg["element"]
         page = msg["page"]
-        timeout = msg["timeout"]
+        timeout = msg["value"]["timeout"]
         locate = self._locate_element(element,page)
         if locate[0] == 'id':
             locator = (By.ID, locate[1])
@@ -201,7 +201,7 @@ class Pagehandler():
     def wait_until_page_not_contain_element(self,msg):
         element = msg["element"]
         page = msg["page"]
-        timeout = msg['timeout']
+        timeout = msg["value"]['timeout']
         locate = self._locate_element(element,page)
         if locate[0] == 'id':
             locator = (By.ID, locate[1])
@@ -210,7 +210,7 @@ class Pagehandler():
         WebDriverWait(self.browser, timeout).until_not(EC.presence_of_element_located(locator),message='wait page not contain element timeout')
 
     def get(self,msg):
-        url = msg["url"]
+        url = msg["value"]["url"]
         self._load_element_location_file(url)
         self.browser.get(url)
         self.maximize_windows(msg)
@@ -231,7 +231,7 @@ class Pagehandler():
         self.browser.refresh()
 
     def get_screenshot_as_file(self, msg):
-        fielpath = msg["filepath"]
+        fielpath = msg["value"]["filepath"]
         self.browser.get_screenshot_as_file(fielpath)
 
     #alert相关方法
@@ -248,14 +248,14 @@ class Pagehandler():
         return self.switch_to_alert().text
 
     def send_keys_to_alert(self,msg):
-        key = msg["key"]
+        key = msg["value"]["key"]
         self.switch_to_alert().send_keys(key)
 
     #frame相关方法
     def switch_to(self,msg):
-        type = msg["type"]
+        type = msg["value"]["type"]
         if type == 'frame':
-            val = msg["value"]
+            val = msg["value"]["value"]
             self.browser.switch_to.frame(val)
         elif type == 'parent_frame':
             self.browser.switch_to.parent_frame()
@@ -284,7 +284,7 @@ class Pagehandler():
                 break
 
     def sleep(self,msg):
-        time.sleep(msg['value'])
+        time.sleep(msg["value"]['value'])
 
     #############验证方法#############
     def check(self,msg):
