@@ -25,7 +25,7 @@ class Pagehandler():
         else:
             self.browser = webdriver.Chrome()
         #self.browser.get(config.WEBSITE[website])  #"http://www.baidu.com"
-        self.browser.implicitly_wait(5)
+        self.browser.implicitly_wait(10)
         self._load_element_location_file(website)
 
     def _load_element_location_file(self,website): #website网站名
@@ -87,110 +87,72 @@ class Pagehandler():
         else:
             raise Custom_exception.WrongLocation
 
-    def switch_website(self, msg):#切换网站需加载不同的元素信息文件
-        website = msg["value"]["website"]
+    def switch_website(self,website):#切换网站需加载不同的元素信息文件
         self._load_element_location_file(website)
 
-    def open_newpage(self,msg):
-        url=msg["value"]["url"]
+    def open_newpage(self,url):
         js = 'window.open(%s);'%(url)
         self.browser.execute_script(js)
-        self.switch_to_next_windows(msg)
+        self.switch_to_next_windows()
 
     #封装WebElement类方法
-    def click(self,msg):
-        element = msg["element"]
-        page = msg["page"]
+    def click(self,element,page):
         self.get_element(element,page).click()
 
-    def clear(self,msg):
-        element = msg["element"]
-        page = msg["page"]
+    def clear(self,element,page):
         self.get_element(element,page).clear()
 
-    def send_keys(self,msg):
-        element = msg["element"]
-        page = msg["page"]
-        keys = msg["value"]["value"]
+    def send_keys(self,element,page,keys):
         self.get_element(element,page).send_keys(keys)
 
-    def double_click(self,msg):
-        element = msg["element"]
-        page = msg["page"]
+    def double_click(self,element,page):
         self.get_element(element,page).double_click()
 
-    def get_text(self,msg):
-        element = msg["element"]
-        page = msg["page"]
+    def get_text(self,element,page):
         return self.get_element(element,page).text
 
-    def get_attribute(self,msg):
-        element = msg["element"]
-        page = msg["page"]
-        attr = msg["value"]["attr"]
+    def get_attribute(self,element,page,attr):
         return self.get_element(element,page).get_attribute(attr)
 
-    def is_selected(self,msg):
-        element = msg["element"]
-        page = msg["page"]
+    def is_selected(self,element,page):
         return self.get_element(element,page).is_selected()
 
-    def rect(self,msg):  #包含元素大小和位置的字典
-        element = msg["element"]
-        page = msg["page"]
+    def rect(self,element,page):  #包含元素大小和位置的字典
         return self.get_element(element,page).rect
 
     #封装Select类方法
-    def select_by_index(self,msg):
-        element = msg["element"]
-        page = msg["page"]
-        index = msg["value"]["index"]
+    def select_by_index(self,element,page,index):
         ele = self.get_element(element,page)
         return Select(ele).select_by_index(index)
 
-    def select_by_value(self,msg):
-        element = msg["element"]
-        page = msg["page"]
-        value = msg["value"]["value"]
+    def select_by_value(self,element,page,value):
         ele = self.get_element(element, page)
         return Select(ele).select_by_value(value)
 
-    def deselect_all(self,msg):
-        element = msg["element"]
-        page = msg["page"]
+    def deselect_all(self,element,page):
         ele = self.get_element(element, page)
         return Select(ele).deselect_all()
 
     #封装ActionChains类方法
-    def drag_and_drop(self,msg):
-        source = msg["value"]["source"]
-        target = msg["value"]["target"]
-        page = msg["page"]
+    def drag_and_drop(self,page,source,target):
         #source：鼠标按下的源元素；target：鼠标释放的目标元素
         src = self.get_element(source,page)
         dst = self.get_element(target,page)
         ActionChains(self.browser).drag_and_drop(src,dst).perform()
 
-    def move_to_element(self,msg):
-        element = msg["element"]
-        page = msg["page"]
+    def move_to_element(self,element,page):
         ele = self.get_element(element,page)
         ActionChains(self.browser).move_to_element(ele).perform()
 
     # 封装WebDriver类方法
-    def implicitly_wait(self,msg):
+    def implicitly_wait(self,timeout):
         #全局等待元素加载时间，超过此时间还未找到元素则报错
-        timeout = msg["value"]["timeout"]
         self.browser.implicitly_wait(timeout)
 
-    def set_page_load_timeout(self,msg):
-        timeout = msg["value"]["timeout"]
+    def set_page_load_timeout(self,timeout):
         self.browser.set_page_load_timeout(timeout)
 
-    def wait_until_page_contain_element(self,msg):
-        element = msg["element"]
-        page = msg["page"]
-        timeout = msg["value"]["timeout"]
+    def wait_until_page_contain_element(self,element,page,timeout):
         locate = self._locate_element(element,page)
         if locate[0] == 'id':
             locator = (By.ID, locate[1])
@@ -198,10 +160,7 @@ class Pagehandler():
             locator = (By.XPATH, locate[1])
         WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located(locator),message='wait page contain element timeout')
 
-    def wait_until_page_not_contain_element(self,msg):
-        element = msg["element"]
-        page = msg["page"]
-        timeout = msg["value"]['timeout']
+    def wait_until_page_not_contain_element(self,element,page,timeout):
         locate = self._locate_element(element,page)
         if locate[0] == 'id':
             locator = (By.ID, locate[1])
@@ -209,54 +168,49 @@ class Pagehandler():
             locator = (By.XPATH, locate[1])
         WebDriverWait(self.browser, timeout).until_not(EC.presence_of_element_located(locator),message='wait page not contain element timeout')
 
-    def get(self,msg):
-        url = msg["value"]["url"]
+    def get(self,url):
         self._load_element_location_file(url)
         self.browser.get(url)
-        self.maximize_windows(msg)
-
-    def maximize_windows(self,msg):
         self.browser.maximize_window()
 
-    def back(self,msg):
+    def maximize_windows(self):
+        self.browser.maximize_window()
+
+    def back(self):
         self.browser.back()
 
-    def close(self,msg):
+    def close(self):
         self.browser.close()
 
-    def quit(self,msg):
+    def quit(self):
         self.browser.quit()
 
-    def refresh(self,msg):
+    def refresh(self):
         self.browser.refresh()
 
-    def get_screenshot_as_file(self, msg):
-        fielpath = msg["value"]["filepath"]
-        self.browser.get_screenshot_as_file(fielpath)
+    def get_screenshot_as_file(self,filepath):
+        self.browser.get_screenshot_as_file(filepath)
 
     #alert相关方法
-    def switch_to_alert(self,msg):
+    def switch_to_alert(self):
         return self.browser.switch_to_alert()
 
-    def accept(self,msg):
+    def accept(self):
         self.switch_to_alert().accept()
 
-    def dismiss(self,msg):
+    def dismiss(self):
         self.switch_to_alert().dismiss()
 
-    def get_alert_text(self,msg):
+    def get_alert_text(self):
         return self.switch_to_alert().text
 
-    def send_keys_to_alert(self,msg):
-        key = msg["value"]["key"]
+    def send_keys_to_alert(self,key):
         self.switch_to_alert().send_keys(key)
 
     #frame相关方法
-    def switch_to(self,msg):
-        type = msg["value"]["type"]
+    def switch_to(self,type,value=None):
         if type == 'frame':
-            val = msg["value"]["value"]
-            self.browser.switch_to.frame(val)
+            self.browser.switch_to.frame(value)
         elif type == 'parent_frame':
             self.browser.switch_to.parent_frame()
         elif type == 'default_content':
@@ -269,7 +223,7 @@ class Pagehandler():
             raise TypeError
 
 
-    def switch_to_next_windows(self,msg):
+    def switch_to_next_windows(self):
         handles = self.browser.window_handles
         for i in range (len(handles)):
             if handles[i] == self.browser.current_window_handle:
@@ -282,23 +236,6 @@ class Pagehandler():
             if handles[i] == self.browser.current_window_handle:
                 self.browser.switch_to.window(handles[i - 1])
                 break
-
-    def sleep(self,msg):
-        time.sleep(msg["value"]['value'])
-
-    #############验证方法#############
-    def check(self,msg):
-        #1.检查某个元素的某个属性的值
-        #2.检查某个元素是否存在/不存在：使用wait_until_page_contain*方法
-        check_result = False
-        element = msg["element"]
-        page = msg["page"]
-        attr = msg["attr"]
-        value = msg["value"]
-        if attr == "type":
-            if self.text(msg) == value:
-                check_result = True
-        return check_result
 
 if __name__=='__main__':
     web=Pagehandler("baidu","chrome")
