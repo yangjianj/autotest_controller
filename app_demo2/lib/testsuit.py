@@ -140,7 +140,6 @@ class Testsuit():
                         data[item] = self.variable[val]
                     else:
                         data[item] = eval(val)
-
                 except Exception as error:
                     pass
         return data

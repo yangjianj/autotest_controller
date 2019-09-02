@@ -1366,3 +1366,21 @@
 2019-09-02 00:48:07,784-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
 2019-09-02 00:48:07,784-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
 2019-09-02 00:48:07,784-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
+2019-09-02 10:48:57,739-ui-ERROR: load element yaml file failed
+2019-09-02 10:48:57,739-ui-ERROR: load element yaml file failed
+2019-09-02 10:48:57,739-ui-ERROR: load element yaml file failed
+2019-09-02 10:48:57,740-ui-ERROR: 'http://www.lianjia.com'
+2019-09-02 10:48:57,740-ui-ERROR: 'http://www.lianjia.com'
+2019-09-02 10:48:57,740-ui-ERROR: 'http://www.lianjia.com'
+2019-09-02 10:49:45,571-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
+2019-09-02 10:49:45,571-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
+2019-09-02 10:49:45,571-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
+2019-09-02 10:53:39,068-ui-ERROR: load element yaml file failed
+2019-09-02 10:53:39,068-ui-ERROR: load element yaml file failed
+2019-09-02 10:53:39,068-ui-ERROR: load element yaml file failed
+2019-09-02 10:53:39,068-ui-ERROR: 'http://www.lianjia.com'
+2019-09-02 10:53:39,068-ui-ERROR: 'http://www.lianjia.com'
+2019-09-02 10:53:39,068-ui-ERROR: 'http://www.lianjia.com'
+2019-09-02 10:54:22,205-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
+2019-09-02 10:54:22,205-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
+2019-09-02 10:54:22,205-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
