@@ -1,13 +1,25 @@
 # -*- coding: utf-8 -*-
-import time
+import time,os
 import unittest
-#import HtmlTestRunner
 from app_demo3.lib.page_handler import Pagehandler
 
-class MyTest1(unittest.TestCase):  # 继承unittest.TestCase
+class Base_t1(unittest.TestCase):  # 继承unittest.TestCase
 
-    def __init__(self,website,browser='chrome'):
-        self.handler = Pagehandler(website,browser)
+    def __init__(self,browser='chrome'):
+
+        Base_t1.handler = Pagehandler(browser)
+        self.handler = Base_t1.handler
+        self.handler.load_element_location_file("lianjia")
+
+    @classmethod
+    def setUpClass(cls): #每个测试套件执行之前动作
+        cls.handler = None
+
+    @classmethod
+    def tearDownClass(cls): #每个测试套件执行之后动作
+        cls.handler.close()
+        cls.handler.quit()
+
 
     def tearDown(self):
         # 每个测试用例执行之后做操作
@@ -17,16 +29,10 @@ class MyTest1(unittest.TestCase):  # 继承unittest.TestCase
         # 每个测试用例执行之前做操作
         print('in setup')
 
-    @classmethod
-    def tearDownClass(cls): #每个测试套件执行之后动作
-        print('in teardownclass')
 
-    @classmethod
-    def setUpClass(cls): #每个测试套件执行之前动作
-        print('in setUpClass')
 
     def test_run(self):
-        self.handler.get("http://www.baidu.com")
+        self.handler.get("http://www.lianjia.com")
         self.handler.click("board","城市")
         self.handler.clear("city","搜索框")
         self.handler.send_keys("city","武汉")
@@ -64,14 +70,24 @@ class MyTest1(unittest.TestCase):  # 继承unittest.TestCase
         time.sleep(6)
         # 测试用例
 if __name__ == '__main__':
-     test_suite = unittest.TestSuite()    #创建一个测试集合
-     test_suite.addTest(MyTest1('test_run1'))#测试套件中添加测试用例
-     #test_suite.addTest(unittest.makeSuite(MyTest))#使用makeSuite方法添加MyTest类中所有的测试方法。
-     fp = open('res.html','wb')   #打开一个保存结果的html文件
-     # runner = HtmlTestRunner.HTMLTestRunner(stream=fp,title='api测试报告',description='测试情况')  #生成执行用例的对象
-     # runner.run(test_suite)    #执行测试套件
-     # unittest.TextTestRunner().run(test_suite)
-     runner=xmlrunner.XMLTestRunner(output='report')
-     runner.run(test_suite)
-     print('test end')
-     print(unittest.TestResult)
+    case_path = os.path.join(os.getcwd(), 'test_case')
+    discover = unittest.defaultTestLoader.discover(case_path, pattern="test*.py", top_level_dir=None)
+    test_result = unittest.TextTestRunner(verbosity=2).run(discover)
+    print('All case number')
+    print(test_result.testsRun)
+    print('Failed case number')
+    print(len(test_result.failures))
+    print('Failed case and reason')
+    print(test_result.failures)
+    for case, reason in test_result.failures:
+        print(case.id())
+        print(reason)
+
+    print('skiped case')
+    print(test_result.skipped)
+    print('expectedFailures case')
+    print(test_result.expectedFailures)
+    print('unexpectedSuccesses case')
+    print(test_result.unexpectedSuccesses)
+    print('errors case')
+    print(test_result.errors)

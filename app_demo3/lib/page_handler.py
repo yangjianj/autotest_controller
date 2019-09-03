@@ -26,9 +26,8 @@ class Pagehandler():
             self.browser = webdriver.Chrome()
         #self.browser.get(config.WEBSITE[website])  #"http://www.baidu.com"
         self.browser.implicitly_wait(10)
-        self._load_element_location_file(website)
 
-    def _load_element_location_file(self,website): #website网站名
+    def load_element_location_file(self,website): #website网站名
         try:
             pagefile=open(config.PAGEFILE[website], 'r', encoding="utf-8")
             _page_message = pagefile.read()
@@ -86,9 +85,6 @@ class Pagehandler():
             return elements
         else:
             raise Custom_exception.WrongLocation
-
-    def switch_website(self,website):#切换网站需加载不同的元素信息文件
-        self._load_element_location_file(website)
 
     def open_newpage(self,url):
         js = 'window.open(%s);'%(url)
