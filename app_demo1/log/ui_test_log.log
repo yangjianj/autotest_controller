@@ -1384,3 +1384,7 @@
 2019-09-02 10:54:22,205-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
 2019-09-02 10:54:22,205-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
 2019-09-02 10:54:22,205-ui-ERROR: execute failed in class Pagehandle:  {"action": "wait_until_page_contain_element", "page": "", "element": "搜索提示框", "value": {"timeout": 5}}
+2019-09-05 11:40:36,834-ui-ERROR: can not find element: page:城市 element:board in yaml
+2019-09-05 11:40:36,867-ui-ERROR: '城市'
+2019-09-05 11:54:06,076-ui-ERROR: can not find element: page:城市 element:board in yaml
+2019-09-05 11:54:06,194-ui-ERROR: '城市'

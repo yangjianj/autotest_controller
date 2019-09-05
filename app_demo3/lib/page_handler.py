@@ -13,9 +13,9 @@ from app_demo1.lib.log_manager import LogManager
 #API网站：https://selenium-python-zh.readthedocs.io/en/latest/index.html
 class Pagehandler():
 
-    def __init__(self,website,browser='chrome'):
+    def __init__(self,browser='chrome'):
         self.logger = LogManager("ui")
-        self.website = website
+        #self.website = website
         self.url = None
         self.curr_page = None
         self.curr_element = None
@@ -165,7 +165,6 @@ class Pagehandler():
         WebDriverWait(self.browser, timeout).until_not(EC.presence_of_element_located(locator),message='wait page not contain element timeout')
 
     def get(self,url):
-        self._load_element_location_file(url)
         self.browser.get(url)
         self.browser.maximize_window()
 

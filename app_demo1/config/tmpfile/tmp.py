@@ -1,26 +1,20 @@
-import datetime,time,re,random,_ctypes
-str1 = "abc"
-xx=re.match("^ab",str1)
-print(xx)
+import sys,io,datetime,time
+redirectout = io.StringIO()
+redirectout.write("111111111")
+print(123)
+print(redirectout.getvalue())
+print(redirectout.getvalue())
 
-str2 = "<_dd>+<nam12>"
-str3 = "dff"
-# yy = re.match("^<(\S*)>$",str2).group(1)
-# zz = re.match("^(<na).*>$",str2)
-# print(yy)
-# print(zz)
-pattern=re.compile(r'<[_a-zA-Z0-9]+>')
-result1 = pattern.findall(str3)
-print(11111111111)
-print(result1)
+xx=[[1,2,3,4],[5,6,7,8]]
 
-for i in result1:
-	print(i.replace('<','').replace('>',''))
-tt1 ="<random.randint(1,10)>"
-#pattern = re.compile(r'<[()_,\.a-zA-Z0-9]+>')
-pattern = re.compile(r'<[^\s<>]+>')
-result1 = pattern.findall(tt1)
-print(222222222)
-print(result1)
+for i,j,y,h in xx:
+    print(i,j,y,h)
 
+s1 = datetime.datetime.now()
+time.sleep(5)
+s2 = datetime.datetime.now()
+
+ss=[]
+ss.append([str(s1),str(s2)])
+print(ss)
 
