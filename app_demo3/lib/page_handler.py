@@ -64,6 +64,33 @@ class Pagehandler():
             self.curr_element = element
         return self.curr_element,self.curr_page
 
+    def build_location_by_param(self,element,page,param=None):
+        #非确定元素根据参数build元素位置信息
+        re = self._locate_element(element,page)
+        re[1] = re[1]%(param)
+        return re
+
+    def find_element_by_location(self,location):
+        #根据元素位置信息定位元素，返回元素对象
+        #location （type,value）
+        if location[0] == 'xpath':
+            element = self.browser.find_elements_by_xpath(location[1])
+            return element
+        elif location[0] == 'id':
+            element = self.browser.find_elements_by_id(location[1])
+            return element
+        elif location[0] == 'css':
+            elements = self.browser.find_elements_by_css_selector(location[1])
+            return elements
+        elif location[0] == 'name':
+            element = self.browser.find_elements_by_name(location[1])
+            return element
+        elif location[0] == 'classes_name':
+            elements = self.browser.find_elements_by_class_name(location[1])
+            return elements
+        else:
+            raise Custom_exception.WrongLocation
+
     def get_element(self,element,page=None):
         #way_list = ['xpath','id','name','classes_name','css']
         curr_element,curr_page = self._update_msg(element,page)
@@ -75,13 +102,13 @@ class Pagehandler():
             element = self.browser.find_element_by_id(location[1])
             return element
         elif location[0]== 'css':
-            elements = self.browser.find_elements_by_css_selector(location[1])
+            elements = self.browser.find_element_by_css_selector(location[1])
             return elements
         elif location[0]== 'name':
             element = self.browser.find_element_by_name(location[1])
             return element
         elif location[0] == 'classes_name':
-            elements = self.browser.find_elements_by_class_name(location[1])
+            elements = self.browser.find_element_by_class_name(location[1])
             return elements
         else:
             raise Custom_exception.WrongLocation

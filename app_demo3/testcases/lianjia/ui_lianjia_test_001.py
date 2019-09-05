@@ -24,6 +24,7 @@ class Base_t1(unittest.TestCase):  # 继承unittest.TestCase
         # 每个测试用例执行之后做操作
         print('in teardown')
 
+    @unittest.skipIf(3 > 2, "3大于2，此用例不执行")
     def test_run(self):
         self.handler.get("http://www.lianjia.com")
         self.handler.click("城市","board")
@@ -41,6 +42,7 @@ class Base_t1(unittest.TestCase):  # 继承unittest.TestCase
         self.handler.send_keys("搜索框","经纪人","123")
         self.handler.click("搜索按钮","经纪人")
 
+    @unittest.skipUnless(3 < 2, "2没有大于3，此用例不执行")
     def test_run2(self):
         self.handler.get("http://www.lianjia.com")
         self.handler.click("城市", "board")
@@ -53,6 +55,7 @@ class Base_t1(unittest.TestCase):  # 继承unittest.TestCase
         self.handler.send_keys("搜索框", "board", "瞰都国际")
         self.handler.click("搜索按钮", "board")
 
+    @unittest.skip("用户名密码都为空用例不执行")
     def test_run3(self):
         # self.assertEqual(1,1)
         print("111111111111111111111")
@@ -62,11 +65,24 @@ class Base_t1(unittest.TestCase):  # 继承unittest.TestCase
         # 测试用例
 
     def test_run1(self):
-        # self.assertEqual(1,1)
-        self.assertIs(1, 1)
-        print(time.localtime())
-        time.sleep(6)
-        # 测试用例
+        self.handler.get("http://www.lianjia.com")
+        self.handler.click("城市", "board")
+        self.handler.clear("搜索框", "city")
+        self.handler.send_keys("搜索框", "city", "武汉")
+        self.handler.wait_until_page_contain_element("搜索提示框", "city", 5)
+        self.handler.click("搜索按钮", "city")
+        self.handler.switch_to_next_windows()
+        print("go to city succeed!")
+        self.handler.clear("搜索框", "board")
+        self.handler.send_keys("搜索框", "board", "当代卡梅尔小镇")
+        self.handler.click("搜索按钮", "board")
+        self.handler.wait_until_page_contain_element("顶部菜单", "二手房在售", 5)
+        top_menu = self.handler.get_element("顶部菜单","二手房在售")
+        for index in range(len(top_menu)):
+            ele_loc = self.handler.build_location_by_param("菜单子项", "二手房在线",index+1)
+            text=self.handler.find_element_by_location(ele_loc).text
+            print(text)
+
 if __name__ == '__main__':
     case_path = os.path.join(os.getcwd(), 'test_case')
     discover = unittest.defaultTestLoader.discover(case_path, pattern="ui*.py", top_level_dir=None)

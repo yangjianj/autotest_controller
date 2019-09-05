@@ -33,6 +33,14 @@ city:
         name:
         value: //*[@id='city_sug']/ul/li/a
 二手房在售:
+    顶部菜单:
+        type: xpath
+        name:
+        value: /html/body/div[1]/div/ul/li
+    菜单子项:
+        type: xpath
+        name:
+        value: /html/body/div[1]/div/ul/li[x]/a
     经纪人:
         type: xpath
         name:
