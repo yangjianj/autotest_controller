@@ -69,17 +69,17 @@ class Base_t1(unittest.TestCase):  # 继承unittest.TestCase
         self.handler.click("城市", "board")
         self.handler.clear("搜索框", "city")
         self.handler.send_keys("搜索框", "city", "武汉")
-        self.handler.wait_until_page_contain_element("搜索提示框", "city", 5)
+        self.handler.wait_until_page_contain_element("搜索提示框", "city", 10)
         self.handler.click("搜索按钮", "city")
         self.handler.switch_to_next_windows()
         print("go to city succeed!")
         self.handler.clear("搜索框", "board")
         self.handler.send_keys("搜索框", "board", "当代卡梅尔小镇")
         self.handler.click("搜索按钮", "board")
-        self.handler.wait_until_page_contain_element("顶部菜单", "二手房在售", 5)
-        top_menu = self.handler.get_element("顶部菜单","二手房在售")
+        self.handler.wait_until_page_contain_element("顶部菜单", "二手房在售", 10)
+        top_menu = self.handler.get_elements("顶部菜单子节点","二手房在售")
         for index in range(len(top_menu)):
-            ele_loc = self.handler.build_location_by_param("菜单子项", "二手房在线",index+1)
+            ele_loc = self.handler.build_location_by_param("菜单子项", "二手房在售",index+1)
             text=self.handler.find_element_by_location(ele_loc).text
             print(text)
 

@@ -42,16 +42,12 @@ class Pagehandler():
             page = self.curr_page
         elif page != self.curr_page:
             self.curr_page = page
-        try:
-            if page == None:
-                raise Exception('page is None !')
-            type = self.pagedata[page][element]["type"]
-            value = self.pagedata[page][element]["value"]
-            return type, value
-        except Exception as e:
-            self.logger.error("can not find element: page:%s element:%s in yaml"%(page,element))
-            self.logger.error(e)
-            return None
+        if page == None:
+            raise Exception('page is None !')
+        type = self.pagedata[page][element]["type"]
+        value = self.pagedata[page][element]["value"]
+        return [type, value]
+
 
     def _update_msg(self,element,page):
         if page == '' or page == None:   #case中未填写page信息
@@ -71,20 +67,40 @@ class Pagehandler():
         return re
 
     def find_element_by_location(self,location):
-        #根据元素位置信息定位元素，返回元素对象
-        #location （type,value）
+        if location[0]== 'xpath':
+            element = self.browser.find_element_by_xpath(location[1])
+            return element
+        elif location[0]== 'id':
+            element = self.browser.find_element_by_id(location[1])
+            return element
+        elif location[0]== 'css':
+            element = self.browser.find_element_by_css_selector(location[1])
+            return element
+        elif location[0]== 'name':
+            element = self.browser.find_element_by_name(location[1])
+            return element
+        elif location[0] == 'classes_name':
+            element = self.browser.find_element_by_class_name(location[1])
+            return element
+        else:
+            raise Custom_exception.WrongLocation
+
+    def get_elements(self,element,page):
+        #根据元素位置信息定位元素，返回元素对象list
+        curr_element, curr_page = self._update_msg(element, page)
+        location = self._locate_element(curr_element, curr_page)
         if location[0] == 'xpath':
-            element = self.browser.find_elements_by_xpath(location[1])
-            return element
+            elements = self.browser.find_elements_by_xpath(location[1])
+            return elements
         elif location[0] == 'id':
-            element = self.browser.find_elements_by_id(location[1])
-            return element
+            elements = self.browser.find_elements_by_id(location[1])
+            return elements
         elif location[0] == 'css':
             elements = self.browser.find_elements_by_css_selector(location[1])
             return elements
         elif location[0] == 'name':
-            element = self.browser.find_elements_by_name(location[1])
-            return element
+            elements = self.browser.find_elements_by_name(location[1])
+            return elements
         elif location[0] == 'classes_name':
             elements = self.browser.find_elements_by_class_name(location[1])
             return elements
@@ -96,20 +112,20 @@ class Pagehandler():
         curr_element,curr_page = self._update_msg(element,page)
         location=self._locate_element(curr_element,curr_page)
         if location[0]== 'xpath':
-            element = self.browser.find_element_by_xpath(location[1])
-            return element
+            re_element = self.browser.find_element_by_xpath(location[1])
+            return re_element
         elif location[0]== 'id':
-            element = self.browser.find_element_by_id(location[1])
-            return element
+            re_element = self.browser.find_element_by_id(location[1])
+            return re_element
         elif location[0]== 'css':
-            elements = self.browser.find_element_by_css_selector(location[1])
-            return elements
+            re_element = self.browser.find_element_by_css_selector(location[1])
+            return re_element
         elif location[0]== 'name':
-            element = self.browser.find_element_by_name(location[1])
-            return element
+            re_element = self.browser.find_element_by_name(location[1])
+            return re_element
         elif location[0] == 'classes_name':
-            elements = self.browser.find_element_by_class_name(location[1])
-            return elements
+            re_element = self.browser.find_element_by_class_name(location[1])
+            return re_element
         else:
             raise Custom_exception.WrongLocation
 

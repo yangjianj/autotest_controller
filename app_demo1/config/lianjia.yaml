@@ -36,11 +36,15 @@ city:
     顶部菜单:
         type: xpath
         name:
+        value: /html/body/div[1]/div/ul
+    顶部菜单子节点:
+        type: xpath
+        name:
         value: /html/body/div[1]/div/ul/li
     菜单子项:
         type: xpath
         name:
-        value: /html/body/div[1]/div/ul/li[x]/a
+        value: /html/body/div[1]/div/ul/li[%s]/a
     经纪人:
         type: xpath
         name:

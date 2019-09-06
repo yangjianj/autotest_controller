@@ -1388,3 +1388,26 @@
 2019-09-05 11:40:36,867-ui-ERROR: '城市'
 2019-09-05 11:54:06,076-ui-ERROR: can not find element: page:城市 element:board in yaml
 2019-09-05 11:54:06,194-ui-ERROR: '城市'
+2019-09-06 08:46:16,739-ui-ERROR: can not find element: page:二手房在售 element:顶部菜单 in yaml
+2019-09-06 08:46:16,788-ui-ERROR: '顶部菜单'
+2019-09-06 08:48:14,829-ui-ERROR: load element yaml file failed
+2019-09-06 08:48:14,830-ui-ERROR: while parsing a block mapping
+  in "<unicode string>", line 36, column 4:
+       顶部菜单:
+       ^
+expected <block end>, but found '<block mapping start>'
+  in "<unicode string>", line 40, column 5:
+        顶部菜单数:
+        ^
+2019-09-06 08:48:24,010-ui-ERROR: can not find element: page:board element:城市 in yaml
+2019-09-06 08:48:24,010-ui-ERROR: 'Pagehandler' object has no attribute 'pagedata'
+2019-09-06 08:49:48,430-ui-ERROR: can not find element: page:二手房在线 element:菜单子项 in yaml
+2019-09-06 08:49:48,431-ui-ERROR: '二手房在线'
+2019-09-06 09:16:05,883-ui-ERROR: can not find element: page:二手房在线 element:菜单子项 in yaml
+2019-09-06 09:16:05,913-ui-ERROR: '二手房在线'
+2019-09-06 09:20:04,755-ui-ERROR: can not find element: page:二手房在线 element:菜单子项 in yaml
+2019-09-06 09:20:04,755-ui-ERROR: '二手房在线'
+2019-09-06 11:17:36,210-ui-ERROR: can not find element: page:二手房在线 element:菜单子项 in yaml
+2019-09-06 11:17:36,234-ui-ERROR: '二手房在线'
+2019-09-06 11:20:56,664-ui-ERROR: can not find element: page:二手房在线 element:菜单子项 in yaml
+2019-09-06 11:20:56,664-ui-ERROR: '二手房在线'
