@@ -1,22 +1,22 @@
 # 自动化测试平台后台代码     
 app_demo1 接口测试   
 app_demo2 ui测试（废弃）   
-app_demo3 ui autotest
+app_demo3 ui autotest    
 
 功能：    
-1.用户管理：登录控制，增删改查，角色权限控制    (session cookie，装饰器)    
-2.页面执行测试：接口功能测试，性能测试，时间记录             (request，多线程，装饰器)    
-3.测试结果展现                               （echarts）    
-4.各版本测试数据统计，图标展示                 (mysql,sqlite3,echarts)         
+1.用户管理：登录控制，增删改查，角色权限控制---(session cookie，装饰器)    
+2.页面执行测试：接口功能测试，性能测试，时间记录---(request，多线程，装饰器)    
+3.测试结果展现---（echarts）    
+4.各版本测试数据统计，图标展示---(mysql,sqlite3,echarts)         
 5.失败重试    
-6.异步任务执行，定时任务                      （rabbitmq,apscheduler）      
-7.缓存                                      （redis）     
+6.异步任务执行，定时任务---（rabbitmq,apscheduler）      
+7.缓存---（redis）     
 8.文件上传+富文本     
 9.短信/邮件    
 
-django 命令：
-python manage.py runserver 0.0.0.0:8090
-python manage.py migrate
+django 命令：  
+python manage.py runserver 0.0.0.0:8090    
+python manage.py migrate    
 #######################app_demo1#################    
 api自动化实现说明：   
 1.用例管理：excel写用例    
@@ -49,8 +49,7 @@ ui自动化实现说明：
 2.花太多时间在解析excel内容来达到python脚本的效果   
 改进想法：>app-demo3   
 1.保留yml管理元素，去除excel书写用例用代码写用例！！   
-2.用例写在unittest中    
-############################end app_demo2########################     
+2.用例写在unittest中      
 ############################app_demo3#################     
 设计说明：    
 1.保留yml管理元素，去除excel书写用例用代码写用例！！   
