@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 import requests
 from requests import exceptions
-from app_demo1.lib.tool_func import *
+from app_demo1.lib.tool import *
 
 class Reques():
     def get(self, url,headers,parms):#get消息
