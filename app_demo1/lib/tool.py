@@ -20,6 +20,19 @@ def import_excel_data(path,sheetname):
         result.append(tmp)
     return result
 
+def import_excel_data_for_ddt(path):
+    result=[]
+    workbook = xlrd.open_workbook(path)
+    sheet= workbook.sheet_by_index(0)    #默认取第一个sheet
+    nrows=sheet.nrows
+    ncols=sheet.ncols
+    for row in range(1,nrows):
+        tmp=[]
+        for col in range(0,ncols):
+            tmp.append(sheet.cell(row,col).value)
+        result.append(tmp)
+    return result
+
 def export_data(data,sheet,path):
     if os.path.exists(path):
         oldbook = xlrd.open_workbook(path)
@@ -97,4 +110,5 @@ def create_case_dir(suitedir,caseid):
 
 if __name__=='__main__':
     data = [[123,222,333,22,55],['dgiwseh','uhsgfch','jhsih']]
-    export_data(data,'test122',"..//log//sss.xlsx")
+    #export_data(data,'test122',"..//log//sss.xlsx")
+    import_excel_data_for_ddt("..//log//ddt_test_001.xlsx")
