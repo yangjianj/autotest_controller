@@ -14,7 +14,7 @@ class Runner():
     def run_by_pattern(self,casedir,testplan):
         workdir = os.path.join(config.BASE_DIR,"app_demo3")
         casedir = os.path.join(config.BASE_DIR,"app_demo3\\testcases")
-        discover = unittest.defaultTestLoader.discover(casedir, pattern="ui_lianjia*.py", top_level_dir=None)
+        discover = unittest.defaultTestLoader.discover(casedir, pattern="ddt*.py", top_level_dir=None)
         reportfile = os.path.join(workdir, 'report','htmltestrunner.html')
         with open(reportfile,'wb') as f:
             runner = HTMLTestRunner(stream=f,
