@@ -1,9 +1,7 @@
 import sys,io,datetime,time
-import tmp1
-redirectout = io.StringIO()
-redirectout.write("111111111")
-print(123)
-print(redirectout.getvalue())
-print(redirectout.getvalue())
-
+import csv
+with open('ddt_test_001.csv')as f:
+    f_csv = csv.reader(f)
+    for row in f_csv:
+        print(row)
 

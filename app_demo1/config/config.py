@@ -2,7 +2,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATABASE = os.path.join(BASE_DIR, '../../db.sqlite3')
+DATABASE = os.path.join(BASE_DIR, 'db.sqlite3')
 LOGFILE={"api": os.path.join(BASE_DIR, 'app_demo1\\log\\api_test_log.log'),
          "ui": os.path.join(BASE_DIR, 'app_demo1\\log\\ui_test_log.log')}
 Interface_Time_Out = 500

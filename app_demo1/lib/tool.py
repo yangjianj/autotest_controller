@@ -1,8 +1,10 @@
 # -*-coding:UTF-8 -*-
-import os,xlrd,xlwt
+import os
+import xlrd,xlwt
 from xlutils.copy import copy
 import time,datetime
 import json
+import csv
 from app_demo1.config import config
 
 #导入excel中接口测试用例
@@ -22,15 +24,10 @@ def import_excel_data(path,sheetname):
 
 def import_excel_data_for_ddt(path):
     result=[]
-    workbook = xlrd.open_workbook(path)
-    sheet= workbook.sheet_by_index(0)    #默认取第一个sheet
-    nrows=sheet.nrows
-    ncols=sheet.ncols
-    for row in range(1,nrows):
-        tmp=[]
-        for col in range(0,ncols):
-            tmp.append(sheet.cell(row,col).value)
-        result.append(tmp)
+    with open(path)as f:
+        f_csv = csv.reader(f)
+        for row in f_csv:
+            result.append(row)
     return result
 
 def export_data(data,sheet,path):
