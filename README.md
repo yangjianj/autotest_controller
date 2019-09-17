@@ -15,8 +15,8 @@ app_demo3 ui autotest
 8.文件上传+富文本     
 9.短信/邮件    
 
-django 命令：  
-------------    
+##django 命令：  
+    
 python manage.py runserver 0.0.0.0:8090    
 python manage.py migrate    
 
