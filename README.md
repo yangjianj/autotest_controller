@@ -9,7 +9,7 @@ app_demo3 ui autotest
 3.测试结果展现---（echarts）    
 4.各版本测试数据统计，图标展示---(mysql,sqlite3,echarts)         
 5.失败重试    
-6.异步任务执行，定时任务---（rabbitmq,apscheduler）      
+6.异步/分布式任务执行，定时任务---（rabbitmq,apscheduler）      
 7.缓存---（redis）     
 8.文件上传+富文本     
 9.短信/邮件    
