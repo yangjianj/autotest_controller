@@ -83,3 +83,5 @@ app_demo3
 1.异常处理在函数内部处理，不在多个函数组合时使用   
 2.python导入excel的字符类型种类： 0 --empty,1 --string, 2 --number(都是浮点), 3 --date, 4 --boolean, 5 --error   
 
+### 待解问题：
+1.分布式执行中slave状态监控（非jenkins执行）    
