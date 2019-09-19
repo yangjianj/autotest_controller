@@ -1,3 +1,4 @@
+²Ù×÷½éÉÜ£ºhttps://www.jianshu.com/p/eb9d5136ee92
 list = Publisher.objects.all()
 
 #####inster

@@ -28,14 +28,14 @@ app_demo1
     
 1.用例管理：excel写用例    
 2.执行=》结果校验=》记录存储到数据库    
-3.Excel比较适合存放测试数据，或数据驱动型用例，不适合步骤性强的用例    
+3.csv比较适合存放测试数据，或数据驱动型用例，不适合步骤多的用例
 
 ### 用例：        
 1.取excel中测试数据库发送http请求并验证结果    
 2.执行api性能测试，设置并发数量，提取返回结果     
 
 
-app_demo2(废弃)    
+app_demo2(废弃-通过excel写ui操作用例实现复杂且灵活性没有代码好)
 ==============       
 
 ### ui自动化实现说明：     
@@ -63,8 +63,6 @@ app_demo2(废弃)
 1.保留yml管理元素，去除excel书写用例用代码写用例！！   
 2.用例写在unittest中      
 
-
-
 app_demo3     
 =========    
 ### 设计说明：        
@@ -83,5 +81,5 @@ app_demo3
 1.异常处理在函数内部处理，不在多个函数组合时使用   
 2.python导入excel的字符类型种类： 0 --empty,1 --string, 2 --number(都是浮点), 3 --date, 4 --boolean, 5 --error   
 
-### 待解问题：
-1.分布式执行中slave状态监控（非jenkins执行）    
+### 问题：
+1.分布式执行中slave（通过rabbitmq接收任务）状态监控（非jenkins执行）--python脚本实现主机端口监控--已解决（app_demo1/lib/port_monitor.py）

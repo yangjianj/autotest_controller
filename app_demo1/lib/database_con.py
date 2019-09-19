@@ -1,7 +1,7 @@
 # -*-coding:UTF-8 -*-
 import sqlite3
 import app_demo1.config.config as config
-from app_demo1.models import Yang
+
 
 
 class DataManager():
@@ -105,8 +105,6 @@ class DataManager():
     def save_api_result(self):
         pass
 
-    def test_model(self):
-        Yang.
 
 
 

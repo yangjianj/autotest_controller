@@ -38,7 +38,3 @@ class User(models.Model):
 class Yang(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
-    age = models.IntegerField()
-    position = models.CharField(max_length=10)
-    number = models.IntegerField()
-    email = models.EmailField(verbose_name='邮件')

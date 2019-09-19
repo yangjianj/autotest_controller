@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt,csrf_protect
 import json,time
 from app_demo1.lib.database_con import DataManager
 from app_demo1.lib.api_test import Apiclient
+from app_demo1.lib.database_model import *
 
 # Create your views here.
 
@@ -13,7 +14,7 @@ def index(reauest):
 	return HttpResponse('hello! IN APP1')
 
 def test1(request):
-    return render(request,"test1.html")
+	return render(request,"test1.html")
 
 def test_inapp(request):
 	return render(request,"test_app1.html")
@@ -23,6 +24,10 @@ def area2d(request):
 
 def column3d(request):
 	return render(request,"column3d.html")
+
+def test_model(request):
+	print(get_yang())
+	return render(request, "column3d.html")
 
 @csrf_exempt
 def ajax(request):   #处理前端请求
