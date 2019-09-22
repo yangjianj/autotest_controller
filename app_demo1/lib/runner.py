@@ -3,6 +3,7 @@ from app_demo1.lib.api_test import Apiclient
 from app_demo1.lib.tool import *
 from app_demo1.lib.database_con import  DataManager
 from app_demo1.lib.log_manager import LogManager
+from app_demo1.config import config
 
 class ApiPerformer():
     def __init__(self,file,dbtable):
@@ -33,5 +34,5 @@ class UiPerformer():
     pass
 
 if __name__=="__main__":
-    cc=ApiPerformer("tmpfile//interface_wl.xlsx",'rr')
+    cc=ApiPerformer(config.API_CASE["wuliu"],'rr')
     print(cc.run())

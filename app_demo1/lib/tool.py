@@ -8,11 +8,11 @@ import csv
 from app_demo1.config import config
 
 #导入excel中接口测试用例
-def import_excel_data(path,sheetname):
+def import_excel_data(path):
     result=[]
     workbook = xlrd.open_workbook(path)
-    #sheet= workbook.sheet_by_index(0)    #默认取第一个sheet
-    sheet = workbook.sheet_by_name(sheetname)
+    sheet= workbook.sheet_by_index(0)    #默认取第一个sheet
+    #sheet = workbook.sheet_by_name(sheetname)
     nrows=sheet.nrows
     ncols=sheet.ncols
     for row in range(0,nrows):

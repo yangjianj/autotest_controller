@@ -4,7 +4,6 @@ import unittest
 import ddt
 from  app_demo1.lib.tool import *
 
-testdata = [{"wwww":66666,"rrrr":0000},{"eee":"xxxxxxxxxxxxxxxx","pwd":2}]
 configpath=os.path.join(os.path.dirname(os.path.abspath(__file__)),"config//ddt_test_001.csv")
 testdata = import_excel_data_for_ddt(configpath)
 @ddt.ddt
