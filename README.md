@@ -69,7 +69,7 @@ app_demo2(废弃-通过excel写ui操作用例实现复杂且灵活性没有代�
 app_demo3     
 =========    
 ### 设计说明：        
-1.保留yml管理元素，去除excel书写用例用代码写用例！！   
+1.保留app_demo2中yml管理元素的方式，去除excel书写用例用python脚本写用例！！   
 2.用例写在unittest中，执行按用例命名规则discover组织suite  
 3.输出htmltestrunner文件改进输出到html+存储到数据库（数据已提取待对接mysql）    
 4.失败重跑:提取失败用例casename加载重跑
