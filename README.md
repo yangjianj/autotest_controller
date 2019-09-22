@@ -89,13 +89,13 @@ app_demo3
 
 ### 执行结果展示：    
 1.UI数据驱动    
-1.1[数据驱动_脚本](/django_web/app_demo3/testcases/ddt_test/ddt_test_001.py)    
-1.2![数据驱动_数据](/django_web/app_demo3/report/数据驱动_数据.JPG)    
-1.3![数据驱动_结果](/django_web/app_demo3/report/数据驱动_结果.JPG)    
+1.1[数据驱动_脚本](/app_demo3/testcases/ddt_test/ddt_test_001.py)    
+1.2![数据驱动_数据](/app_demo3/report/数据驱动_数据.JPG)    
+1.3![数据驱动_结果](/app_demo3/report/数据驱动_结果.JPG)    
 2.UI关键字驱动    
-2.1[关键字驱动_脚本](/django_web/app_demo3/testcases/lianjia/ui_lianjia_test_001.py)     
-2.2![关键字驱动_结果](/django_web/app_demo3/report/关键字驱动_结果.JPG)      
+2.1[关键字驱动_脚本](/app_demo3/testcases/lianjia/ui_lianjia_test_001.py)     
+2.2![关键字驱动_结果](/app_demo3/report/关键字驱动_结果.JPG)      
 3.API测试    
-3.1[API测试_脚本](/django_web/app_demo1/lib/runner.py)     
-3.2![API测试_CASE](/django_web/app_demo1/report/API测试用例.JPG)     
-3.3![API测试_测试结果](/django_web/app_demo1/report/API测试结果.JPG)     
+3.1[API测试_脚本](/app_demo1/lib/runner.py)     
+3.2![API测试_CASE](/app_demo1/report/API测试用例.JPG)     
+3.3![API测试_测试结果](/app_demo1/report/API测试结果.JPG)     
