@@ -16,9 +16,12 @@ app_demo3 ui autotest
 8.文件上传+富文本     
 9.短信/邮件    
 
+
 ### django 命令：  
-    
+django-admin startproject HelloWorld    
+python manage.py startapp app_name    
 python manage.py runserver 0.0.0.0:8090    
+python manage.py makemigrations    
 python manage.py migrate    
 
 app_demo1   
@@ -66,7 +69,7 @@ app_demo2(废弃-通过excel写ui操作用例实现复杂且灵活性没有代�
 app_demo3     
 =========    
 ### 设计说明：        
-1.保留yml管理元素，去除excel书写用例用代码写用例！！   
+1.保留app_demo2中yml管理元素的方式，去除excel书写用例用python脚本写用例！！   
 2.用例写在unittest中，执行按用例命名规则discover组织suite  
 3.输出htmltestrunner文件改进输出到html+存储到数据库（数据已提取待对接mysql）    
 4.失败重跑:提取失败用例casename加载重跑
@@ -83,3 +86,16 @@ app_demo3
 
 ### 问题：
 1.分布式执行中slave（通过rabbitmq接收任务）状态监控（非jenkins执行）--python脚本实现主机端口监控--已解决（app_demo1/lib/port_monitor.py）
+
+### 执行结果展示：    
+1.UI数据驱动    
+1.1[数据驱动_脚本](/app_demo3/testcases/ddt_test/ddt_test_001.py)    
+1.2数据驱动_数据![数据驱动_数据](/app_demo3/report/数据驱动_数据.JPG)    
+1.3数据驱动_结果![数据驱动_结果](/app_demo3/report/数据驱动_结果.JPG)    
+2.UI关键字驱动    
+2.1[关键字驱动_脚本](/app_demo3/testcases/lianjia/ui_lianjia_test_001.py)     
+2.2关键字驱动_结果![关键字驱动_结果](/app_demo3/report/关键字驱动_结果.JPG)      
+3.API测试    
+3.1[API测试_脚本](/app_demo1/lib/runner.py)     
+3.2API测试_CASE![API测试_CASE](/app_demo1/report/API测试用例.JPG)     
+3.3API测试_测试结果![API测试_测试结果](/app_demo1/report/API测试结果.JPG)     

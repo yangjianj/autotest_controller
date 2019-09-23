@@ -9,6 +9,7 @@ Interface_Time_Out = 500
 
 
 UI_CASE = {'test':os.path.join(BASE_DIR, 'app_demo1\\testcases\\uicase2.xlsx')}
+API_CASE = {'wuliu':os.path.join(BASE_DIR, 'app_demo1\\testcases\\interface_wl.xlsx')}
 EXCELMAPPING ={"suitebegine":1,"用例编号":0,"结构":1,"测试说明":2,"执行顺序":3,"操作":4,"PageName":5,
                "元素名称":6,"value":7,"输出数据":8,"执行结果":9,"执行信息":10,"执行时间":11,"":12}
 
