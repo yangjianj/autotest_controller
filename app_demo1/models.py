@@ -30,10 +30,10 @@ class Test(models.Model):
 class User(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
-    age = models.IntegerField()
-    position = models.CharField(max_length=10)
-    number = models.IntegerField()
-    email = models.EmailField(verbose_name='邮件')
+    workid = models.CharField(max_length=255)
+    role = models.CharField(max_length=255)
+    project = models.CharField(max_length=255)
+    telephone = models.CharField(max_length=255)
 
 class Yang(models.Model):
     id = models.IntegerField(primary_key=True)
