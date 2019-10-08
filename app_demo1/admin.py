@@ -1,6 +1,6 @@
 from django.contrib import admin
 from app_demo1.models import Test,Player,User,Yang
-
+#admin 密码123456
 def change_up(modeladmin, request, queryset):  #定义动作
     queryset.update(position='1')
     print(queryset)                #包含所选数据行的列表
