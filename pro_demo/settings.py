@@ -32,8 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
+    'django.contrib.auth',  # 包含认证框架的核心以及默认模型
+    'django.contrib.contenttypes', #内容类型系统，用于给模型关联许可
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
