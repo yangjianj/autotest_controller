@@ -1,14 +1,13 @@
 #coding:utf-8
 from django.shortcuts import render
+from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 import json,time
 from app_demo1.lib.database_con import DataManager
 from app_demo1.lib.api_test import Apiclient
-from app_demo1.lib.database_model import *
+import app_demo1.lib.database_model as DataModel
 
 # Create your views here.
-
-from django.http import HttpResponse
 
 def index(reauest):
 	return HttpResponse('hello! IN APP1')
@@ -26,7 +25,7 @@ def column3d(request):
 	return render(request,"column3d.html")
 
 def test_model(request):
-	print(get_yang())
+	print(DataModel.get_yang())
 	return render(request, "column3d.html")
 
 @csrf_exempt
@@ -79,6 +78,14 @@ def get_all_user(request):
 	result=HttpResponse(json.dumps(str(result), ensure_ascii=False))
 	result=allow_origin_response(result)
 	return result
+
+@csrf_exempt
+def get_all_user1(request):
+	#序列化返回结果
+	print("in get user")
+	data=DataModel.get_all_user()
+	return JsonResponse(data,safe=False)
+
 
 @csrf_exempt
 def update_user(request):

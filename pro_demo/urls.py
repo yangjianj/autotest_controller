@@ -30,6 +30,7 @@ urlpatterns = [
     path('ajax', demo1_v.ajax),
     path('vue_elem', demo1_v.vue_elem),
     path('get_all_user', demo1_v.get_all_user),
+    path('get_all_user1', demo1_v.get_all_user1),
     path('update_user', demo1_v.update_user),
     path('get_reuqet_json', demo1_v.get_reuqet_json),
 ]
