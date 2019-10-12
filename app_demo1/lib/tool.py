@@ -3,8 +3,8 @@ import os
 import xlrd,xlwt
 from xlutils.copy import copy
 import time,datetime
-import json
-import csv
+import json,csv
+import hashlib
 from app_demo1.config import config
 
 #导入excel中接口测试用例
@@ -102,6 +102,14 @@ def create_suite_dir(type,suitename):
 def create_case_dir(suitedir,caseid):
     os.makedirs(os.path.join(suitedir,caseid))
     return os.path.join(suitedir,caseid)
+
+def token_generate(user):
+    salt = 'autotest'
+    x = hashlib.sha256()
+    x.update(user.encode())
+    x.update(salt.encode())
+    return x.hexdigest()
+
 
 
 

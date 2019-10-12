@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'app_demo1.lib.middle1.middle11',
+    'app_demo1.lib.middle1.UserLoginMiddleware',   #自定义中间件：验证用户是否登录
     #'app_demo1.lib.middle1.middle2',
     #'app_demo1.lib.middle1.middle3',
 ]

@@ -6,7 +6,7 @@ app_demo3 ui autotest
 
 功能：    
 -----
-1.用户管理：登录控制，增删改查，角色权限控制---(session cookie，装饰器)    
+1.用户管理：登录控制，增删改查，角色权限控制---(session cookie，中间件/装饰器)    
 2.页面添加，编辑，执行测试：接口功能测试，性能测试，时间记录---(request，多线程，装饰器)    
 3.测试结果展现---（echarts）    
 4.各版本测试数据统计，图标展示---(mysql,sqlite3,echarts)         

@@ -1,10 +1,12 @@
 #coding:utf-8
 from django.shortcuts import render,redirect
-from django.http import JsonResponse,HttpResponse
+from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
+from django.contrib.auth import authenticate
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 import json,time
 from app_demo1.lib.database_con import DataManager
 from app_demo1.lib.api_test import Apiclient
+import app_demo1.lib.tool as Tool
 import app_demo1.lib.database_model as DataModel
 
 # Create your views here.
@@ -27,6 +29,28 @@ def column3d(request):
 def test_model(request):
 	print(DataModel.get_yang())
 	return render(request, "column3d.html")
+
+@csrf_exempt
+def login(request):
+	#不使用内置session中间件，使用token方式进行验证
+	print('in login')
+	print(request.POST)
+	username = request.POST['username']
+	password = request.POST['password']
+	user = authenticate(username = username,passwod = password)
+	if user is not None:
+		token = Tool.token_generate(username,'testsalt')
+		response= HttpResponseRedirect('/index')
+		response.set_cookie('token',token,expires=60*60*24*7)
+		return response
+	else:
+		return redirect("/login")
+
+@csrf_exempt
+def logout(request):
+	response = HttpResponse('ok')
+	response.delete_cookie('token')
+	return response
 
 @csrf_exempt
 def ajax(request):   #处理前端请求
