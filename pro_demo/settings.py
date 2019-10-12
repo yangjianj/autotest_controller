@@ -15,10 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'r66nhk&nfx!6ubr1-0m)99o^x@l@1dg*gs09@%0)x!3x(25!6@'
 
@@ -26,7 +24,6 @@ SECRET_KEY = 'r66nhk&nfx!6ubr1-0m)99o^x@l@1dg*gs09@%0)x!3x(25!6@'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -53,6 +50,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app_demo1.lib.middle1.middle11',
+    #'app_demo1.lib.middle1.middle2',
+    #'app_demo1.lib.middle1.middle3',
 ]
 
 ROOT_URLCONF = 'pro_demo.urls'

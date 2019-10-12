@@ -20,7 +20,7 @@ from app_demo2 import views as demo2_v
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('index1', demo1_v.index),
+    path('index', demo1_v.index),
     path('index2', demo2_v.index),
     path('test1', demo1_v.test1),
     path('test_inapp', demo1_v.test_inapp),

@@ -1,5 +1,5 @@
 #coding:utf-8
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import JsonResponse,HttpResponse
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 import json,time
@@ -82,7 +82,7 @@ def get_all_user(request):
 @csrf_exempt
 def get_all_user1(request):
 	#序列化返回结果
-	print("in get user")
+	print("in get user1")
 	data=DataModel.get_all_user()
 	return JsonResponse(data,safe=False)
 
@@ -115,6 +115,8 @@ def test_api(request):
 
 def vue_elem(request):
 	return render(request,"test_element.html")
+
+
 
 def allow_origin_response(re):    #允许跨域请求设置
 	re["Access-Control-Allow-Origin"] = "*"    
