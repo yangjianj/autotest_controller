@@ -9,6 +9,8 @@ class UserLoginMiddleware(MiddlewareMixin):
         print(request.path)
         if request.path in ['/login','/index','/admin']:   #login方法不需要经过是否登录判断
             return None
+        else:
+            return None
         token = request.COOKIES.get('token')
         if not token:                  #没有token则说明没有登录
             return redirect("/login")
