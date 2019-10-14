@@ -8,16 +8,19 @@ class UserManager():
         pass
 
     def login(self,user,password):
-        timestamp = (datetime.datetime.now()+datetime.timedelta(days=7)).strftime("%Y-%m-%d-%H-%M-%S")
-        userobj = User.objects.filter(username = user)
-        userjson = CommentSerializer(instance=userobj, many=True)
-        if password == userjson["password"]:
-            token=self._generate_token(user,timestamp)
-            return token,timestamp
-        else:
-            return None
+        pass
 
     def logout(self):  #服务端需要保存
+
+        pass
+
+    def create_user(self,username,password,role):
+        pass
+
+    def set_password(self):
+        pass
+
+    def change_password(self):
         pass
 
     def _generate_token(self,user,time):
@@ -27,10 +30,17 @@ class UserManager():
         x.update(tokenstr.encode())
         return x.hexdigest()
 
-    def refresh_token(self):
-        pass
+    def get_token(self,user,password):
+        timestamp = (datetime.datetime.now() + datetime.timedelta(days=7)).strftime("%Y-%m-%d-%H-%M-%S")
+        userobj = User.objects.filter(username=user)
+        userjson = CommentSerializer(instance=userobj, many=True)
+        if password == userjson["password"]:
+            token = self._generate_token(user, timestamp)
+            return token, timestamp
+        else:
+            return None
 
-    def auth(self,user,token,dietime):
+    def auth_token(self,user,token,dietime):
         dtime = datetime.datetime.strptime(dietime, "%Y-%m-%d-%H-%M-%S")
         timenow = datetime.datetime.now()
         if dtime<timenow:     #token已过期
@@ -40,11 +50,3 @@ class UserManager():
                 return True
             else:
                 return 'auth failed'
-
-
-    def set_password(self):
-        pass
-
-    def change_password(self):
-        pass
-

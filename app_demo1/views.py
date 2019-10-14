@@ -42,7 +42,6 @@ def login(request):
 	print(username,password)
 	print('验证结果:',user)
 	if user is not None:
-		token = Tool.token_generate(username,'testsalt')
 		response= HttpResponseRedirect('/index')
 		response.set_cookie('token',token,expires=60*60*24*7)
 		return response
