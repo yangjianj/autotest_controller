@@ -8,6 +8,7 @@ from app_demo1.lib.database_con import DataManager
 from app_demo1.lib.api_test import Apiclient
 import app_demo1.lib.tool as Tool
 import app_demo1.lib.database_model as DataModel
+from app_demo1.lib.user_manager import UserManager
 
 # Create your views here.
 
@@ -38,6 +39,8 @@ def login(request):
 	username = request.POST['username']
 	password = request.POST['password']
 	user = authenticate(username = username,passwod = password)
+	print(username,password)
+	print('验证结果:',user)
 	if user is not None:
 		token = Tool.token_generate(username,'testsalt')
 		response= HttpResponseRedirect('/index')
