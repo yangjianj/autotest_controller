@@ -1,34 +1,35 @@
-操作介绍：https://www.jianshu.com/p/eb9d5136ee92
+锘縣ttps://www.jianshu.com/p/eb9d5136ee92
 list = Publisher.objects.all()
 
 #####inster
-p1 = Publisher(name='yy',address='1111')  #插入数据
+p1 = Publisher(name='yy',address='1111')  
+p1.save()
 
 
 ######select
-list = Publisher.objects.filter(name='yy')
+list = Publisher.objects.filter(name='yy') #filter鎵句笉鍒板璞′細杩斿洖[]
 
 list = Publisher.objects.filter(name_contains='yy') #like'%yy%'
 list = Publisher.objects.filter(name='yy').values_list('id','name')
 
-p = Publisher.objects.get(name='yy')  #返回单个对象
+p = Publisher.objects.get(name='yy')  #get鎵句笉鍒板璞′細鎶ラ敊
 
-list = Publisher.objects.filter(name_contains='yy').order_by('name')  #对结果排序
+list = Publisher.objects.filter(name_contains='yy').order_by('name')
 
 
-list = Publisher.objects.order_by('-name')  #逆向排序
+list = Publisher.objects.order_by('-name')  
 
-models.Tb1.objects.filter(id__lt=10, id__gt=1)   # 获取id大于1 且 小于10的值
+models.Tb1.objects.filter(id__lt=10, id__gt=1)  
  
-models.Tb1.objects.filter(id__in=[11, 22, 33])   # 获取id等于11、22、33的数据
-models.Tb1.objects.exclude(id__in=[11, 22, 33])  # not in
+models.Tb1.objects.filter(id__in=[11, 22, 33])   
+models.Tb1.objects.exclude(id__in=[11, 22, 33]) 
 
 
 ####update
 p = Publisher.objects.get(name='yy')
 p.name = 'yy-1'
 p.save()
-等同于
+
 Publisher.objects.filter(name='yy').update(name='yy-1')
 
 #########delete

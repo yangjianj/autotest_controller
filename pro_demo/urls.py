@@ -34,4 +34,7 @@ urlpatterns = [
     path('update_user', demo1_v.update_user),
     path('get_reuqet_json', demo1_v.get_reuqet_json),
     path('login', demo1_v.login),
+    path('logout', demo1_v.logout),
+    path('create_user', demo1_v.create_user),
+
 ]

@@ -7,20 +7,14 @@ class UserLoginMiddleware(MiddlewareMixin):
     def process_request(self, request):
         print("中间件UserLoginMiddleware请求")
         print(request.path)
-        if request.path in ['/login','/index','/admin']:   #login方法不需要经过是否登录判断
+        if request.path in ['/login','/index','/admin','/adminlogin/']:   #不需要判断是否已经登录的方法
             return None
         else:
-            return None
-        token = request.COOKIES.get('token')
-        if not token:                  #没有token则说明没有登录
-            return redirect("/login")
-        username = request.POST['username']
-        if token != Tool.token_generate(username):
-            return redirect("/login")
-        else:
-            pass
-        if (request.path == '/test1'):  #测试
-            return redirect("/index")
+            sessionid = request.COOKIES.get("sessionid")
+            if request.session.exists(sessionid):
+                return None
+            else:
+                return redirect("/index")
 
 
     def process_response(self, request, response):

@@ -20,8 +20,8 @@ class TestAdmin(admin.ModelAdmin):
     actions = [change_up,change_down]  #表中加入自定义方法下拉框
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ["id","name","workid","role","project","telephone"]
-    search_fields = ["name"]
+    list_display = ["id","username","userid","role","project","telephone"]
+    search_fields = ["username"]
     actions = []
 
 admin.site.register(Test,TestAdmin)

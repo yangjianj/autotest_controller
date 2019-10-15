@@ -1,7 +1,6 @@
 #coding:utf-8
 from django.shortcuts import render,redirect
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
-from django.contrib.auth import authenticate
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 import json,time
 from app_demo1.lib.database_con import DataManager
@@ -34,25 +33,38 @@ def test_model(request):
 @csrf_exempt
 def login(request):
 	#不使用内置session中间件，使用token方式进行验证
-	print('in login')
-	print(request.POST)
 	username = request.POST['username']
 	password = request.POST['password']
-	user = authenticate(username = username,passwod = password)
-	print(username,password)
-	print('验证结果:',user)
-	if user is not None:
+	if UserManager().check_password(username,password):
 		response= HttpResponseRedirect('/index')
-		response.set_cookie('token',token,expires=60*60*24*7)
+		#response.set_cookie('username',username,expires=60*60*24*7)
+		request.session["is_login"] = 1
+		request.session["username"] = username
 		return response
 	else:
-		return redirect("/login")
+		return HttpResponse('auth failed')
 
 @csrf_exempt
 def logout(request):
+	sessionid = request.COOKIES.get("sessionid")
+	request.session.delete(sessionid)
 	response = HttpResponse('ok')
-	response.delete_cookie('token')
 	return response
+
+@csrf_exempt
+def create_user(request):
+	username = request.POST["username"]
+	password = request.POST["password"]
+	userid = request.POST["userid"]
+	email = '123dd@163.com'
+	#userobj = dict("uaername")
+	result = UserManager().create_user(request.POST)
+	return JsonResponse(result)
+
+def check_password(request):
+	UserManager().check_password(request.POST)
+
+
 
 @csrf_exempt
 def ajax(request):   #处理前端请求

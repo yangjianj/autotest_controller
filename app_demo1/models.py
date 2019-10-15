@@ -29,11 +29,12 @@ class Test(models.Model):
 
 class User(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=255)
-    workid = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
+    userid = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
     project = models.CharField(max_length=255)
     telephone = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
 
 class Yang(models.Model):
     id = models.IntegerField(primary_key=True)
