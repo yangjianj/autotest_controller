@@ -41,6 +41,9 @@ class UserManager():
         except Exception as e:
             return False
 
+    def right_control(self): #权限控制
+        pass
+
     def _generate_token(self,user,time):
         salt = 'auto'
         tokenstr = user+time+salt
