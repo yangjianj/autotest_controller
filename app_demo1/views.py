@@ -136,7 +136,6 @@ def update_user(request):
 
 @csrf_exempt
 def get_reuqet_json(request):
-	print(11111111111111111)
 	print(request.body.decode())
 	re_data=json.loads(request.body)
 	print(re_data['username'])

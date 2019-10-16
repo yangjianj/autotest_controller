@@ -29,6 +29,7 @@ class Apiclient():
 		else:
 			result={"error":"method not in post,get,put,delete"}
 		if ("re" in result) and ("response" in result["re"]):
+			print(result)
 			test_result=self.response_check(json.loads(result["re"]["response"]),self.expected)
 			result["re"]["test_result"]=test_result
 		return  result
@@ -36,16 +37,17 @@ class Apiclient():
 	def test_multi(self,thread_num):
 		t_list=[]
 		t_re=[]
-		time_start=time.time()
+		time_start = time.time()
 		for i in range(thread_num):
 			t=Multiclient(self.test,())
 			t_list.append(t)
 			t.start()
+		time_run = time.time()
 		for t in t_list:
 			t.join()
 			t_re.append(t.get_result())
-		time_end=time.time()
-		result={"time":time_end-time_start,"data":t_re}
+		time_end = time.time()
+		result = {"time":time_end-time_start,"time_run":time_run-time_start,"data":t_re}
 		return result
 
 	def response_check(self,data,template):
@@ -78,10 +80,9 @@ def a(x=1):
 
 if __name__ == '__main__':
 	t_list=[]
-	t_re=[]
 	jj={}
-	url="http://localhost:8090/get_all_user/"
-	jj["url"]="http://localhost:8090/get_reuqet_json/"
+	url="http://127.0.0.1:8090/get_all_user"
+	jj["url"]="http://127.0.0.1:8090/get_reuqet_json"
 	jj["method"]='post'
 	jj["redata"]=json.dumps({'username':'name0','password':'pass'})
 	jj["reparam"] = {'username': 'name1', 'password': 'pass'}
@@ -92,12 +93,14 @@ if __name__ == '__main__':
 	headers={}
 	#headers['Content-Type']='application/x-www-form-urlencoded; charset=UTF-8'
 	headers['Content-Type']='application/json; charset=UTF-8'
+	headers['Cookie'] = "sessionid=kcgf0uphjyzz6ntnqu29c7adjud03z89"
 	jj["headers"]=headers
 	client1=Apiclient(jj)
-	#t_list.append(client1.test())
-	re=client1.test()
-	#re=client1.test_multi(800)
-	print(re)
+	t_list.append(client1.test())
+	#re=client1.test()
+	re=client1.test_multi(100)
+	print(re['time_run'])
+	print(re['time'])
 
 
 
