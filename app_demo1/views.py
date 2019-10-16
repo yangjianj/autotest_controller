@@ -7,7 +7,7 @@ from app_demo1.lib.database_con import DataManager
 from app_demo1.lib.api_test import Apiclient
 import app_demo1.lib.tool as Tool
 import app_demo1.lib.database_model as DataModel
-from app_demo1.lib.user_manager import UserManager
+from app_demo1.lib.user_manager import UserManager,need_admin_role
 
 # Create your views here.
 
@@ -36,7 +36,8 @@ def login(request):
 	username = request.POST['username']
 	password = request.POST['password']
 	if UserManager().check_password(username,password):
-		response= HttpResponseRedirect('/index')
+		#response= HttpResponseRedirect('/index')
+		response = HttpResponse('ok')
 		#response.set_cookie('username',username,expires=60*60*24*7)
 		request.session["is_login"] = 1
 		request.session["username"] = username
@@ -52,12 +53,11 @@ def logout(request):
 	return response
 
 @csrf_exempt
+@need_admin_role
 def create_user(request):
 	username = request.POST["username"]
 	password = request.POST["password"]
 	userid = request.POST["userid"]
-	email = '123dd@163.com'
-	#userobj = dict("uaername")
 	result = UserManager().create_user(request.POST)
 	return JsonResponse(result)
 

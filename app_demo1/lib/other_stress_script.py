@@ -1,14 +1,9 @@
 import argparse
-import hashlib
-import hmac
-import json
-import random
-import requests
-import threading
-import time
+import hashlib,hmac
+import json,random,requests,time
+import threading,queue
 import paho.mqtt.client as mqtt
 import logging
-import queue
 from collections import defaultdict
 
 shadow_set_reply = queue.Queue()

@@ -104,10 +104,6 @@ def create_case_dir(suitedir,caseid):
     return os.path.join(suitedir,caseid)
 
 
-
-
-
-
 if __name__=='__main__':
     data = [[123,222,333,22,55],['dgiwseh','uhsgfch','jhsih']]
     #export_data(data,'test122',"..//log//sss.xlsx")

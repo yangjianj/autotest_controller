@@ -135,6 +135,7 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(HERE, 'static/'),
 )
+#访问：127.0.0.1:8090/static/file1.html
 
 '''
 #跨域配置

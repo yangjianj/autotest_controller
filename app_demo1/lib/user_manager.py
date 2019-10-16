@@ -1,6 +1,7 @@
 import hashlib,time,datetime
 from app_demo1.models import User
 from app_demo1.lib.database_model import CommentSerializer
+from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 
 class UserManager():
     def __init__(self):
@@ -20,10 +21,10 @@ class UserManager():
 
     def change_password(self,username,password,newpwd):
         try:
-            userlist = User.objects.get(username=username)
-            if userlist.password == password:
-                userlist.password = newpwd
-                userlist.save()
+            user = User.objects.get(username=username)
+            if user.password == password:
+                user.password = newpwd
+                user.save()
                 return True
             else:
                 return {"re":False,"message":"password error"}
@@ -41,8 +42,7 @@ class UserManager():
         except Exception as e:
             return False
 
-    def right_control(self): #权限控制
-        pass
+
 
     def _generate_token(self,user,time):
         salt = 'auto'
@@ -71,3 +71,16 @@ class UserManager():
                 return True
             else:
                 return 'auth failed'
+
+def need_admin_role(func): #权限控制
+    def inner(*args):
+        user_request = args[0]
+        username = user_request.session["username"]
+        userobj = User.objects.get(username=username)
+        if userobj.role != "admin":
+            result = {"status":"error","message":"user role is not admin"}
+            return JsonResponse(result)
+        else:
+            result = func(*args)
+            return result
+    return inner
