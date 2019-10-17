@@ -2,7 +2,6 @@
 import time,json
 import threading
 from app_demo1.lib.reques import Reques
-from app_demo1.lib import *
 from jsonschema import validate
 
 #接口类

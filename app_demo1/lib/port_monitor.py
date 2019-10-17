@@ -2,6 +2,7 @@ import socket
 import threading
 import time
 
+#tcp端口监控类
 class PortMonitor(threading.Thread):
     def __init__(self):
         pass
