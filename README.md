@@ -112,3 +112,9 @@ app_demo3
 2.api测试：按一定格式定义测试所需接口文件    
 
 
+
+
+工具对比：    
+1.与jenkins的master-slave对比：   
+
+
