@@ -1,20 +1,23 @@
 自动化测试平台后台代码     
 ---------------------
-app_demo1 接口测试   
+app_demo1 接口   
 app_demo2 ui测试（废弃）   
-app_demo3 ui autotest    
+app_demo3 ui    
 
 功能：    
 -----
-1.用户管理：登录控制，增删改查，角色权限控制---(session cookie，中间件/装饰器)    
-2.页面添加，编辑，执行测试：接口功能测试，性能测试，时间记录---(request，多线程，装饰器)    
-3.测试结果展现---（echarts）    
+1.用户管理：登录控制，增删改查，角色权限控制---(session cookie,django中间件,装饰器)(完成)    
+2.后台实现接口测试，ui测试，接口性能    
+3.页面添加，编辑，执行测试：接口功能测试，性能测试，时间记录---(request，多线程，装饰器)    
 4.各版本测试数据统计，图标展示---(mysql,sqlite3,echarts)         
 5.失败重试    
-6.异步/分布式任务执行，定时任务---（rabbitmq,apscheduler）      
+6.异步/分布式任务执行，定时任务---（rabbitmq,apscheduler,master-slave）      
+slave功能：作为并发测试成员之一执行测试；单独执行部分测试任务    
 7.缓存---（redis）     
 8.文件上传+富文本     
 9.短信/邮件    
+10.日志收集与处理    
+11.测试结果展现---（echarts）    
 
 
 ### django 命令：  
@@ -83,6 +86,8 @@ app_demo3
 ### 编码相关：  
 1.异常处理在函数内部处理，不在多个函数组合时使用   
 2.python导入excel的字符类型种类： 0 --empty,1 --string, 2 --number(都是浮点), 3 --date, 4 --boolean, 5 --error   
+3.统一接口数据格式：    
+成功:{'status':'success','data':{}};失败:{'status':'fail','message':'失败说明'}
 
 ### 问题：
 1.分布式执行中slave（通过rabbitmq接收任务）状态监控（非jenkins执行）--python脚本实现主机端口监控--已解决（app_demo1/lib/port_monitor.py）
@@ -99,3 +104,11 @@ app_demo3
 3.1[API测试_脚本](/app_demo1/lib/runner.py)     
 3.2API测试_CASE![API测试_CASE](/app_demo1/report/API测试用例.JPG)     
 3.3API测试_测试结果![API测试_测试结果](/app_demo1/report/API测试结果.JPG)     
+
+
+
+使用介绍：
+1.ui测试：项目ui元素映射文件，+测试脚本    
+2.api测试：按一定格式定义测试所需接口文件    
+
+

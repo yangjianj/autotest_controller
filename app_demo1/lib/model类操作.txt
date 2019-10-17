@@ -34,4 +34,13 @@ Publisher.objects.filter(name='yy').update(name='yy-1')
 
 #########delete
 p = Publisher.objects.get(name='yy').detete()
+p = Publisher.objects.filter(name='yy').detete()
 
+
+
+sql:
+INSERT INTO table_name (column1,column2,column3,...) VALUES (value1,value2,value3,...),(v1,v2,v3,..);
+select *  into scorebak from score  where neza='neza'
+SELECT column_name,column_name FROM table_name;
+DELETE FROM table_name WHERE some_column=some_value;
+UPDATE table_name SET column1=value1,column2=value2 WHERE some_column=some_value;

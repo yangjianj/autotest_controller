@@ -7,7 +7,7 @@ from app_demo1.lib.database_con import DataManager
 from app_demo1.lib.api_test import Apiclient
 import app_demo1.lib.tool as Tool
 import app_demo1.lib.database_model as DataModel
-from app_demo1.lib.user_manager import UserManager,need_admin_role
+from app_demo1.lib.user_manager import UserManager,check_permission
 
 # Create your views here.
 
@@ -53,7 +53,7 @@ def logout(request):
 	return response
 
 @csrf_exempt
-@need_admin_role
+@check_permission
 def create_user(request):
 	username = request.POST["username"]
 	password = request.POST["password"]
@@ -152,8 +152,6 @@ def test_api(request):
 
 def vue_elem(request):
 	return render(request,"test_element.html")
-
-
 
 def allow_origin_response(re):    #允许跨域请求设置
 	re["Access-Control-Allow-Origin"] = "*"    

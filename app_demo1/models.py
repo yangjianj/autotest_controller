@@ -35,7 +35,13 @@ class User(models.Model):
     project = models.CharField(max_length=255)
     telephone = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
+    roleid = models.IntegerField()
 
 class Yang(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
+
+class Permission_map(models.Model):
+    id = models.IntegerField(primary_key=True)
+    function = models.CharField(max_length=255)
+    roleid = models.IntegerField()

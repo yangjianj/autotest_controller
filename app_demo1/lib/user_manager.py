@@ -1,14 +1,11 @@
 import hashlib,time,datetime
-from app_demo1.models import User
+from app_demo1.models import User,Permission_map
 from app_demo1.lib.database_model import CommentSerializer
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 
 class UserManager():
     def __init__(self):
-        pass
-
-    def delete_user(self):
-        pass
+        self.name=0
 
     def create_user(self,userobj):
         try:
@@ -42,7 +39,9 @@ class UserManager():
         except Exception as e:
             return False
 
-
+    def delete_user(self,userlist):
+        for user in userlist:
+            User.objects.filter(username=user["username"]).delete()
 
     def _generate_token(self,user,time):
         salt = 'auto'
@@ -72,13 +71,15 @@ class UserManager():
             else:
                 return 'auth failed'
 
-def need_admin_role(func): #权限控制
+def check_permission(func): #权限控制
     def inner(*args):
         user_request = args[0]
+        request_function = user_request.path.split('/')[1]
+        roleid = Permission_map.objects.get(function = request_function).roleid
         username = user_request.session["username"]
         userobj = User.objects.get(username=username)
-        if userobj.role != "admin":
-            result = {"status":"error","message":"user role is not admin"}
+        if userobj.roleid > roleid:
+            result = {"status":"error","message":"permission delay"}
             return JsonResponse(result)
         else:
             result = func(*args)
