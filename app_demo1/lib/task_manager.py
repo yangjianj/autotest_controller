@@ -7,4 +7,7 @@ class TaskManager():
 	def send_task(self,task,slave):
 		pass
 
+	def build_task(self):
+		pass
+
 

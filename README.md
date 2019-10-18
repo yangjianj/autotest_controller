@@ -91,6 +91,7 @@ app_demo3
 
 ### 问题：
 1.分布式执行中slave（通过rabbitmq接收任务）状态监控（非jenkins执行）--python脚本实现主机端口监控--已解决（app_demo1/lib/port_monitor.py）
+2.日志文件收集（文件传输）
 
 ### 执行结果展示：    
 1.UI数据驱动    
