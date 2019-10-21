@@ -17,22 +17,24 @@ def get_json():
 
 def heartbeat():  #slave心跳
     while(1):
-        url = config.master_url
-        timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-        data = {'ip':config.ip,'time':timestamp}
-        headers = {
-            'content-type': "application/json",
-        }
-        response = requests.request("POST",url,data=data,headers = headers)
-        if  response["status"] == "ok":
-            pass
-        else:
-            break
-        time.sleep(config.sycle)
+        try:
+            url = config.master_url
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+            data = {'ip':config.ip,'time':timestamp}
+            headers = {
+                'content-type': "application/json",
+            }
+            response = requests.request("POST",url,data=data,headers = headers)
+            if  response["status"] == "ok":
+                pass
+            else:
+                break
+            time.sleep(config.heartbeat)
+        except Exception as error:
+            print("connect master failed:"+str(error))
 
 def run_cmd():
     pass
-
 
 if __name__=="__main__":
     threading.Thread(target = heartbeat,args = ()).start()

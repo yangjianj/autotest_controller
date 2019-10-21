@@ -6,7 +6,7 @@ class Exector():
     def task_handler(self,task):
         if task['type'] == 'ui':
             self.run_ui()
-        else:
+        elif task['type'] == 'api':
             self.run_api()
         self.finish_task()
 
@@ -17,4 +17,7 @@ class Exector():
         pass
 
     def finish_task(self):
+        pass
+
+    def upload_report(self,report):
         pass

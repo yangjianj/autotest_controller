@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import pika
 from lib.task_exector import Exector
+import config
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+con = pika.ConnectionParameters(config.masterip)
+connection = pika.BlockingConnection(con)
 channel = connection.channel()
-channel.queue_declare(queue='hello1')  # 声明队列，保证程序不出错
+channel.queue_declare(queue=config.taskqueue)  # 声明队列，保证程序不出错
 def callback(ch, method, properties, body):
     print("-->ch", ch)
     print("-->method", method)
@@ -13,7 +15,7 @@ def callback(ch, method, properties, body):
 
     Exector().task_handler(body)  #处理任务
 
-channel.basic_consume('hello1',
+channel.basic_consume(config.taskqueue,
                       callback)
 
 print('[*] Waiting for messages.To exit press CTRL+C')

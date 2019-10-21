@@ -1,7 +1,15 @@
 import sys,io,datetime,time
-import csv
-with open('ddt_test_001.csv')as f:
-    f_csv = csv.reader(f)
-    for row in f_csv:
-        print(row)
+import threading
+
+def test():
+    while(1):
+        print(1111)
+        time.sleep(3)
+
+
+threading.Thread(target = test,args=()).start()
+print(123454)
+time.sleep(5)
+print(98987)
+
 
