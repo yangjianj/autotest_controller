@@ -115,7 +115,7 @@ app_demo3
 
 
 
-工具对比：    
-1.与jenkins的master-slave对比：   
+对比：    
+本平台与jenkins的master-slave对比：   
 
 

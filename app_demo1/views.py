@@ -153,6 +153,9 @@ def test_api(request):
 def vue_elem(request):
 	return render(request,"test_element.html")
 
+def task_status_update(request):   #slave向master更新任务完成状态
+	pass
+
 def allow_origin_response(re):    #允许跨域请求设置
 	re["Access-Control-Allow-Origin"] = "*"    
 	re["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"

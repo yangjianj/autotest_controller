@@ -11,3 +11,9 @@ class SlaveManager():
 
 	def disable_slave(self,slave):
 		pass
+
+	def set_status(self,slave,status):
+		pass
+
+	def state_monitor(self):
+		pass
