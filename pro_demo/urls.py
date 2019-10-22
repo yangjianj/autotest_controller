@@ -36,5 +36,7 @@ urlpatterns = [
     path('login', demo1_v.login),
     path('logout', demo1_v.logout),
     path('create_user', demo1_v.create_user),
+    path('slave_heartbeat', demo1_v.slave_heartbeat),
+
 
 ]

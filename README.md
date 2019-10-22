@@ -114,7 +114,6 @@ app_demo3
 
 
 
-
 对比：    
 本平台与jenkins的master-slave对比：   
 

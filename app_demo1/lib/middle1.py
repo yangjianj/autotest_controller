@@ -7,7 +7,7 @@ class UserLoginMiddleware(MiddlewareMixin):
     def process_request(self, request):
         print("中间件UserLoginMiddleware请求")
         print(request.path)
-        if request.path in ['/login','/index','/admin','/adminlogin/']:   #不需要判断是否已经登录的方法
+        if request.path in ['/login','/index','/admin','/adminlogin/','/slave_heartbeat']:   #不需要判断是否已经登录的方法
             return None
         else:
             sessionid = request.COOKIES.get("sessionid")

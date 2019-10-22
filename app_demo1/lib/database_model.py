@@ -11,6 +11,14 @@ class CommentSerializer(serializers.Serializer):
     project = serializers.CharField(max_length=255)
     telephone = serializers.CharField(max_length=255)
 
+class SlaveSerializer(serializers.Serializer):
+    label = serializers.CharField(max_length=255)
+    ip = serializers.CharField(max_length=255)
+    bindqueue = serializers.CharField(max_length=255)
+    updatetime = serializers.DateTimeField()
+    status = serializers.CharField(max_length=255)
+
+
 def get_yang():
     list1 = Yang.objects.all()
     for item in list1:

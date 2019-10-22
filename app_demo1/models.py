@@ -45,3 +45,15 @@ class Permission_map(models.Model):
     id = models.IntegerField(primary_key=True)
     function = models.CharField(max_length=255)
     roleid = models.IntegerField()
+
+class Slave(models.Model):
+    label = models.CharField(max_length=255)
+    ip = models.CharField(primary_key=True,max_length=255)
+    bindqueue = models.CharField(max_length=255)
+    updatetime = models.DateTimeField()
+
+class task(models.Model):
+    version = models.CharField(max_length=255)
+    id = models.IntegerField(primary_key=True)
+    type = models.CharField(max_length=255)
+    data = models.CharField(max_length=255)

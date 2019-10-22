@@ -8,6 +8,7 @@ from app_demo1.lib.api_test import Apiclient
 import app_demo1.lib.tool as Tool
 import app_demo1.lib.database_model as DataModel
 from app_demo1.lib.user_manager import UserManager,check_permission
+from app_demo1.lib.slave_manager import SlaveManager
 
 # Create your views here.
 
@@ -155,6 +156,23 @@ def vue_elem(request):
 
 def task_status_update(request):   #slave向master更新任务完成状态
 	pass
+
+@csrf_exempt
+def slave_heartbeat(request):
+	print("slave....")
+	print(request.body)
+	print(json.loads(request.body))
+
+	#print(request.body["ip"])
+	print(request.POST)
+	ip = request.POST["ip"]
+	timestamp = request.POST["timestamp"]
+	print(ip)
+	print(timestamp)
+	SlaveManager().update_timestamp(ip,timestamp)
+	return {'status': 'ok'}
+
+
 
 def allow_origin_response(re):    #允许跨域请求设置
 	re["Access-Control-Allow-Origin"] = "*"    
