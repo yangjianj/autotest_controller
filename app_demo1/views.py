@@ -10,6 +10,7 @@ import app_demo1.lib.database_model as DataModel
 from app_demo1.lib.user_manager import UserManager,check_permission
 from app_demo1.lib.slave_manager import SlaveManager
 
+
 # Create your views here.
 
 def index(reauest):
@@ -159,20 +160,16 @@ def task_status_update(request):   #slave向master更新任务完成状态
 
 @csrf_exempt
 def slave_heartbeat(request):
-	print("slave....")
 	print(request.body)
-	print(json.loads(request.body))
-
-	#print(request.body["ip"])
-	print(request.POST)
-	ip = request.POST["ip"]
-	timestamp = request.POST["timestamp"]
-	print(ip)
-	print(timestamp)
-	SlaveManager().update_timestamp(ip,timestamp)
-	return {'status': 'ok'}
-
-
+	body = json.loads(request.body.decode())
+	ip = body["ip"]
+	timestamp = body["timestamp"]
+	re = SlaveManager().update_timestamp(ip,timestamp)
+	if re == True:
+		result =  {'status': 'true'}
+	else:
+		result = {'status': 'false',"message":re["message"]}
+	return HttpResponse(json.dumps(result, ensure_ascii=False))
 
 def allow_origin_response(re):    #允许跨域请求设置
 	re["Access-Control-Allow-Origin"] = "*"    

@@ -1,5 +1,5 @@
 import logging
-import app_demo1.config.config as config
+import config
 
 class LogManager():
 	
