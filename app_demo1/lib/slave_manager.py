@@ -27,10 +27,12 @@ class SlaveManager():
         slave.label = label
         slave.save()
 
-    def update_timestamp(self,ip,updatetime):
+    def update_timestamp(self,ip,updatetime,status):
         try:
             slave = Slave.objects.get(ip=ip)
             slave.updatetime = updatetime
+            if status:
+                slave.status = status
             slave.save()
             return True
         except Exception as e:

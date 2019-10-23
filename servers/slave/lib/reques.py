@@ -2,6 +2,7 @@
 import requests
 from requests import exceptions
 from app_demo1.lib.tool import *
+import config
 
 class Reques():
     def get(self, url,headers,parms):#get消息

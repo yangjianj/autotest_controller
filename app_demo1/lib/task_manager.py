@@ -23,4 +23,7 @@ class TaskManager():
 		slave_task = {"tasktype":"ui","message":""}
 		return slave_task
 
+	def update_task(self,task_list):
+		pass
+
 

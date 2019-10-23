@@ -5,3 +5,12 @@ heartbeat = 10
 slave_label = 'test1'  #
 taskqueue = 'test1'
 report_path = 'd:/report'
+
+BASEDIR = 'c:/test/'
+#ui
+uicase_dir = "case/ui"
+
+
+#api
+apicase_dir = "case/api"
+Interface_Time_Out = 10

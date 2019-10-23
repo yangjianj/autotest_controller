@@ -164,12 +164,24 @@ def slave_heartbeat(request):
 	body = json.loads(request.body.decode())
 	ip = body["ip"]
 	timestamp = body["timestamp"]
-	re = SlaveManager().update_timestamp(ip,timestamp)
+	status = None
+	if 'status' in body:
+		status = body["status"]
+	re = SlaveManager().update_timestamp(ip,timestamp,status)
 	if re == True:
 		result =  {'status': 'true'}
 	else:
 		result = {'status': 'false',"message":re["message"]}
 	return HttpResponse(json.dumps(result, ensure_ascii=False))
+
+@csrf_exempt
+def slave_finish(request):
+	print(request.body)
+	body = json.loads(request.body.decode())
+	ip = body["ip"]
+	timestamp = body["timestamp"]
+	task = body["task"]
+
 
 def allow_origin_response(re):    #允许跨域请求设置
 	re["Access-Control-Allow-Origin"] = "*"    
