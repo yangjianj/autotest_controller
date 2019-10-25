@@ -18,7 +18,6 @@ class SlaveSerializer(serializers.Serializer):
     updatetime = serializers.DateTimeField()
     status = serializers.CharField(max_length=255)
 
-
 def get_yang():
     list1 = Yang.objects.all()
     for item in list1:
@@ -30,9 +29,6 @@ def get_all_user():
     user_s = CommentSerializer(instance=users,many=True)
     data = user_s.data
     return data
-
-
-
 
 if __name__ == '__main__':
     print(get_yang())

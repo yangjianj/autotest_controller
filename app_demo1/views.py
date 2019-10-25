@@ -175,7 +175,7 @@ def slave_heartbeat(request):
 	return HttpResponse(json.dumps(result, ensure_ascii=False))
 
 @csrf_exempt
-def slave_finish(request):
+def task_update(request):
 	print(request.body)
 	body = json.loads(request.body.decode())
 	ip = body["ip"]

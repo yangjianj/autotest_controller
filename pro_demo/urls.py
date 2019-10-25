@@ -37,6 +37,7 @@ urlpatterns = [
     path('logout', demo1_v.logout),
     path('create_user', demo1_v.create_user),
     path('slave_heartbeat', demo1_v.slave_heartbeat),
+    path('task_update', demo1_v.task_update),
 
 
 ]
