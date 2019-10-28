@@ -103,7 +103,7 @@ app_demo3
 2.1[关键字驱动_脚本](/app_demo3/testcases/lianjia/ui_lianjia_test_001.py)     
 2.2关键字驱动_结果![关键字驱动_结果](/app_demo3/report/关键字驱动_结果.JPG)      
 3.API测试    
-3.1[API测试_脚本](/app_demo1/lib/runner.py)     
+3.1[API测试_脚本](/app_demo1/lib/backup/runner.py)     
 3.2API测试_CASE![API测试_CASE](/app_demo1/report/API测试用例.JPG)     
 3.3API测试_测试结果![API测试_测试结果](/app_demo1/report/API测试结果.JPG)     
 

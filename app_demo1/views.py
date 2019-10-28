@@ -4,7 +4,7 @@ from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 import json,time
 from app_demo1.lib.database_con import DataManager
-from app_demo1.lib.api_test import Apiclient
+from app_demo1.lib.backup.api_test import Apiclient
 import app_demo1.lib.tool as Tool
 import app_demo1.lib.database_model as DataModel
 from app_demo1.lib.user_manager import UserManager,check_permission

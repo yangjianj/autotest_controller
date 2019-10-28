@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import  pika,time
+import  pika,time,random
 class TaskManager():
 	def __init__(self):
 		pass
@@ -18,10 +18,15 @@ class TaskManager():
 							  )
 		connection.close()
 
-	def build_task(self):
-		#{"tasktype":"ui","message":""}
-		slave_task = {"tasktype":"ui","message":""}
-		return slave_task
+	def build_task(self,type,data):
+		timestamp = time.strftime('%Y%m%d%H%M%S')
+		taskid = type+'_'+timestamp+str(random.randrange(0, 101, 2))
+		task = {
+			"taskid":taskid,
+			"type":type,
+			"data":data
+		}
+		return task
 
 	def update_task(self,task_list):
 		pass
