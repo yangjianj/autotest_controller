@@ -19,11 +19,16 @@ class TaskManager():
 		connection.close()
 
 	def build_task(self,type,data):
+		version = data["version"]
+		caseid_list = data["caseid_list"]
+
+
 		timestamp = time.strftime('%Y%m%d%H%M%S')
 		taskid = type+'_'+timestamp+str(random.randrange(0, 101, 2))
 		task = {
 			"taskid":taskid,
 			"type":type,
+			"version":version,
 			"data":data
 		}
 		return task
