@@ -4,6 +4,12 @@ from app_demo1.models import Slave
 from app_demo1.lib.database_model import SlaveSerializer
 
 class SlaveManager():
+    '''
+    slave管理库
+    1.slave状态：繁忙，空闲，disable，disconnect
+    2.slave查询，更新
+    3.
+    '''
     def __init__(self):
         pass
 
@@ -26,6 +32,10 @@ class SlaveManager():
         slave = Slave.objects.get(username=ip)
         slave.label = label
         slave.save()
+
+    def set_slave_status(self):
+        #根据最近心跳更新时间与当前时间对比，更新健康度
+        pass
 
     def update_timestamp(self,ip,updatetime,status):
         try:

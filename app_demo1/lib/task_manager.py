@@ -5,6 +5,7 @@ class TaskManager():
 		pass
 
 	def send_task(self,task,slave):
+		#发送任务给空闲slave
 		connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 		channel = connection.channel()  # 生成管道，在管道里跑不同的队列
 
@@ -19,6 +20,7 @@ class TaskManager():
 		connection.close()
 
 	def build_task(self,type,data):
+		#创建任务，并存储到任务数据库
 		version = data["version"]
 		caseid_list = data["caseid_list"]
 
@@ -34,6 +36,7 @@ class TaskManager():
 		return task
 
 	def update_task(self,task_list):
+		#任务完成更新任务状态
 		pass
 
 

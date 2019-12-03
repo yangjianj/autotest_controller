@@ -71,7 +71,8 @@ class UserManager():
             else:
                 return 'auth failed'
 
-def check_permission(func): #权限控制
+def check_permission(func):
+    # 权限控制
     def inner(*args):
         user_request = args[0]
         request_function = user_request.path.split('/')[1]

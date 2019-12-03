@@ -15,6 +15,18 @@ from app_demo1.lib.slave_manager import SlaveManager
 def index(reauest):
 	return HttpResponse('hello! IN APP1')
 
+def test1(request):
+	return render(request,"test1.html")
+
+def test_inapp(request):
+	return render(request,"test_app1.html")
+
+def area2d(request):
+	return render(request,"area2d_01.html")
+
+def column3d(request):
+	return render(request,"column3d.html")
+
 def test_model(request):
 	print(DataModel.get_yang())
 	return render(request, "column3d.html")
@@ -57,9 +69,26 @@ def check_password(request):
 
 @csrf_exempt
 def ajax(request):   #处理前端请求
+	print(111111111111111)
+	print(request.POST)
+	print(request.POST["username"])
+	print(request.POST["password"])
+	print(1111111111111111)
+	print(request.body)
+	print(222222222222)
 	result={
 			'tag':'正常',
 	        'data':[
+			         	{
+			         		'name' : '便利店',
+			         		'value':[9,12,10,11,16],
+			         		'color':'#e0b645'
+			         	},
+			         	{
+			         		'name' : '超市',
+			         		'value':[63,42,38,21,14],
+			         		'color':'#7876ba'
+			         	},
 			         	{
 			         		'name' : '大型超市',
 			         		'value':[32,19,23,11,7],
@@ -95,6 +124,7 @@ def get_all_user1(request):
 	print("in get user1")
 	data=DataModel.get_all_user()
 	return JsonResponse(data,safe=False)
+
 
 @csrf_exempt
 def update_user(request):
