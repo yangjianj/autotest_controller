@@ -3,6 +3,15 @@ import  pika,time,random
 class TaskManager():
 	def __init__(self):
 		pass
+	
+	def create_task(self):
+		pass
+	
+	def delete_task(self):
+		pass
+	
+	def serach_task(self):
+		pass
 
 	def send_task(self,task,slave):
 		#发送任务给空闲slave

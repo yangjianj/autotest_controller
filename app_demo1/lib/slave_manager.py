@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 from app_demo1.models import Slave
-from app_demo1.lib.database_model import SlaveSerializer
+from app_demo1.lib.app_serializers import SlaveSerializer
 
 class SlaveManager():
     '''

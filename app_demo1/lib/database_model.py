@@ -1,22 +1,6 @@
 # -*-coding:UTF-8 -*-
-from rest_framework import serializers
 from app_demo1.models import Player,Yang,User
-
-class CommentSerializer(serializers.Serializer):
-    #user表序列化器
-    id = serializers.IntegerField()
-    name = serializers.CharField(max_length=255)
-    workid = serializers.CharField(max_length=255)
-    role = serializers.CharField(max_length=255)
-    project = serializers.CharField(max_length=255)
-    telephone = serializers.CharField(max_length=255)
-
-class SlaveSerializer(serializers.Serializer):
-    label = serializers.CharField(max_length=255)
-    ip = serializers.CharField(max_length=255)
-    bindqueue = serializers.CharField(max_length=255)
-    updatetime = serializers.DateTimeField()
-    status = serializers.CharField(max_length=255)
+from app_demo1.lib.app_serializers import CommentSerializer
 
 def get_yang():
     list1 = Yang.objects.all()

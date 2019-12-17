@@ -2,6 +2,7 @@
 import sqlite3
 import app_demo1.config.config as config
 
+
 class DataManager():
     def __init__(self):
         dbpath= config.DATABASE

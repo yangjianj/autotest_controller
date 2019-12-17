@@ -1,10 +1,7 @@
 # -*-coding:UTF-8 -*-
-import os
+import os,time,datetime,json,csv
 import xlrd,xlwt
 from xlutils.copy import copy
-import time,datetime
-import json,csv
-
 from app_demo1.config import config
 
 #导入excel中接口测试用例
