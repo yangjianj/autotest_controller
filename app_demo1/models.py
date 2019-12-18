@@ -57,3 +57,16 @@ class task(models.Model):
     id = models.IntegerField(primary_key=True)
     type = models.CharField(max_length=255)
     data = models.CharField(max_length=255)
+    
+class Api_testcase(models.Model):
+    id = models.IntegerField()
+    name = models.CharField(max_length=255)
+    project_name = models.CharField(max_length=255)
+    module_name = models.CharField(max_length=255)
+    api_name = models.CharField(max_length=255)
+    protocol = models.CharField(max_length=255)
+    header = models.CharField(max_length=255)
+    expected = models.CharField(max_length=255)
+    api_link = models.TextField()
+    request_data = models.TextField()
+    
