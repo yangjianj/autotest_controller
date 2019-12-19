@@ -3,7 +3,7 @@ import unittest
 from HtmlTestRunner import HTMLTestRunner
 import app_demo1.config.config as config
 import app_demo3.testcases
-from app_demo1.lib.log_manager import LogManager
+from app_demo1.lib.log_man import LogManager
 #测试结果信息收集：
 class Runner():
     def __init__(self):

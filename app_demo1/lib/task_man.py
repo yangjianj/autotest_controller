@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 import  pika,time,random
+
+
 class TaskManager():
-	def __init__(self):
-		pass
+	def __init__(self,type):
+		# type : ui , api
+		timestramp = datetime.now().strftime( '%Y-%m-%d_%H-%M-%S' )
+		self.id = type+timestramp
 	
-	def create_task(self):
+	def create_task(self,version,product,caseid_list):
 		pass
 	
 	def delete_task(self):

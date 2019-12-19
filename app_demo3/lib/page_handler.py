@@ -7,7 +7,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from app_demo1.lib.log_manager import LogManager
+from app_demo1.lib.log_man import LogManager
 #from Exception import Custom_exception
 
 #API网站：https://selenium-python-zh.readthedocs.io/en/latest/index.html

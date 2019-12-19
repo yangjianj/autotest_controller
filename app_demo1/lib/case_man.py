@@ -7,7 +7,10 @@ class CaseManager():
     def __init__(self):
         pass
 
-    def create_case(self,id,name,project_name,module_name,api_name,api_link,protocol,header,request_data,expected):
+    def create_case(self,case_msg):
+        ser = ApiSerializer(data=case_msg)
+        ser.is_valid()
+        ser.save()
         return True
 
     def update_case(self,id,message):

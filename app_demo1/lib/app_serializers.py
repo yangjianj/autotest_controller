@@ -29,6 +29,8 @@ class ApiSerializer(serializers.Serializer):
     protocol = serializers.CharField(max_length=255)
     header = serializers.CharField(max_length=255)
     expected = serializers.CharField(max_length=255)
+    api_link = serializers.CharField(max_length=255)
+    request_data = serializers.CharField(max_length=255)
     
     def create(self, validated_data):
         #反序列化时创建一个model实例
@@ -36,8 +38,15 @@ class ApiSerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         #反序列时更新一个model对象
-        instance.email = validated_data.get('email', instance.email)
-        instance.content = validated_data.get('content', instance.content)
-        instance.created = validated_data.get('created', instance.created)
-        instance.save()
+        instance.id = validated_data.get('id', instance.id)
+        instance.name = validated_data.get('name', instance.name)
+        instance.project_name = validated_data.get('project_name', instance.project_name)
+        instance.module_name = validated_data.get('module_name', instance.module_name)
+        instance.api_name = validated_data.get('api_name', instance.api_name)
+        instance.protocol = validated_data.get('protocol', instance.protocol)
+        instance.header = validated_data.get('header', instance.header)
+        instance.expected = validated_data.get('expected', instance.expected)
+        instance.api_link = validated_data.get('api_link', instance.api_link)
+        instance.request_data = validated_data.get('request_data', instance.request_data)
+        instance.save()  #存到数据库
         return instance

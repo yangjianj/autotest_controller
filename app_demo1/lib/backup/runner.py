@@ -2,7 +2,7 @@
 from app_demo1.lib.backup.api_test import Apiclient
 from app_demo1.lib.tool import *
 from app_demo1.lib.database_con import  DataManager
-from app_demo1.lib.log_manager import LogManager
+from app_demo1.lib.log_man import LogManager
 from app_demo1.config import config
 
 class ApiPerformer():
