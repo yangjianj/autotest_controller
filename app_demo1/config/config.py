@@ -7,6 +7,10 @@ LOGFILE={"api": os.path.join(BASE_DIR, 'app_demo1\\log\\api_test_log.log'),
          "ui": os.path.join(BASE_DIR, 'app_demo1\\log\\ui_test_log.log')}
 Interface_Time_Out = 500
 
+FTPSERVER = '127.0.0.1'
+FTP_USERNAME = 'autotest'
+FTP_PASSWORD = 'autotest'
+UI_CASE_DIR = 'UICASE/'
 
 UI_CASE = {'test':os.path.join(BASE_DIR, 'app_demo1\\testcases\\uicase2.xlsx')}
 API_CASE = {'wuliu':os.path.join(BASE_DIR, 'app_demo1\\testcases\\interface_wl.xlsx')}

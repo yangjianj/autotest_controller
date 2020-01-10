@@ -8,7 +8,7 @@ class SlaveManager():
     slave管理库
     1.slave状态：繁忙，空闲，disable，disconnect
     2.slave查询，更新
-    3.
+    3.接收处理slave性能参数
     '''
     def __init__(self):
         pass
