@@ -22,10 +22,10 @@ def get_all_user1(request):
 	data=DataModel.get_all_user()
 	return JsonResponse(data,safe=False)
 
-
 def allow_origin_response(re):    #允许跨域请求设置
 	re["Access-Control-Allow-Origin"] = "*"    
 	re["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
 	re["Access-Control-Max-Age"] = "1000"
 	re["Access-Control-Allow-Headers"] = "*"
 	return re
+
