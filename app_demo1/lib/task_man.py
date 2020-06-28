@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 import  pika,time,random
-
+from app_demo1.lib.redisConnector import Connector as redisConnector
 
 class TaskManager():
 	def __init__(self,type):
 		# type : ui , api
 		timestramp = datetime.now().strftime( '%Y-%m-%d_%H-%M-%S' )
 		self.id = type+timestramp
+		self.redis = redisConnector()
 	
 	def create_task(self,version,product,caseid_list):
 		pass
@@ -18,7 +19,7 @@ class TaskManager():
 	def serach_task(self):
 		pass
 
-	def send_task(self,task,slave):
+	def send_task1(self,task,slave):
 		#发送任务给空闲slave
 		connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 		channel = connection.channel()  # 生成管道，在管道里跑不同的队列
@@ -33,6 +34,20 @@ class TaskManager():
 							  )
 		connection.close()
 
+	def send_task(self,task,slave):
+		#发送task到redis
+		'''
+		task = {
+        "id": "taskid123456",
+        "name": "name123",
+        "slave": "slave1",
+        "version": "version001",
+        "project": "pro1",
+        "cases": ["suite1", "suite111", "suite2", "suite211", "suite3", "suite311", "suite411", "suite4"]
+        }
+		'''
+		self.redis.push()
+    
 	def build_task(self,type,data):
 		#创建任务，并存储到任务数据库
 		version = data["version"]
@@ -52,5 +67,7 @@ class TaskManager():
 	def update_task(self,task_list):
 		#任务完成更新任务状态
 		pass
-
+if __name__ == '__main__':
+	tm= TaskManager()
+	
 
