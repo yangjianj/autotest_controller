@@ -20,7 +20,10 @@ app_demo3 ui
 10.日志收集与处理    
 11.测试结果展现---（echarts）    
 
-
+##相关项目：   
+[控制端前台](https://github.com/yangjianj/autotest_ui)   
+[worker端](https://github.com/yangjianj/worker)   
+[robotframework执行器](https://github.com/yangjianj/ui-api-robotframework) 
 ### django 命令：  
 django-admin startproject HelloWorld    
 python manage.py startapp app_name    
