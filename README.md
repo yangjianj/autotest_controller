@@ -12,8 +12,8 @@ app_demo3 ui
 4.各版本测试数据统计，图标展示---(mysql,sqlite3,echarts)         
 5.失败重试    
 6.异步/分布式任务执行，定时任务---（rabbitmq,apscheduler,master-slave）      
-6.1测试任务在slave上执行    
-6.2slave功能：作为并发测试成员之一执行测试；单独执行部分测试任务    
+6.1测试任务在worker上执行    
+6.2worker功能：作为并发测试成员之一执行测试；单独执行部分测试任务    
 7.缓存---（redis）     
 8.文件上传+富文本     
 9.短信/邮件    
