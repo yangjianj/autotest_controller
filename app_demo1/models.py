@@ -59,7 +59,7 @@ class task(models.Model):
     data = models.CharField(max_length=255)
     
 class Api_testcase(models.Model):
-    id = models.IntegerField()
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     project_name = models.CharField(max_length=255)
     module_name = models.CharField(max_length=255)

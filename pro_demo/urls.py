@@ -21,10 +21,6 @@ from app_demo1 import views_2 as demo1_v2
 urlpatterns = [
     path('admin', admin.site.urls),
     path('index', demo1_v.index),
-    path('test1', demo1_v.test1),
-    path('test_inapp', demo1_v.test_inapp),
-    path('area2d', demo1_v.area2d),
-    path('column3d', demo1_v.column3d),
     path('test_model', demo1_v.test_model),
     path('ajax', demo1_v.ajax),
     path('vue_elem', demo1_v.vue_elem),

@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_demo1',
-    'app_demo2',
     'app_demo3',
     'corsheaders',  #跨域
 
