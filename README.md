@@ -24,7 +24,7 @@ app_demo3 ui
 ![流程概要图](./doc/worker.JPG) 
 ![业务流程图](./doc/业务流程图.JPG)
 ![组网图](./doc/组网图.JPG)
-![执行器](./doc/执行器.JPG)
+![执行器](./doc/任务执行器.JPG)
 [控制端前台](https://github.com/yangjianj/autotest_ui)   
 [worker端](https://github.com/yangjianj/worker)   
 [robotframework执行器](https://github.com/yangjianj/ui-api-robotframework) 
