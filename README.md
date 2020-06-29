@@ -21,9 +21,13 @@ app_demo3 ui
 11.测试结果展现---（echarts）    
 
 ##相关项目：  
+### 流程概要图：
 ![流程概要图](./doc/worker.JPG) 
+### 详细业务流程图：
 ![业务流程图](./doc/业务流程图.JPG)
+### 组网图：
 ![组网图](./doc/组网图.JPG)
+### 执行器：
 ![执行器](./doc/任务执行器.JPG)
 [控制端前台](https://github.com/yangjianj/autotest_ui)   
 [worker端](https://github.com/yangjianj/worker)   
