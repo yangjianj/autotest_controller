@@ -69,4 +69,8 @@ class Api_testcase(models.Model):
     expected = models.CharField(max_length=255)
     api_link = models.TextField()
     request_data = models.TextField()
-    
+
+class task_case_mapping(models.Model):
+    id = models.IntegerField(primary_key=True)
+    taskid = models.CharField(max_length=50)
+    caseid = models.CharField(max_length=50)

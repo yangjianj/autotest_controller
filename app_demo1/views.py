@@ -7,7 +7,8 @@ from app_demo1.lib.database_con import DataManager
 import app_demo1.lib.tool as Tool
 import app_demo1.lib.database_model as DataModel
 from app_demo1.lib.user_man import UserManager,check_permission
-from app_demo1.lib.slave_man import SlaveManager
+from app_demo1.lib.workerMan import SlaveManager
+from app_demo1.lib.taskMan import TaskManager
 
 
 # Create your views here.
@@ -144,6 +145,20 @@ def task_update(request):
 	ip = body["ip"]
 	timestamp = body["timestamp"]
 	task = body["task"]
+
+
+@csrf_exempt
+def create_task(request):
+	body = json.loads(request.body.decode())
+	tm= TaskManager()
+	tm.create_task()
+
+@csrf_exempt
+def add_cases_to_task(request):
+	body = json.loads(request.body.decode())
+	tm = TaskManager()
+	tm.add_cases_to_task()
+
 
 
 def allow_origin_response(re):    #允许跨域请求设置

@@ -7,7 +7,7 @@ from app_demo1.lib.database_con import DataManager
 import app_demo1.lib.tool as Tool
 import app_demo1.lib.database_model as DataModel
 from app_demo1.lib.user_man import UserManager,check_permission
-from app_demo1.lib.slave_man import SlaveManager
+from app_demo1.lib.workerMan import SlaveManager
 
 # Create your views here.
 '''

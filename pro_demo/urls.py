@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app_demo1 import views as demo1_v
-from app_demo1 import views_2 as demo1_v2
+
 
 urlpatterns = [
     path('admin', admin.site.urls),
@@ -33,6 +33,6 @@ urlpatterns = [
     path('create_user', demo1_v.create_user),
     path('slave_heartbeat', demo1_v.slave_heartbeat),
     path('task_update', demo1_v.task_update),
-
-
+    path(r'^create_task$', demo1_v.create_task),
+    path(r'^add_cases_to_task$', demo1_v.add_cases_to_task),
 ]
