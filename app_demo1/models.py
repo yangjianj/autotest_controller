@@ -41,7 +41,7 @@ class Yang(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
 
-class Permission_map(models.Model):
+class PermissionMap(models.Model):
     id = models.IntegerField(primary_key=True)
     function = models.CharField(max_length=255)
     roleid = models.IntegerField()
@@ -52,13 +52,13 @@ class Slave(models.Model):
     bindqueue = models.CharField(max_length=255)
     updatetime = models.DateTimeField()
 
-class task(models.Model):
+class Task(models.Model):
     version = models.CharField(max_length=255)
     id = models.IntegerField(primary_key=True)
     type = models.CharField(max_length=255)
     data = models.CharField(max_length=255)
     
-class Api_testcase(models.Model):
+class ApiTestcase(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     project_name = models.CharField(max_length=255)
@@ -70,7 +70,17 @@ class Api_testcase(models.Model):
     api_link = models.TextField()
     request_data = models.TextField()
 
-class task_case_mapping(models.Model):
+
+class UiTaskCaseTable(models.Model):
     id = models.IntegerField(primary_key=True)
     taskid = models.CharField(max_length=50)
     caseid = models.CharField(max_length=50)
+    caseresult = models.CharField(max_length=50)
+    result_message = models.CharField(max_length=50)
+    output = models.CharField(max_length=255)
+    product_function = models.CharField(max_length=50)
+    starttime = models.DateTimeField()
+    endtime = models.DateTimeField()
+    elapsedtime = models.CharField()
+    worker = models.CharField(max_length=50) #未分配worker则表示可以在任意worker上执行
+    status = models.CharField(max_length=50) #wait,running/finished

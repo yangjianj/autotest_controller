@@ -4,6 +4,7 @@ import  time,random
 from app_demo1.lib.redisConnector import Connector as redisConnector
 from app_demo1.models import task_case_mapping
 from app_demo1.lib.database_con import DataManager
+from app_demo1.models import UiTaskCaseTable
 
 class TaskManager():
 	def __init__(self,type):
@@ -38,14 +39,16 @@ class TaskManager():
 		return True
 
 	def add_cases_to_task(self,taskid,caselist):
-		data = {}
-		data["taskid"] = taskid
-		data["caselist"] = caselist
-		self.db.add_case_to_task(taskid,caselist)
+		#添加caseid到任务表中
+		for item in caselist:
+			obj = {'taskid': taskid, 'caseid': item['caseid'],'status':'wait'}
+			UiTaskCaseTable.objects.create(obj)
 		
 	def update_task(self,task_list):
 		#任务完成更新任务状态
 		pass
+
+
 if __name__ == '__main__':
 	tm= TaskManager()
 	

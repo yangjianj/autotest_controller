@@ -68,3 +68,8 @@ wl_url="http://www.kuaidi100.com/query"
 wl_querystring = {"type":"yunda","postid":"3835494398576"}
 method_mapping={'点击':'click',
 }
+
+#redis配置
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+TASK_TOPIC = 'task'  #某一worker的消息通道

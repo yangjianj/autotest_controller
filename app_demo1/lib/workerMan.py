@@ -3,7 +3,7 @@ import datetime
 from app_demo1.models import Slave
 from app_demo1.lib.app_serializers import SlaveSerializer
 
-class SlaveManager():
+class WorkerManager():
     '''
     slave管理库
     1.slave状态：繁忙，空闲，disable，disconnect
@@ -13,17 +13,17 @@ class SlaveManager():
     def __init__(self):
         pass
 
-    def get_all_slave(self):
+    def get_all_worker(self):
         all = Slave.objects.all()
         alljson = SlaveSerializer(instance=all, many=True)
         return alljson
 
-    def enable_slave(self,ip):
+    def enable_worker(self,ip):
         slave = Slave.objects.get(username=ip)
         slave.status = 'enable'
         slave.save()
 
-    def disable_slave(self,ip):
+    def disable_worker(self,ip):
         slave = Slave.objects.get(username=ip)
         slave.status = 'disable'
         slave.save()
@@ -33,7 +33,7 @@ class SlaveManager():
         slave.label = label
         slave.save()
 
-    def set_slave_status(self):
+    def set_worker_status(self):
         #根据最近心跳更新时间与当前时间对比，更新健康度
         pass
 
