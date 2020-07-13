@@ -21,7 +21,6 @@ def send_task(self,task,slave):
     redis = redisConnector()
     redis.publish(CONFIG.TASK_TOPIC,task)
 
-
 def send_task1(self, task, slave):
     # 发送任务给空闲slave
     connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
@@ -40,5 +39,5 @@ def send_task1(self, task, slave):
 
 if __name__ == '__main__':
     while(1):
-        #循环查询任务数据库中未
+        #循环查询任务数据库中未执行任务，匹配空闲worker执行
         time.sleep(2)

@@ -44,14 +44,12 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',  #跨域
-    #'django.middleware.lib.CommonMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'app_demo1.lib.middle1.UserLoginMiddleware',   #自定义中间件：验证用户是否登录
-    #'app_demo1.lib.middle1.middle2',
-    #'app_demo1.lib.middle1.middle3',
 ]
 
 ROOT_URLCONF = 'pro_demo.urls'
@@ -136,9 +134,12 @@ STATICFILES_DIRS = (
 )
 #访问：127.0.0.1:8090/static/file1.html
 
-'''
+
 #跨域配置
+# 跨域请求时，是否运行携带cookie，默认为False
 CORS_ALLOW_CREDENTIALS = True
+# 允许所有主机执行跨站点请求，默认为False
+# 如果没设置该参数，则必须设置白名单，运行部分白名单的主机才能执行跨站点请求
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = ()
 
@@ -164,4 +165,3 @@ CORS_ALLOW_HEADERS = (
     'x-requested-with',
     'Pragma',
 )
-'''

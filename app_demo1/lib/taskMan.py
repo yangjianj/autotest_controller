@@ -2,11 +2,13 @@
 from datetime import datetime
 import  time,random
 from app_demo1.lib.redisConnector import Connector as redisConnector
-from app_demo1.models import task_case_mapping
 from app_demo1.lib.database_con import DataManager
 from app_demo1.models import UiTaskCaseTable
 
 class TaskManager():
+	'''
+    任务管理：创建，更新，删除
+	'''
 	def __init__(self,type):
 		# type : ui , api
 		timestramp = datetime.now().strftime( '%Y-%m-%d_%H-%M-%S' )

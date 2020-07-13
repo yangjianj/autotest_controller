@@ -7,11 +7,10 @@ from app_demo1.lib.database_con import DataManager
 import app_demo1.lib.tool as Tool
 import app_demo1.lib.database_model as DataModel
 from app_demo1.lib.user_man import UserManager,check_permission
-from app_demo1.lib.workerMan import SlaveManager
+from app_demo1.lib.workerMan import WorkerManager
 from app_demo1.lib.taskMan import TaskManager
 
 
-# Create your views here.
 
 def index(reauest):
 	return HttpResponse('hello! IN APP1')
@@ -20,7 +19,7 @@ def test_model(request):
 	print(DataModel.get_yang())
 	return render(request, "column3d.html")
 
-@csrf_exempt
+
 def login(request):
 	#不使用内置session中间件，使用token方式进行验证
 	username = request.POST['username']
@@ -35,14 +34,14 @@ def login(request):
 	else:
 		return HttpResponse('auth failed')
 
-@csrf_exempt
+
 def logout(request):
 	sessionid = request.COOKIES.get("sessionid")
 	request.session.delete(sessionid)
 	response = HttpResponse('ok')
 	return response
 
-@csrf_exempt
+
 @check_permission
 def create_user(request):
 	username = request.POST["username"]
@@ -56,7 +55,7 @@ def check_password(request):
 
 
 
-@csrf_exempt
+
 def ajax(request):   #处理前端请求
 	result={
 			'tag':'正常',
@@ -68,11 +67,9 @@ def ajax(request):   #处理前端请求
 			         	}
 			         ]
 			         }
-	result=HttpResponse(json.dumps(result, ensure_ascii=False))
-	result=allow_origin_response(result)
-	return result
+	return HttpResponse(json.dumps(result, ensure_ascii=False))
 
-@csrf_exempt
+
 def get_all_user(request):
 	result=[]
 	tmpdata={
@@ -86,35 +83,29 @@ def get_all_user(request):
 	re=db_obj.query_users()
 	for i in re:
 		result.append({"workid":i[2],"name":i[1],"role":i[3],"project":i[4],"telephone":i[5]})
-	result=HttpResponse(json.dumps(str(result), ensure_ascii=False))
-	result=allow_origin_response(result)
-	return result
+	return HttpResponse(json.dumps(str(result), ensure_ascii=False))
 
-@csrf_exempt
+
 def get_all_user1(request):
 	#序列化返回结果
 	print("in get user1")
 	data=DataModel.get_all_user()
 	return JsonResponse(data,safe=False)
 
-@csrf_exempt
+
 def update_user(request):
 	result=[]
 	db_obj=DataManager()
 	result=db_obj.update_user(request.POST["name"],request.POST["workid"],request.POST["role"],request.POST["project"],request.POST["telephone"],)
-	result=HttpResponse(json.dumps(str(result), ensure_ascii=False))
-	result=allow_origin_response(result)
-	return result
+	return HttpResponse(json.dumps(str(result), ensure_ascii=False))
 
-@csrf_exempt
 def get_reuqet_json(request):
 	print(request.body.decode())
-	re_data=json.loads(request.body)
-	print(re_data['username'])
+	#re_data=json.loads(request.body)
+	#print(re_data['username'])
 	result={'status':200,'re_data':'123456789'}
-	result=HttpResponse(json.dumps(result, ensure_ascii=False))
-	result=allow_origin_response(result)
-	return result
+
+	return HttpResponse(json.dumps(result, ensure_ascii=False))
 
 def vue_elem(request):
 	return render(request,"test_element.html")
@@ -122,7 +113,7 @@ def vue_elem(request):
 def task_status_update(request):   #slave向master更新任务完成状态
 	pass
 
-@csrf_exempt
+
 def slave_heartbeat(request):
 	print(request.body)
 	body = json.loads(request.body.decode())
@@ -131,14 +122,14 @@ def slave_heartbeat(request):
 	status = None
 	if 'status' in body:
 		status = body["status"]
-	re = SlaveManager().update_timestamp(ip,timestamp,status)
+	re = WorkerManager().update_timestamp(ip,timestamp,status)
 	if re == True:
 		result =  {'status': 'true'}
 	else:
 		result = {'status': 'false',"message":re["message"]}
 	return HttpResponse(json.dumps(result, ensure_ascii=False))
 
-@csrf_exempt
+
 def task_update(request):
 	print(request.body)
 	body = json.loads(request.body.decode())
@@ -147,23 +138,14 @@ def task_update(request):
 	task = body["task"]
 
 
-@csrf_exempt
+
 def create_task(request):
 	body = json.loads(request.body.decode())
 	tm= TaskManager()
 	tm.create_task()
 
-@csrf_exempt
+
 def add_cases_to_task(request):
 	body = json.loads(request.body.decode())
 	tm = TaskManager()
 	tm.add_cases_to_task()
-
-
-
-def allow_origin_response(re):    #允许跨域请求设置
-	re["Access-Control-Allow-Origin"] = "*"    
-	re["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
-	re["Access-Control-Max-Age"] = "1000"
-	re["Access-Control-Allow-Headers"] = "*"
-	return re

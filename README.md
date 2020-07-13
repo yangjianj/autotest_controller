@@ -1,22 +1,7 @@
-自动化测试平台后台代码     
+# 自动化测试平台后台代码     
 ---------------------
 app_demo1 接口   
 app_demo3 ui Unittest demo    
-
-功能：    
------
-1.用户管理：登录控制，增删改查，角色权限控制---(session cookie,django中间件,装饰器)(完成)    
-2.后台实现接口测试，ui测试，接口性能    
-3.页面添加，编辑，执行测试：接口功能测试，性能测试，时间记录---(request，多线程，装饰器)    
-4.各版本测试数据统计，图标展示---(mysql,sqlite3,echarts)         
-5.失败重试    
-6.异步/分布式任务执行，定时任务---（rabbitmq,apscheduler,master-slave）      
-6.1测试任务在worker上执行    
-6.2worker功能：作为并发测试成员之一执行测试；单独执行部分测试任务     
-7.短信/邮件    
-8.日志收集与处理    
-9.测试结果展现---（echarts）    
-10.多个worker公用资源锁
 
 ##相关项目：  
 ### 流程概要图：
@@ -30,12 +15,28 @@ app_demo3 ui Unittest demo
 [控制端前台](https://github.com/yangjianj/autotest_ui)   
 [worker端](https://github.com/yangjianj/worker)   
 [robotframework执行器](https://github.com/yangjianj/ui-api-robotframework) 
-### django 命令：  
-django-admin startproject HelloWorld    
-python manage.py startapp app_name    
-python manage.py runserver 0.0.0.0:8090    
-python manage.py makemigrations    
-python manage.py migrate    
+
+
+## 已实现功能：    
+-----
+1.用户管理：登录控制，增删改查，角色权限控制---(session cookie,django中间件,装饰器)(完成)    
+2.任务创建，任务遍历执行
+3.异步/分布式任务执行（redis作为消息中间件）      
+3.1测试任务在worker上执行    
+3.2worker功能：作为并发测试成员之一执行测试；单独执行部分测试任务     
+
+## 未实现功能：  
+1.后台实现接口测试，ui测试，接口性能    
+2.页面添加，编辑，执行测试：接口功能测试，性能测试，时间记录---(request，多线程，装饰器)    
+3.各版本测试数据统计，图标展示---(mysql,sqlite3,echarts)         
+4.失败重试    
+5.短信/邮件    
+6.日志收集与处理    
+7.测试结果展现---（echarts）    
+8.多个worker公用资源锁   
+9.定时任务   
+
+
 
 app_demo1   
 ========    
@@ -97,5 +98,13 @@ app_demo3
 
 对比：    
 本平台与jenkins的master-slave对比：   
+
+
+### django 命令：  
+django-admin startproject HelloWorld    
+python manage.py startapp app_name    
+python manage.py runserver 0.0.0.0:8090    
+python manage.py makemigrations    
+python manage.py migrate    
 
 

@@ -1,5 +1,5 @@
 import hashlib,time,datetime
-from app_demo1.models import User,Permission_map
+from app_demo1.models import User,PermissionMap
 from app_demo1.lib.app_serializers import CommentSerializer
 from django.http import JsonResponse,HttpResponse,HttpResponseRedirect
 

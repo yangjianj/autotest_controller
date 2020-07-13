@@ -81,6 +81,6 @@ class UiTaskCaseTable(models.Model):
     product_function = models.CharField(max_length=50)
     starttime = models.DateTimeField()
     endtime = models.DateTimeField()
-    elapsedtime = models.CharField()
+    elapsedtime = models.CharField(max_length=50)
     worker = models.CharField(max_length=50) #未分配worker则表示可以在任意worker上执行
     status = models.CharField(max_length=50) #wait,running/finished

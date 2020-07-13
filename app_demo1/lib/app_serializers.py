@@ -1,6 +1,5 @@
 # -*-coding:UTF-8 -*-
 from rest_framework import serializers
-from app_demo1.models import Api_testcase
 #定义序列化类
 
 class CommentSerializer(serializers.Serializer):
